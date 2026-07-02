@@ -8,7 +8,17 @@
         body { font-family: Arial, sans-serif; background: #E5F0FA; margin:0; padding:0; color:#000; }
         .header { background: #A2D2FF; padding:15px; text-align:center; }
         .card { background:#BDE0FE; border-radius:15px; padding:20px; margin:15px; }
-        .sprite { width: 100px; height: 100px; vertical-align: middle; }
+        .sprite {
+            width: 100px;
+            height: 100px;
+            vertical-align: middle;
+            animation: bob 2s infinite ease-in-out;
+            display: inline-block;
+        }
+        @keyframes bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
     </style>
 </head>
 <body>
@@ -19,44 +29,46 @@
 
     <div class="card">
         <h2>Main Content (Deborah-Led) <img src="assets/deborah.png" class="sprite"></h2>
-        <p>The Australian Constitution is our nation's rulebook...</p>
-        <p>Harold Holt was the 17th Prime Minister...</p>
+        <p>The Australian Constitution is our nation's rulebook. It established the federal system and outlines how government works.</p>
+        <p class="character">🐝 Deborah says: "Harold Holt was the 17th Prime Minister. He mysteriously disappeared while swimming in 1967..."</p>
     </div>
 
     <div class="card">
         <h3>Democracy Sausage Help <img src="assets/sausage.png" class="sprite"></h3>
-        <p>Matching activity...</p>
+        <p>Matching activity: Match key terms like Federation, Referendum, and Constitution to their meanings.</p>
     </div>
 
     <div class="card">
         <h3>Parliament House Prawn Challenge <img src="assets/prawn.png" class="sprite"></h3>
-        <p>Compare Australia's Constitution...</p>
+        <p>Compare one feature of Australia's Constitution with another country's. What makes ours unique?</p>
     </div>
 
     <button onclick="history.back()">Back to Dashboard</button>
+
+    <!-- Tracking Script -->
     <script>
-    let startTime = Date.now();
-    let awayTime = 0;
-    let tabSwitches = 0;
+        let startTime = Date.now();
+        let awayTime = 0;
+        let tabSwitches = 0;
 
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            tabSwitches++;
-            console.log('Student went away - Tab switch #' + tabSwitches);
-            awayTime = Date.now();
-        } else {
-            if (awayTime > 0) {
-                const timeAway = Math.round((Date.now() - awayTime) / 1000);
-                console.log('Student returned after ' + timeAway + ' seconds');
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                tabSwitches++;
+                console.log('🚨 Student went away - Tab switch #' + tabSwitches);
+                awayTime = Date.now();
+            } else {
+                if (awayTime > 0) {
+                    const timeAway = Math.round((Date.now() - awayTime) / 1000);
+                    console.log('✅ Student returned after ' + timeAway + ' seconds');
+                    awayTime = 0;
+                }
             }
-        }
-    });
+        });
 
-    // On page unload (close or navigate away)
-    window.addEventListener('beforeunload', () => {
-        const totalTime = Math.round((Date.now() - startTime) / 1000);
-        console.log('Session ended. Total time: ' + totalTime + 's | Tab switches: ' + tabSwitches);
-    });
-</script>
+        window.addEventListener('beforeunload', () => {
+            const totalTime = Math.round((Date.now() - startTime) / 1000);
+            console.log('Session ended. Total time on lesson: ' + totalTime + 's | Tab switches: ' + tabSwitches);
+        });
+    </script>
 </body>
 </html>
