@@ -7,16 +7,14 @@
     <style>
         body { font-family: Arial, sans-serif; background: #E5F0FA; margin:0; padding:0; color:#000; }
         .header { background: #A2D2FF; padding:20px; text-align:center; }
-        .card { background:#BDE0FE; border-radius:15px; padding:25px; margin:30px auto; max-width:500px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
-        button { background:#8FC9FF; padding:12px 24px; border:none; border-radius:10px; font-size:16px; cursor:pointer; }
-        .week-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:15px; padding:20px; }
-        .week-tile { background:#8FC9FF; padding:20px; border-radius:12px; text-align:center; cursor:pointer; }
+        .card { background:#BDE0FE; border-radius:15px; padding:30px; margin:50px auto; max-width:400px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+        button { background:#8FC9FF; padding:14px 28px; border:none; border-radius:10px; font-size:16px; cursor:pointer; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🐝 Deborah - Year 9 Civics 2026</h1>
-        <p>Australian Political System</p>
+        <p>Your guide to Australian democracy</p>
     </div>
 
     <div class="card">
@@ -30,8 +28,7 @@
         function login() {
             const user = document.getElementById('username').value.toUpperCase().trim();
             if (user.startsWith('S') || user.startsWith('T')) {
-                alert('✅ Welcome, ' + user + '! (Full dashboard coming in next update)');
-                // window.location.href = 'dashboard.html';
+                window.location.href = 'dashboard.html?code=' + user;
             } else {
                 document.getElementById('error').innerText = 'Use Sxxxx or Txxxx code';
             }
