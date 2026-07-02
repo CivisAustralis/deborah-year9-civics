@@ -8,39 +8,35 @@
         body { font-family: Arial, sans-serif; background: #E5F0FA; margin:0; padding:0; color:#000; }
         .header { background: #A2D2FF; padding:15px; text-align:center; }
         .card { background:#BDE0FE; border-radius:15px; padding:20px; margin:15px; }
-        .sprite {
-            width: 100px;
-            height: 100px;
-            vertical-align: middle;
-            animation: bob 2s infinite ease-in-out;
-            display: inline-block;
-        }
-        @keyframes bob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
+        .sprite { width: 100px; height: 100px; vertical-align: middle; animation: bob 2s infinite ease-in-out; display: inline-block; }
+        @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .activity { background:#D1E8FC; padding:15px; border-radius:10px; margin:10px 0; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🐝 Deborah - Year 9 Civics</h1>
-        <p>Week 1 - Lesson 1: The Australian Constitution</p>
+        <p>Week 1 - Lesson 1: The Australian Constitution (~60 min)</p>
     </div>
 
     <div class="card">
         <h2>Main Content (Deborah-Led) <img src="assets/deborah.png" class="sprite"></h2>
-        <p>The Australian Constitution is our nation's rulebook. It established the federal system and outlines how government works.</p>
+        <p>Read the provided excerpt from your materials about the Constitution and Federation (15 min).</p>
         <p class="character">🐝 Deborah says: "Harold Holt was the 17th Prime Minister. He mysteriously disappeared while swimming in 1967..."</p>
     </div>
 
-    <div class="card">
-        <h3>Democracy Sausage Help <img src="assets/sausage.png" class="sprite"></h3>
-        <p>Matching activity: Match key terms like Federation, Referendum, and Constitution to their meanings.</p>
+    <div class="card activity">
+        <h3>Democracy Sausage Help (20 min)</h3>
+        <p>Matching activity: Match key terms (Federation, Referendum, Constitution, Federal Powers) to their meanings using the word bank and diagrams.</p>
+    </div>
+
+    <div class="card activity">
+        <h3>Parliament House Prawn Challenge (20 min)</h3>
+        <p>Compare one feature of Australia's Constitution with another country's. Write a short paragraph explaining what makes ours unique.</p>
     </div>
 
     <div class="card">
-        <h3>Parliament House Prawn Challenge <img src="assets/prawn.png" class="sprite"></h3>
-        <p>Compare one feature of Australia's Constitution with another country's. What makes ours unique?</p>
+        <p><strong>Reflection (5 min)</strong>: What surprised you most about the Constitution?</p>
     </div>
 
     <button onclick="history.back()">Back to Dashboard</button>
