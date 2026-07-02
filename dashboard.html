@@ -9,23 +9,53 @@
         .header { background: #A2D2FF; padding:20px; text-align:center; }
         .card { background:#BDE0FE; border-radius:15px; padding:25px; margin:20px; }
         .week-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:15px; padding:20px; }
-        .week-tile { background:#8FC9FF; padding:25px; border-radius:12px; text-align:center; cursor:pointer; font-size:1.1em; }
+        .week-tile { background:#8FC9FF; padding:20px; border-radius:12px; text-align:center; cursor:pointer; font-size:1.1em; }
+        .lesson-link { color: #000; text-decoration: none; }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>🐝 Deborah - Year 9 Civics</h1>
+        <h1>🐝 Deborah - Year 9 Civics 2026</h1>
         <p>Welcome, <span id="userCode">Student</span></p>
     </div>
 
     <div class="card">
         <h2>Course Dashboard</h2>
+        
+        <h3>Week 1</h3>
         <div class="week-grid">
-            <div class="week-tile" onclick="alert('Week 1: Constitution & Eureka Stockade')">Week 1</div>
-            <div class="week-tile" onclick="alert('Week 2: Policy & Making Laws')">Week 2</div>
-            <div class="week-tile" onclick="alert('Week 3: Legal System & Courts')">Week 3</div>
-            <div class="week-tile" onclick="alert('Week 4: Civic Participation')">Week 4</div>
-            <div class="week-tile" onclick="alert('Week 5: Media, Diversity & Global Citizenship')">Week 5</div>
+            <a href="week1-lesson1.html" class="lesson-link"><div class="week-tile">Lesson 1: Constitution</div></a>
+            <a href="week1-lesson2.html" class="lesson-link"><div class="week-tile">Lesson 2: Eureka Stockade</div></a>
+            <a href="week1-lesson3.html" class="lesson-link"><div class="week-tile">Lesson 3: Division of Powers</div></a>
+            <a href="week1-lesson4.html" class="lesson-link"><div class="week-tile">Lesson 4: Referendums</div></a>
+        </div>
+
+        <h3>Week 2</h3>
+        <div class="week-grid">
+            <a href="week2-lesson1.html" class="lesson-link"><div class="week-tile">Lesson 1: Idea to Cabinet</div></a>
+            <a href="week2-lesson2.html" class="lesson-link"><div class="week-tile">Lesson 2: Parliament</div></a>
+            <a href="week2-lesson3.html" class="lesson-link"><div class="week-tile">Lesson 3: Passing a Bill</div></a>
+            <a href="week2-lesson4.html" class="lesson-link"><div class="week-tile">Lesson 4: Committees & Media</div></a>
+        </div>
+
+        <h3>Week 3</h3>
+        <div class="week-grid">
+            <a href="week3-lesson1.html" class="lesson-link"><div class="week-tile">Lesson 1: Court Hierarchy</div></a>
+            <a href="week3-lesson2.html" class="lesson-link"><div class="week-tile">Lesson 2: Criminal vs Civil</div></a>
+            <a href="week3-lesson3.html" class="lesson-link"><div class="week-tile">Lesson 3: Case Studies</div></a>
+            <a href="week3-lesson4.html" class="lesson-link"><div class="week-tile">Lesson 4: Principles & Capital Punishment</div></a>
+        </div>
+
+        <h3>Week 4</h3>
+        <div class="week-grid">
+            <a href="week4-lesson1.html" class="lesson-link"><div class="week-tile">Lesson 1: Voting & Parties</div></a>
+            <a href="week4-lesson2.html" class="lesson-link"><div class="week-tile">Lesson 2: Participation & Global Citizenship</div></a>
+        </div>
+
+        <h3>Week 5</h3>
+        <div class="week-grid">
+            <a href="week5-lesson1.html" class="lesson-link"><div class="week-tile">Lesson 1: Media Influence</div></a>
+            <a href="week5-lesson2.html" class="lesson-link"><div class="week-tile">Lesson 2: Diversity & Immigration</div></a>
         </div>
     </div>
 
