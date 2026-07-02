@@ -35,5 +35,29 @@
     </div>
 
     <button onclick="history.back()">Back to Dashboard</button>
+    <script>
+    let startTime = Date.now();
+    let awayTime = 0;
+    let tabSwitches = 0;
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            tabSwitches++;
+            console.log('Student went away - Tab switch #' + tabSwitches);
+            awayTime = Date.now();
+        } else {
+            if (awayTime > 0) {
+                const timeAway = Math.round((Date.now() - awayTime) / 1000);
+                console.log('Student returned after ' + timeAway + ' seconds');
+            }
+        }
+    });
+
+    // On page unload (close or navigate away)
+    window.addEventListener('beforeunload', () => {
+        const totalTime = Math.round((Date.now() - startTime) / 1000);
+        console.log('Session ended. Total time: ' + totalTime + 's | Tab switches: ' + tabSwitches);
+    });
+</script>
 </body>
 </html>
