@@ -12,6 +12,8 @@
         @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
         .activity { background:#D1E8FC; padding:15px; border-radius:10px; margin:10px 0; }
         button { background:#8FC9FF; padding:8px 16px; margin:5px; border:none; border-radius:8px; cursor:pointer; }
+        textarea { width:100%; padding:8px; border-radius:8px; border:1px solid #8FC9FF; }
+        .reference { font-size: 0.9em; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -20,36 +22,65 @@
         <p>Week 1 - Lesson 1: The Australian Constitution (~60 minutes)</p>
     </div>
 
+    <!-- Reading -->
     <div class="card">
-        <h2>Main Content (Deborah-Led) <img src="assets/deborah.png" class="sprite"></h2>
-        <p><strong>Reading (15 minutes)</strong>: Read the provided excerpt from your materials about the Australian Constitution and how it established the federal system. Focus on the key roles it plays in our government.</p>
+        <h2>Main Content (Deborah-Led) <img src="_assets/deborah.png" class="sprite"></h2>
+        
+        <p><strong>Reading (15 minutes)</strong></p>
+        <p>The Australian Constitution was created when the six British colonies decided to federate into one nation. It was passed by the United Kingdom Parliament and came into effect on 1 January 1901. The Constitution establishes the federal system, dividing legislative powers between the Commonwealth Parliament and the State Parliaments. It sets up the three branches of government: the Parliament (which makes laws), the Executive (which administers the laws), and the Judiciary (which interprets the laws). This system is often called the 'Washminster' system because it combines elements of the British Westminster system (responsible government) and the American Washington system (federal structure and written constitution) (Australian Government, n.d.; Parliamentary Education Office, n.d.).</p>
+        
         <p class="character">🐝 Deborah says: "Harold Holt was the 17th Prime Minister. He mysteriously disappeared while swimming in 1967..."</p>
     </div>
 
+    <!-- Interactive Activity 1 -->
     <div class="card activity">
         <h3>Democracy Sausage Help (20 minutes)</h3>
-        <p>Matching activity:</p>
-        <button onclick="alert('Correct! Federation is the process of forming the Commonwealth.')">Federation</button>
-        <button onclick="alert('Correct! A referendum is a vote on changing the Constitution.')">Referendum</button>
-        <button onclick="alert('Correct! The Constitution is Australia\\'s rulebook.')">Constitution</button>
-        <p><small>Click the buttons to check your answers.</small></p>
+        <p><strong>Matching Activity:</strong> Click the correct term for each definition.</p>
+        
+        <p>1. The process of the colonies joining together in 1901 → 
+            <button onclick="checkAnswer(this, 'Correct! Federation is the joining of the colonies.')">Federation</button>
+            <button onclick="checkAnswer(this, 'Try again.')">Referendum</button>
+        </p>
+        
+        <p>2. A vote by the people to change the Constitution → 
+            <button onclick="checkAnswer(this, 'Try again.')">Federation</button>
+            <button onclick="checkAnswer(this, 'Correct! A referendum is a direct vote on constitutional change.')">Referendum</button>
+        </p>
+        
+        <p>3. Australia's rulebook that sets up the federal system → 
+            <button onclick="checkAnswer(this, 'Correct! The Constitution is Australia\\'s foundational legal document.')">Constitution</button>
+            <button onclick="checkAnswer(this, 'Try again.')">Federation</button>
+        </p>
     </div>
 
+    <!-- Interactive Activity 2 -->
     <div class="card activity">
         <h3>Parliament House Prawn Challenge (20 minutes)</h3>
-        <p>Compare one feature of Australia's Constitution with another country's. Write a short paragraph explaining what makes ours unique and why that matters for stability.</p>
-        <textarea rows="6" style="width:100%;"></textarea>
+        <p>Compare one feature of Australia’s Constitution with another country’s constitution. Write a short paragraph explaining what makes ours unique and why that matters for stability.</p>
+        <textarea rows="6" placeholder="Type your comparison here..."></textarea>
     </div>
 
+    <!-- Reflection -->
     <div class="card">
-        <p><strong>Reflection (5 minutes)</strong>: What surprised you most about the Constitution? Write one sentence below.</p>
-        <textarea rows="3" style="width:100%;"></textarea>
+        <p><strong>Reflection (5 minutes)</strong>: What surprised you most about the Constitution? Write one sentence.</p>
+        <textarea rows="3" placeholder="I was surprised that..."></textarea>
+    </div>
+
+    <!-- References -->
+    <div class="card reference">
+        <h4>References</h4>
+        <p>Australian Government. (n.d.). <em>Infosheet 13 - The Constitution</em>. Parliament of Australia. https://www.aph.gov.au/About_Parliament/House_of_Representatives/Powers_practice_and_procedure/00_-_Infosheets/Infosheet_13_-_The_Constitution</p>
+        <p>Parliamentary Education Office. (n.d.). <em>Australian system of government</em>. https://peo.gov.au/understand-our-parliament/how-parliament-works/system-of-government/australian-system-of-government</p>
     </div>
 
     <button onclick="history.back()">Back to Dashboard</button>
 
-    <!-- Tracking Script -->
     <script>
+        function checkAnswer(button, message) {
+            alert(message);
+        }
+
+        // Tracking
         let startTime = Date.now();
         let awayTime = 0;
         let tabSwitches = 0;
