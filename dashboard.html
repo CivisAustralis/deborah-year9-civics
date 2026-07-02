@@ -10,58 +10,51 @@
         .card { background:#BDE0FE; border-radius:15px; padding:25px; margin:20px; }
         .week-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:15px; padding:20px; }
         .week-tile { background:#8FC9FF; padding:20px; border-radius:12px; text-align:center; cursor:pointer; font-size:1.1em; }
-        .lesson-link { color: #000; text-decoration: none; }
+        button { background:#8FC9FF; padding:10px 16px; margin:5px; border:none; border-radius:8px; cursor:pointer; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🐝 Deborah - Year 9 Civics 2026</h1>
-        <p>Welcome, <span id="userCode">Student</span></p>
+        <p>Welcome, <span id="userCode">Teacher</span></p>
+    </div>
+
+    <div class="card">
+        <h2>Admin Tools (Teachers Only)</h2>
+        <button onclick="createTeacher()">Create New Teacher Account</button>
+        <button onclick="createStudent()">Add New Student (Random Code)</button>
+        <button onclick="viewReport()">View Class Report</button>
     </div>
 
     <div class="card">
         <h2>Course Dashboard</h2>
-        
-        <h3>Week 1</h3>
         <div class="week-grid">
-            <a href="week1-lesson1.html" class="lesson-link"><div class="week-tile">Lesson 1: Constitution</div></a>
-            <a href="week1-lesson2.html" class="lesson-link"><div class="week-tile">Lesson 2: Eureka Stockade</div></a>
-            <a href="week1-lesson3.html" class="lesson-link"><div class="week-tile">Lesson 3: Division of Powers</div></a>
-            <a href="week1-lesson4.html" class="lesson-link"><div class="week-tile">Lesson 4: Referendums</div></a>
-        </div>
-
-        <h3>Week 2</h3>
-        <div class="week-grid">
-            <a href="week2-lesson1.html" class="lesson-link"><div class="week-tile">Lesson 1: Idea to Cabinet</div></a>
-            <a href="week2-lesson2.html" class="lesson-link"><div class="week-tile">Lesson 2: Parliament</div></a>
-            <a href="week2-lesson3.html" class="lesson-link"><div class="week-tile">Lesson 3: Passing a Bill</div></a>
-            <a href="week2-lesson4.html" class="lesson-link"><div class="week-tile">Lesson 4: Committees & Media</div></a>
-        </div>
-
-        <h3>Week 3</h3>
-        <div class="week-grid">
-            <a href="week3-lesson1.html" class="lesson-link"><div class="week-tile">Lesson 1: Court Hierarchy</div></a>
-            <a href="week3-lesson2.html" class="lesson-link"><div class="week-tile">Lesson 2: Criminal vs Civil</div></a>
-            <a href="week3-lesson3.html" class="lesson-link"><div class="week-tile">Lesson 3: Case Studies</div></a>
-            <a href="week3-lesson4.html" class="lesson-link"><div class="week-tile">Lesson 4: Principles & Capital Punishment</div></a>
-        </div>
-
-        <h3>Week 4</h3>
-        <div class="week-grid">
-            <a href="week4-lesson1.html" class="lesson-link"><div class="week-tile">Lesson 1: Voting & Parties</div></a>
-            <a href="week4-lesson2.html" class="lesson-link"><div class="week-tile">Lesson 2: Participation & Global Citizenship</div></a>
-        </div>
-
-        <h3>Week 5</h3>
-        <div class="week-grid">
-            <a href="week5-lesson1.html" class="lesson-link"><div class="week-tile">Lesson 1: Media Influence</div></a>
-            <a href="week5-lesson2.html" class="lesson-link"><div class="week-tile">Lesson 2: Diversity & Immigration</div></a>
+            <a href="week1-lesson1.html" class="lesson-link"><div class="week-tile">Week 1</div></a>
+            <a href="week2-lesson1.html" class="lesson-link"><div class="week-tile">Week 2</div></a>
+            <a href="week3-lesson1.html" class="lesson-link"><div class="week-tile">Week 3</div></a>
+            <a href="week4-lesson1.html" class="lesson-link"><div class="week-tile">Week 4</div></a>
+            <a href="week5-lesson1.html" class="lesson-link"><div class="week-tile">Week 5</div></a>
         </div>
     </div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        document.getElementById('userCode').textContent = urlParams.get('code') || 'Student';
+        const code = urlParams.get('code') || 'Teacher';
+        document.getElementById('userCode').textContent = code;
+
+        function createTeacher() {
+            const newCode = "TA" + Math.random().toString(36).substring(2,6).toUpperCase();
+            alert("New Teacher Account Created!\nCode: " + newCode + "\nPassword: same as code");
+        }
+
+        function createStudent() {
+            const newCode = "S" + Math.random().toString(36).substring(2,6).toUpperCase();
+            alert("New Student Added!\nCode: " + newCode);
+        }
+
+        function viewReport() {
+            window.location.href = 'teacher-report.html';
+        }
     </script>
 </body>
 </html>
