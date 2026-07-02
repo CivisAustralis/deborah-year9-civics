@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deborah - Teacher Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #E5F0FA; margin:0; padding:20px; color:#000; }
+        .header { background: #A2D2FF; padding:20px; text-align:center; }
+        table { width:100%; border-collapse:collapse; margin:20px 0; }
+        th, td { border:1px solid #000; padding:10px; text-align:left; }
+        th { background:#8FC9FF; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🐝 Deborah Teacher Report</h1>
+        <p>Engagement & Progress Overview</p>
+    </div>
+
+    <div style="max-width:900px;margin:0 auto;">
+        <h2>Student Activity Log</h2>
+        <table id="reportTable">
+            <tr>
+                <th>Student Code</th>
+                <th>Lesson</th>
+                <th>Total Time (min)</th>
+                <th>Tab Switches</th>
+                <th>Last Activity</th>
+            </tr>
+        </table>
+
+        <p><strong>Note:</strong> In a full version, this would pull real data from student sessions. For now, it's a demo table.</p>
+    </div>
+
+    <script>
+        // Demo data
+        const demoData = [
+            ["S1234", "Week 1 Lesson 1", "18", "3", "Just now"],
+            ["S5678", "Week 1 Lesson 2", "12", "5", "5 min ago"],
+            ["S9012", "Week 3 Lesson 1", "25", "1", "Yesterday"]
+        ];
+
+        const table = document.getElementById('reportTable');
+        demoData.forEach(row => {
+            const tr = document.createElement('tr');
+            row.forEach(cell => {
+                const td = document.createElement('td');
+                td.textContent = cell;
+                tr.appendChild(td);
+            });
+            table.appendChild(tr);
+        });
+    </script>
+</body>
+</html>
