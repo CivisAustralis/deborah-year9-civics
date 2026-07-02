@@ -11,6 +11,7 @@
         .sprite { width: 100px; height: 100px; vertical-align: middle; animation: bob 2s infinite ease-in-out; display: inline-block; }
         @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
         .activity { background:#D1E8FC; padding:15px; border-radius:10px; margin:10px 0; }
+        button { background:#8FC9FF; padding:8px 16px; margin:5px; border:none; border-radius:8px; cursor:pointer; }
     </style>
 </head>
 <body>
@@ -27,16 +28,22 @@
 
     <div class="card activity">
         <h3>Democracy Sausage Help (20 minutes)</h3>
-        <p>Matching activity: Match key terms (Federation, Referendum, Constitution, Federal Powers, State Powers) to their meanings using the word bank and diagrams provided in your materials.</p>
+        <p>Matching activity:</p>
+        <button onclick="alert('Correct! Federation is the process of forming the Commonwealth.')">Federation</button>
+        <button onclick="alert('Correct! A referendum is a vote on changing the Constitution.')">Referendum</button>
+        <button onclick="alert('Correct! The Constitution is Australia\\'s rulebook.')">Constitution</button>
+        <p><small>Click the buttons to check your answers.</small></p>
     </div>
 
     <div class="card activity">
         <h3>Parliament House Prawn Challenge (20 minutes)</h3>
-        <p>Compare one feature of Australia's Constitution with another country's constitution. Write a short paragraph explaining what makes ours unique and why that matters for stability.</p>
+        <p>Compare one feature of Australia's Constitution with another country's. Write a short paragraph explaining what makes ours unique and why that matters for stability.</p>
+        <textarea rows="6" style="width:100%;"></textarea>
     </div>
 
     <div class="card">
-        <p><strong>Reflection (5 minutes)</strong>: What surprised you most about the Constitution? Write one sentence.</p>
+        <p><strong>Reflection (5 minutes)</strong>: What surprised you most about the Constitution? Write one sentence below.</p>
+        <textarea rows="3" style="width:100%;"></textarea>
     </div>
 
     <button onclick="history.back()">Back to Dashboard</button>
