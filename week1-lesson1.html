@@ -13,7 +13,6 @@
         button { background:#8FC9FF; padding:8px 16px; margin:5px; border:none; border-radius:8px; cursor:pointer; }
         textarea { width:100%; padding:8px; border-radius:8px; border:1px solid #8FC9FF; }
         video { width:100%; max-width:800px; margin:15px 0; border-radius:10px; }
-        .reference { font-size: 0.85em; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -22,20 +21,11 @@
         <p>Week 1 - Lesson 1: The Australian Constitution (~60 minutes)</p>
     </div>
 
-    <!-- Main Content with New Bee -->
+    <!-- Main Content -->
     <div class="card">
         <h2>Main Content (Deborah-Led) <img src="_assets/deborah.png" class="sprite"></h2>
-        
-        <h3>Reading: The Road to Federation</h3>
-        <p>In the late 19th century, Australia was not one country but six separate British colonies: New South Wales, Victoria, Queensland, South Australia, Western Australia, and Tasmania. Each colony had its own parliament, laws, and even its own defence forces and postal systems. There was growing recognition that this arrangement was inefficient and left the colonies vulnerable.</p>
-        
-        <p>The push for federation gained real momentum in the 1880s and 1890s. One of the most important figures was Sir Henry Parkes, five-time Premier of New South Wales. On 24 October 1889, Parkes delivered the famous Tenterfield Oration. He argued passionately for the colonies to unite under “one great national government for all Australia.”</p>
-        
-        <p>Following this, colonial leaders organised the Australasian Federation Conference in Melbourne in 1890. The first National Australasian Convention met in Sydney in 1891. Key figures included Edmund Barton, Alfred Deakin, and Sir Samuel Griffith. These men played central roles in shaping the draft constitution.</p>
-        
-        <p>The final draft was put to referendums in the colonies. After successful referendums, the Commonwealth of Australia Constitution Act 1900 was passed. On 1 January 1901, the Commonwealth of Australia came into existence.</p>
-        
-        <p>The Constitution established a federal system with power divided between the Commonwealth and the states. It created a bicameral Parliament, an Executive Government, and an independent Judiciary. This hybrid system is often called the 'Washminster' system.</p>
+        <p><strong>Reading (15 minutes)</strong>: Read the provided excerpt from your materials about the Australian Constitution and how it established the federal system.</p>
+        <p class="character">🐝 Deborah says: "Harold Holt was the 17th Prime Minister. He mysteriously disappeared while swimming in 1967..."</p>
     </div>
 
     <!-- Video -->
@@ -50,54 +40,24 @@
     <!-- Activities -->
     <div class="card activity">
         <h3>Democracy Sausage Help (20 minutes)</h3>
-        <p>Matching activity: Click one term and then one definition to match them.</p>
-        <div id="matching-game">
-            <button onclick="selectTerm(this, 'federation')">Federation</button>
-            <button onclick="selectTerm(this, 'referendum')">Referendum</button>
-            <button onclick="selectTerm(this, 'constitution')">Constitution</button>
-            <button onclick="selectTerm(this, 'washminster')">Washminster system</button>
-        </div>
-        <p id="match-score">Correct matches: 0 / 4</p>
+        <p>Matching activity: Match key terms (Federation, Referendum, Constitution) to their meanings.</p>
     </div>
 
     <div class="card activity">
         <h3>Parliament House Prawn Challenge (20 minutes)</h3>
-        <p>Explain why the Tenterfield Oration by Henry Parkes was a turning point. Write a short paragraph.</p>
-        <textarea rows="6" placeholder="Write your response here..."></textarea>
+        <p>Compare one feature of Australia's Constitution with another country's. Write a short paragraph.</p>
+        <textarea rows="6"></textarea>
     </div>
 
     <div class="card">
-        <p><strong>Reflection (5 minutes)</strong>: What surprised you most about the road to Federation?</p>
-        <textarea rows="3" placeholder="Type your reflection here..."></textarea>
+        <p><strong>Reflection (5 minutes)</strong>: What surprised you most about the Constitution?</p>
+        <textarea rows="3"></textarea>
     </div>
 
     <button onclick="history.back()">Back to Dashboard</button>
 
+    <!-- Tracking -->
     <script>
-        let selectedTerm = null;
-        let correctMatches = 0;
-        const answers = {'federation':'def1','referendum':'def2','constitution':'def3','washminster':'def4'};
-
-        function selectTerm(element, id) {
-            if (selectedTerm === null) {
-                selectedTerm = {element: element, id: id};
-                element.style.background = '#fff3cd';
-            } else {
-                if (answers[selectedTerm.id] === id || answers[id] === selectedTerm.id) {
-                    selectedTerm.element.style.background = '#d4edda';
-                    element.style.background = '#d4edda';
-                    correctMatches++;
-                    document.getElementById('match-score').innerText = `Correct matches: ${correctMatches} / 4`;
-                } else {
-                    selectedTerm.element.style.background = '#f8d7da';
-                    element.style.background = '#f8d7da';
-                    setTimeout(() => { selectedTerm.element.style.background = ''; element.style.background = ''; }, 800);
-                }
-                selectedTerm = null;
-            }
-        }
-
-        // Tracking Script
         let startTime = Date.now();
         let awayTime = 0;
         let tabSwitches = 0;
