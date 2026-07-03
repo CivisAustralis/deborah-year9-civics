@@ -9,28 +9,61 @@
         .header { background: #A2D2FF; padding:15px; text-align:center; }
         .card { background:#BDE0FE; border-radius:15px; padding:20px; margin:15px; }
         .sprite { width: 180px; height: auto; display: block; margin: 10px auto; }
+        .activity { background:#D1E8FC; padding:15px; border-radius:10px; margin:10px 0; }
+        button { background:#8FC9FF; padding:8px 16px; margin:5px; border:none; border-radius:8px; cursor:pointer; }
+        textarea { width:100%; padding:8px; border-radius:8px; border:1px solid #8FC9FF; }
+        video { width:100%; max-width:800px; margin:15px 0; border-radius:10px; }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>🐝 Deborah - Week 1 Lesson 1 (Test)</h1>
+        <h1>🐝 Deborah - Year 9 Civics</h1>
+        <p>Week 1 - Lesson 1: The Australian Constitution (~60 minutes)</p>
     </div>
 
     <div class="card">
-        <h2>New Deborah Bee</h2>
-        <img src="_assets/deborah.png" class="sprite" alt="Deborah">
-        <p>If you see the new friendly bee (waving with speech bubble), the image is working.</p>
+        <h2>Main Content (Deborah-Led) <img src="_assets/DeborahBee.png" class="sprite"></h2>
+        <p><strong>Reading (15 minutes)</strong>: Read the provided excerpt from your materials about the Australian Constitution and how it established the federal system.</p>
+        <p class="character">🐝 Deborah says: "Harold Holt was the 17th Prime Minister. He mysteriously disappeared while swimming in 1967..."</p>
     </div>
 
+    <!-- Video -->
     <div class="card">
-        <h2>Video Test</h2>
+        <h3>Video: The Federation of Australia</h3>
         <video controls width="100%">
             <source src="The Federation of Australia_1080p_caption.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <p>If the video is still black, the file is either missing or not in the root folder.</p>
     </div>
 
+    <!-- Other activities (matching, challenge, reflection) can be added here as before -->
+
     <button onclick="history.back()">Back to Dashboard</button>
+
+    <!-- Tracking Script -->
+    <script>
+        let startTime = Date.now();
+        let awayTime = 0;
+        let tabSwitches = 0;
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                tabSwitches++;
+                console.log('🚨 Student went away - Tab switch #' + tabSwitches);
+                awayTime = Date.now();
+            } else {
+                if (awayTime > 0) {
+                    const timeAway = Math.round((Date.now() - awayTime) / 1000);
+                    console.log('✅ Student returned after ' + timeAway + ' seconds');
+                    awayTime = 0;
+                }
+            }
+        });
+
+        window.addEventListener('beforeunload', () => {
+            const totalTime = Math.round((Date.now() - startTime) / 1000);
+            console.log('Session ended. Total time on lesson: ' + totalTime + 's | Tab switches: ' + tabSwitches);
+        });
+    </script>
 </body>
 </html>
