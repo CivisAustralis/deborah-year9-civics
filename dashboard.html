@@ -8,8 +8,10 @@
         body { font-family: Arial, sans-serif; background: #E5F0FA; margin:0; padding:0; color:#000; }
         .header { background: #A2D2FF; padding:20px; text-align:center; }
         .card { background:#BDE0FE; border-radius:15px; padding:25px; margin:20px; }
-        .week-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:15px; padding:20px; }
-        .week-tile { background:#8FC9FF; padding:20px; border-radius:12px; text-align:center; cursor:pointer; font-size:1.1em; }
+        .week-section { margin-bottom:30px; }
+        .week-title { background:#8FC9FF; padding:15px; border-radius:12px; font-size:1.2em; margin-bottom:10px; }
+        .lesson-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:10px; }
+        .lesson-tile { background:#D1E8FC; padding:15px; border-radius:10px; text-align:center; cursor:pointer; }
         button { background:#8FC9FF; padding:10px 16px; margin:5px; border:none; border-radius:8px; cursor:pointer; }
     </style>
 </head>
@@ -28,23 +30,61 @@
 
     <div class="card">
         <h2>Course Dashboard</h2>
-        <div class="week-grid">
-            <a href="week1-lesson1.html" class="lesson-link"><div class="week-tile">Week 1</div></a>
-            <a href="week2-lesson1.html" class="lesson-link"><div class="week-tile">Week 2</div></a>
-            <a href="week3-lesson1.html" class="lesson-link"><div class="week-tile">Week 3</div></a>
-            <a href="week4-lesson1.html" class="lesson-link"><div class="week-tile">Week 4</div></a>
-            <a href="week5-lesson1.html" class="lesson-link"><div class="week-tile">Week 5</div></a>
+
+        <div class="week-section">
+            <div class="week-title">Week 1</div>
+            <div class="lesson-grid">
+                <a href="week1-lesson1.html" class="lesson-tile">Lesson 1: The Australian Constitution</a>
+                <a href="week1-lesson2.html" class="lesson-tile">Lesson 2: The Eureka Stockade</a>
+                <a href="week1-lesson3.html" class="lesson-tile">Lesson 3: Division of Powers & Washminster System</a>
+                <a href="week1-lesson4.html" class="lesson-tile">Lesson 4: Referendums and Changing the Constitution</a>
+            </div>
+        </div>
+
+        <div class="week-section">
+            <div class="week-title">Week 2</div>
+            <div class="lesson-grid">
+                <a href="week2-lesson1.html" class="lesson-tile">Lesson 1: From Idea to Cabinet</a>
+                <a href="week2-lesson2.html" class="lesson-tile">Lesson 2: Parliament – House & Senate</a>
+                <a href="week2-lesson3.html" class="lesson-tile">Lesson 3: Passing a Bill</a>
+                <a href="week2-lesson4.html" class="lesson-tile">Lesson 4: Committees, Public Input & Media</a>
+            </div>
+        </div>
+
+        <div class="week-section">
+            <div class="week-title">Week 3</div>
+            <div class="lesson-grid">
+                <a href="week3-lesson1.html" class="lesson-tile">Lesson 1: Separation of Powers & Court Hierarchy</a>
+                <a href="week3-lesson2.html" class="lesson-tile">Lesson 2: Criminal vs Civil Law</a>
+                <a href="week3-lesson3.html" class="lesson-tile">Lesson 3: Key Case Studies</a>
+                <a href="week3-lesson4.html" class="lesson-tile">Lesson 4: Principles of Justice & Capital Punishment</a>
+            </div>
+        </div>
+
+        <div class="week-section">
+            <div class="week-title">Week 4</div>
+            <div class="lesson-grid">
+                <a href="week4-lesson1.html" class="lesson-tile">Lesson 1: Voting, Elections & Political Parties</a>
+                <a href="week4-lesson2.html" class="lesson-tile">Lesson 2: Interest Groups, NGOs & Global Citizenship</a>
+            </div>
+        </div>
+
+        <div class="week-section">
+            <div class="week-title">Week 5</div>
+            <div class="lesson-grid">
+                <a href="week5-lesson1.html" class="lesson-tile">Lesson 1: Media Influence on Australian Identity</a>
+                <a href="week5-lesson2.html" class="lesson-tile">Lesson 2: Shared Values, Diversity & Immigration</a>
+            </div>
         </div>
     </div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code') || 'Teacher';
-        document.getElementById('userCode').textContent = code;
+        document.getElementById('userCode').textContent = urlParams.get('code') || 'Teacher';
 
         function createTeacher() {
             const newCode = "TA" + Math.random().toString(36).substring(2,6).toUpperCase();
-            alert("New Teacher Account Created!\nCode: " + newCode + "\nPassword: same as code");
+            alert("New Teacher Account Created!\nCode: " + newCode);
         }
 
         function createStudent() {
