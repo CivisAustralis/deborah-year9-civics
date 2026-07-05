@@ -50,6 +50,22 @@
             display: flex; align-items: center; justify-content: center; cursor: pointer; 
             font-size: 11px; text-align: center; box-shadow:0 4px 10px rgba(0,0,0,0.2); 
         }
+
+        /* Matching activity colour */
+        #matching-game button, #matching-defs button {
+            background: #E7EFE4;
+            color: #222;
+            padding: 12px 18px;
+            margin: 6px;
+            border: 2px solid #C9A227;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: Georgia, serif;
+            font-size: 15px;
+        }
+        #matching-game button:hover, #matching-defs button:hover {
+            background: #D4E6D0;
+        }
     </style>
 </head>
 <body>
@@ -63,36 +79,17 @@
         <p><strong>Reading (15 minutes)</strong>: Read the provided excerpt from your materials about the Australian Constitution and how it established the federal system.</p>
     </div>
 
-   </div> #matching-game button, #matching-defs button {
-    background: #E7EFE4;
-    color: #222;
-    padding: 12px 18px;
-    margin: 6px;
-    border: 2px solid #C9A227;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: Georgia, serif;
-    font-size: 15px;
-}
-
-#matching-game button:hover, #matching-defs button:hover {
-    background: #D4E6D0;
-}
-    <div>
-
     <div class="card">
         <h3>Video: The Federation of Australia</h3>
         <iframe src="https://www.youtube.com/embed/tzPOvhtDCEU" title="The Federation of Australia" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <!-- Sir Henry Parkes -->
     <div class="card">
         <h3>Sir Henry Parkes – The Father of Federation</h3>
         <img src="henry-parkes.jpg" alt="Sir Henry Parkes" style="max-width:400px; display:block; margin:15px auto; border:4px solid #C9A227;">
         <p><strong>Sir Henry Parkes</strong> (1815–1896) was five-time Premier of New South Wales and the driving force behind Federation. His Tenterfield Oration in 1889 is widely regarded as the spark that led to the creation of the Commonwealth of Australia.</p>
     </div>
 
-    <!-- Framed Edwardian Bee -->
     <div class="card">
         <h3>Deborah Says...</h3>
         <div class="sprite-frame">
@@ -101,7 +98,6 @@
         <p><em>Harold Holt was the 17th Prime Minister. He mysteriously disappeared while swimming in 1967...</em></p>
     </div>
 
-    <!-- Your full reading text -->
     <div class="card activity">
         <h3>From Federation to a Constitution</h3>
         <p>The Federation of Australia was not only a political event. It was also a legal act. The video explains how the six British colonies moved from separate colonial governments to one Commonwealth of Australia. The Australian Constitution is the rulebook that made that new Commonwealth possible. It created a national Parliament, executive government and federal courts, while also protecting the continued existence of the states (Commonwealth of Australia Constitution Act 1900).</p>
@@ -123,27 +119,27 @@
 
     <!-- Matching Activity -->
     <div class="card activity">
-    <h3>Democracy Sausage Help - Matching Activity (15 minutes)</h3>
-    <p>Match the term to its definition by clicking a term and then a definition.</p>
-    
-    <div id="matching-game">
-        <button onclick="selectTerm(this, 'federation')">Federation</button>
-        <button onclick="selectTerm(this, 'constitution')">Constitution</button>
-        <button onclick="selectTerm(this, 'referendum')">Referendum</button>
-        <button onclick="selectTerm(this, 'federalism')">Federalism</button>
-        <button onclick="selectTerm(this, 'washminster')">Washminster System</button>
+        <h3>Democracy Sausage Help - Matching Activity (15 minutes)</h3>
+        <p>Match the term to its definition by clicking a term and then a definition.</p>
+        
+        <div id="matching-game">
+            <button onclick="selectTerm(this, 'federation')">Federation</button>
+            <button onclick="selectTerm(this, 'constitution')">Constitution</button>
+            <button onclick="selectTerm(this, 'referendum')">Referendum</button>
+            <button onclick="selectTerm(this, 'federalism')">Federalism</button>
+            <button onclick="selectTerm(this, 'washminster')">Washminster System</button>
+        </div>
+        
+        <div id="matching-defs">
+            <button onclick="selectTerm(this, 'def1')">The joining of the six colonies into one nation in 1901</button>
+            <button onclick="selectTerm(this, 'def2')">Australia’s foundational legal document that established the federal system</button>
+            <button onclick="selectTerm(this, 'def3')">A direct vote by the people on whether to change the Constitution</button>
+            <button onclick="selectTerm(this, 'def4')">Division of power between the national government and the states</button>
+            <button onclick="selectTerm(this, 'def5')">Australia’s hybrid system combining British responsible government with American federal features</button>
+        </div>
+        
+        <p id="match-score">Correct matches: 0 / 5</p>
     </div>
-    
-    <div id="matching-defs">
-        <button onclick="selectTerm(this, 'def1')">The joining of the six colonies into one nation in 1901</button>
-        <button onclick="selectTerm(this, 'def2')">Australia’s foundational legal document that established the federal system</button>
-        <button onclick="selectTerm(this, 'def3')">A direct vote by the people on whether to change the Constitution</button>
-        <button onclick="selectTerm(this, 'def4')">Division of power between the national government and the states</button>
-        <button onclick="selectTerm(this, 'def5')">Australia’s hybrid system combining British responsible government with American federal features</button>
-    </div>
-    
-    <p id="match-score">Correct matches: 0 / 5</p>
-</div>
 
     <!-- Memory Game -->
     <div class="card activity">
