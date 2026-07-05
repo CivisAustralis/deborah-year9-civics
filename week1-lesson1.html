@@ -106,17 +106,27 @@
 
     <!-- Matching Activity -->
     <div class="card activity">
-        <h3>Democracy Sausage Help - Matching Activity (15 minutes)</h3>
-        <p>Match the term to its definition by clicking a term and then a definition.</p>
-        <div id="matching-game">
-            <button onclick="selectTerm(this, 'federation')">Federation</button>
-            <button onclick="selectTerm(this, 'constitution')">Constitution</button>
-            <button onclick="selectTerm(this, 'referendum')">Referendum</button>
-            <button onclick="selectTerm(this, 'federalism')">Federalism</button>
-            <button onclick="selectTerm(this, 'washminster')">Washminster System</button>
-        </div>
-        <p id="match-score">Correct matches: 0 / 5</p>
+    <h3>Democracy Sausage Help - Matching Activity (15 minutes)</h3>
+    <p>Match the term to its definition by clicking a term and then a definition.</p>
+    
+    <div id="matching-game">
+        <button onclick="selectTerm(this, 'federation')">Federation</button>
+        <button onclick="selectTerm(this, 'constitution')">Constitution</button>
+        <button onclick="selectTerm(this, 'referendum')">Referendum</button>
+        <button onclick="selectTerm(this, 'federalism')">Federalism</button>
+        <button onclick="selectTerm(this, 'washminster')">Washminster System</button>
     </div>
+    
+    <div id="matching-defs">
+        <button onclick="selectTerm(this, 'def1')">The joining of the six colonies into one nation in 1901</button>
+        <button onclick="selectTerm(this, 'def2')">Australia’s foundational legal document that established the federal system</button>
+        <button onclick="selectTerm(this, 'def3')">A direct vote by the people on whether to change the Constitution</button>
+        <button onclick="selectTerm(this, 'def4')">Division of power between the national government and the states</button>
+        <button onclick="selectTerm(this, 'def5')">Australia’s hybrid system combining British responsible government with American federal features</button>
+    </div>
+    
+    <p id="match-score">Correct matches: 0 / 5</p>
+</div>
 
     <!-- Memory Game -->
     <div class="card activity">
