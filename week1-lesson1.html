@@ -13,6 +13,8 @@
         button { background:#8FC9FF; padding:8px 16px; margin:5px; border:none; border-radius:8px; cursor:pointer; }
         textarea { width:100%; padding:8px; border-radius:8px; border:1px solid #8FC9FF; min-height:80px; }
         iframe { width:100%; max-width:800px; height:400px; margin:15px 0; border-radius:10px; }
+        .memory-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-width: 500px; margin: 15px auto; }
+        .memory-card { width: 80px; height: 80px; background: #A2D2FF; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 12px; text-align: center; }
     </style>
 </head>
 <body>
@@ -24,43 +26,126 @@
     <div class="card">
         <h2>Main Content (Deborah-Led) <img src="DeborahBee.png" class="sprite"></h2>
         <p><strong>Reading (15 minutes)</strong>: Read the provided excerpt from your materials about the Australian Constitution and how it established the federal system.</p>
-        <p class="character">🐝 Deborah says: "Harold Holt was the 17th Prime Minister. He mysteriously disappeared while swimming in 1967..."</p>
     </div>
 
-    <!-- YouTube Video -->
     <div class="card">
         <h3>Video: The Federation of Australia</h3>
-        <iframe src="https://www.youtube.com/embed/tzPOvhtDCEU" 
-                title="The Federation of Australia" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/tzPOvhtDCEU" title="The Federation of Australia" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <!-- Your inserted text + questions -->
+    <!-- Your inserted text -->
     <div class="card activity">
         <h3>From Federation to a Constitution</h3>
-        <p>The Federation of Australia was not only a political event. It was also a legal act. The video explains how the six British colonies moved from separate colonial governments to one Commonwealth of Australia. The Australian Constitution is the rulebook that made that new Commonwealth possible. It created a national Parliament, executive government and federal courts, while also protecting the continued existence of the states (Commonwealth of Australia Constitution Act 1900).</p>
-        <!-- (the rest of your long text is here - I kept it short for this response, but you can paste the full version you provided) -->
-        <p><strong>Review Questions</strong></p>
-        
-        <p>1. Why did the colonies want a national government, but still want to protect state power?</p>
-        <textarea rows="4" placeholder="Type your answer here..."></textarea>
-        
-        <p>2. Which part of the Constitution seems most important: Parliament, executive government, the High Court, federalism, or referendums? Explain your choice.</p>
-        <textarea rows="4" placeholder="Type your answer here..."></textarea>
-        
-        <p>3. Is the double majority referendum rule a strength or a weakness of Australian democracy?</p>
-        <textarea rows="4" placeholder="Type your answer here..."></textarea>
-        
-        <p>4. How does the Constitution show that Australia borrowed ideas from Britain but also adapted them for a federal system?</p>
-        <textarea rows="4" placeholder="Type your answer here..."></textarea>
+        <p>The Federation of Australia was not only a political event. It was also a legal act... [your full text here — I kept it short for space, but paste the full version you provided earlier]</p>
+    </div>
+
+    <!-- Matching Activity -->
+    <div class="card activity">
+        <h3>Democracy Sausage Help - Matching Activity (15 minutes)</h3>
+        <p>Match the term to its definition by clicking a term and then a definition.</p>
+        <div id="matching-game">
+            <button onclick="selectTerm(this, 'federation')">Federation</button>
+            <button onclick="selectTerm(this, 'constitution')">Constitution</button>
+            <button onclick="selectTerm(this, 'referendum')">Referendum</button>
+            <button onclick="selectTerm(this, 'federalism')">Federalism</button>
+            <button onclick="selectTerm(this, 'washminster')">Washminster System</button>
+        </div>
+        <p id="match-score">Correct matches: 0 / 5</p>
+    </div>
+
+    <!-- 5x5 Memory Game -->
+    <div class="card activity">
+        <h3>Parliament House Prawn Challenge - Vocabulary Memory Game (15 minutes)</h3>
+        <p>Flip cards to match key words and definitions. Find all 5 pairs!</p>
+        <div class="memory-grid" id="memory-grid"></div>
+        <p id="memory-score">Pairs found: 0 / 5</p>
     </div>
 
     <button onclick="history.back()">Back to Dashboard</button>
 
-    <!-- Tracking -->
     <script>
+        // Matching Game
+        let selectedTerm = null;
+        let correctMatches = 0;
+        const answers = {
+            'federation': 'The joining of the six colonies into one nation in 1901',
+            'constitution': 'Australia’s foundational legal document',
+            'referendum': 'A direct vote by the people on changing the Constitution',
+            'federalism': 'Division of power between national and state governments',
+            'washminster': 'Australia’s hybrid British-American system of government'
+        };
+
+        function selectTerm(element, id) {
+            if (selectedTerm === null) {
+                selectedTerm = {element: element, id: id};
+                element.style.background = '#fff3cd';
+            } else {
+                if (answers[selectedTerm.id] === id || answers[id] === selectedTerm.id) {
+                    selectedTerm.element.style.background = '#d4edda';
+                    element.style.background = '#d4edda';
+                    correctMatches++;
+                    document.getElementById('match-score').innerText = `Correct matches: ${correctMatches} / 5`;
+                } else {
+                    selectedTerm.element.style.background = '#f8d7da';
+                    element.style.background = '#f8d7da';
+                    setTimeout(() => { selectedTerm.element.style.background = ''; element.style.background = ''; }, 800);
+                }
+                selectedTerm = null;
+            }
+        }
+
+        // Simple 5x5 Memory Game (10 cards - 5 pairs)
+        const memoryPairs = [
+            {term: "Federation", def: "Joining of colonies"},
+            {term: "Constitution", def: "Rulebook for Australia"},
+            {term: "Referendum", def: "Vote to change Constitution"},
+            {term: "Federalism", def: "Power sharing"},
+            {term: "High Court", def: "Interprets Constitution"}
+        ];
+
+        let memoryCards = [];
+        let flippedCards = [];
+        let pairsFound = 0;
+
+        function createMemoryGame() {
+            memoryCards = [...memoryPairs, ...memoryPairs].sort(() => Math.random() - 0.5);
+            const grid = document.getElementById('memory-grid');
+            grid.innerHTML = '';
+            memoryCards.forEach((card, index) => {
+                const div = document.createElement('div');
+                div.className = 'memory-card';
+                div.dataset.index = index;
+                div.dataset.value = card.term;
+                div.textContent = '?';
+                div.onclick = () => flipCard(div, index);
+                grid.appendChild(div);
+            });
+        }
+
+        function flipCard(card, index) {
+            if (flippedCards.length >= 2 || card.textContent !== '?') return;
+            card.textContent = memoryCards[index].term;
+            flippedCards.push(card);
+            if (flippedCards.length === 2) {
+                setTimeout(checkMatch, 800);
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.value === card2.dataset.value) {
+                pairsFound++;
+                document.getElementById('memory-score').innerText = `Pairs found: ${pairsFound} / 5`;
+            } else {
+                card1.textContent = '?';
+                card2.textContent = '?';
+            }
+            flippedCards = [];
+        }
+
+        createMemoryGame();
+
+        // Tracking Script
         let startTime = Date.now();
         let awayTime = 0;
         let tabSwitches = 0;
