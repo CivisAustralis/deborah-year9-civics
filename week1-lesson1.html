@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deborah - Week 1 Lesson 1</title>
     <link rel="icon" href="bee-favicon-192.png" type="image/png">
+    <link rel="icon" href="assets/debbee.png" type="image/png">
     <style>
         body { 
             font-family: 'Georgia', serif; 
@@ -12,12 +13,106 @@
             color: #222; 
             line-height: 1.7; 
             margin:0; padding:0; 
+        body {
+            font-family: 'Georgia', serif;
+            background: #F5F0E6;
+            color: #222;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: #2C3E50;
+            color: #F4E8C1;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 8px solid #C9A227;
+        }
+
+        .card {
+            background: #FAF6EB;
+            border: 3px solid #C9A227;
+            border-radius: 8px;
+            padding: 28px;
+            margin: 25px auto;
+            max-width: 900px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        h2, h3 {
+            color: #2C3E50;
+            border-bottom: 2px solid #C9A227;
+            padding-bottom: 8px;
+        }
+
+        button {
+            background: #C9A227;
+            color: #222;
+            padding: 10px 20px;
+            margin: 8px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: Georgia, serif;
+        }
+
+        button:disabled {
+            cursor: default;
+            opacity: 0.8;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #C9A227;
+            border-radius: 6px;
+            min-height: 100px;
+            font-family: Georgia, serif;
+            box-sizing: border-box;
+        }
+
+        iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 420px;
+            margin: 20px 0;
+            border: 3px solid #C9A227;
+            border-radius: 6px;
+        }
+
+        .image-frame,
+        .sprite-frame {
+            border: 6px solid #C9A227;
+            padding: 12px;
+            background: #fff;
+            display: inline-block;
+            margin: 15px auto;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-spot,
+        .mascot-spot {
+            text-align: center;
+            margin: 10px 0 14px;
+        }
+
+        .portrait-img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            display: block;
         }
         .header { 
             background: #2C3E50; 
             color: #F4E8C1; 
             padding:25px; text-align:center; 
             border-bottom: 8px solid #C9A227; 
+
+        .sprite {
+            width: 160px;
+            height: auto;
+            display: block;
         }
         .card { 
             background:#FAF6EB; 
@@ -27,6 +122,12 @@
             margin:25px auto; 
             max-width: 900px; 
             box-shadow: 0 8px 20px rgba(0,0,0,0.15); 
+
+        .mascot-img {
+            width: 150px;
+            max-width: 45%;
+            height: auto;
+            display: inline-block;
         }
         .sprite-frame { 
             border: 6px solid #C9A227; 
@@ -35,12 +136,33 @@
             display: inline-block; 
             margin: 15px auto; 
             box-shadow: 0 6px 15px rgba(0,0,0,0.2); 
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            max-width: 620px;
+            margin: 20px auto;
         }
         .sprite { width: 160px; height: auto; display: block; }
         h2, h3 { color: #2C3E50; border-bottom: 2px solid #C9A227; padding-bottom: 8px; }
         button { 
             background:#C9A227; color:#222; padding:10px 20px; margin:8px; 
             border:none; border-radius:6px; cursor:pointer; font-family: Georgia, serif; 
+
+        .memory-card {
+            min-height: 88px;
+            background: #C9A227;
+            color: #fff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            padding: 8px;
         }
         textarea { width:100%; padding:12px; border:2px solid #C9A227; border-radius:6px; min-height:100px; font-family: Georgia, serif; }
         iframe { width:100%; max-width:800px; height:420px; margin:20px 0; border:3px solid #C9A227; border-radius:6px; }
@@ -49,10 +171,15 @@
             width: 80px; height: 80px; background: #C9A227; color: #fff; border-radius: 12px; 
             display: flex; align-items: center; justify-content: center; cursor: pointer; 
             font-size: 11px; text-align: center; box-shadow:0 4px 10px rgba(0,0,0,0.2); 
+
+        .memory-card.matched {
+            background: #3A7D44;
         }
 
         /* Matching activity colour */
         #matching-game button, #matching-defs button {
+        #matching-game button,
+        #matching-defs button {
             background: #E7EFE4;
             color: #222;
             padding: 12px 18px;
@@ -64,7 +191,31 @@
             font-size: 15px;
         }
         #matching-game button:hover, #matching-defs button:hover {
+
+        #matching-game button:hover,
+        #matching-defs button:hover {
             background: #D4E6D0;
+        }
+
+        @media (max-width: 650px) {
+            .card {
+                margin: 16px;
+                padding: 20px;
+            }
+
+            iframe {
+                height: 260px;
+            }
+
+            .memory-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mascot-img,
+            .sprite {
+                width: 130px;
+                max-width: 70%;
+            }
         }
     </style>
 </head>
@@ -87,13 +238,22 @@
     <div class="card">
         <h3>Sir Henry Parkes – The Father of Federation</h3>
         <img src="henry-parkes.jpg" alt="Sir Henry Parkes" style="max-width:400px; display:block; margin:15px auto; border:4px solid #C9A227;">
+        <div class="image-spot">
+            <div class="image-frame">
+                <img src="assets/henry-parkes.png" class="portrait-img" alt="Sir Henry Parkes">
+            </div>
+        </div>
         <p><strong>Sir Henry Parkes</strong> (1815–1896) was five-time Premier of New South Wales and the driving force behind Federation. His Tenterfield Oration in 1889 is widely regarded as the spark that led to the creation of the Commonwealth of Australia.</p>
     </div>
 
     <div class="card">
         <h3>Deborah Says...</h3>
         <div class="sprite-frame">
-            <img src="deborah-bee.png" class="sprite" alt="Deborah the Bee">
+            <img src="DeborahBee.png" class="sprite" alt="Deborah the Bee">
+        <div class="mascot-spot">
+            <div class="sprite-frame">
+                <img src="assets/debbee.png" class="sprite" alt="Debbee the Bee mascot">
+            </div>
         </div>
         <p><em>Harold Holt was the 17th Prime Minister. He mysteriously disappeared while swimming in 1967...</em></p>
     </div>
@@ -120,8 +280,12 @@
     <!-- Matching Activity -->
     <div class="card activity">
         <h3>Democracy Sausage Help - Matching Activity (15 minutes)</h3>
+        <div class="mascot-spot">
+            <img src="assets/democracysausage.png" class="mascot-img" alt="Democracy Sausage mascot">
+        </div>
         <p>Match the term to its definition by clicking a term and then a definition.</p>
         
+
         <div id="matching-game">
             <button onclick="selectTerm(this, 'federation')">Federation</button>
             <button onclick="selectTerm(this, 'constitution')">Constitution</button>
@@ -130,6 +294,7 @@
             <button onclick="selectTerm(this, 'washminster')">Washminster System</button>
         </div>
         
+
         <div id="matching-defs">
             <button onclick="selectTerm(this, 'def1')">The joining of the six colonies into one nation in 1901</button>
             <button onclick="selectTerm(this, 'def2')">Australia’s foundational legal document that established the federal system</button>
@@ -138,12 +303,16 @@
             <button onclick="selectTerm(this, 'def5')">Australia’s hybrid system combining British responsible government with American federal features</button>
         </div>
         
+
         <p id="match-score">Correct matches: 0 / 5</p>
     </div>
 
     <!-- Memory Game -->
     <div class="card activity">
         <h3>Parliament House Prawn Challenge - Vocabulary Memory Game (15 minutes)</h3>
+        <div class="mascot-spot">
+            <img src="assets/parliamentprawn.png" class="mascot-img" alt="Parliament House Prawn mascot">
+        </div>
         <p>Flip cards to match key words and definitions. Find all 5 pairs!</p>
         <div class="memory-grid" id="memory-grid"></div>
         <p id="memory-score">Pairs found: 0 / 5</p>
@@ -155,12 +324,15 @@
         <p><strong>1. Why did the colonies want a national government, but still want to protect state power?</strong></p>
         <textarea rows="4" placeholder="Type your answer here..."></textarea>
         
+
         <p><strong>2. Which part of the Constitution seems most important: Parliament, executive government, the High Court, federalism, or referendums? Explain your choice.</strong></p>
         <textarea rows="4" placeholder="Type your answer here..."></textarea>
         
+
         <p><strong>3. Is the double majority referendum rule a strength or a weakness of Australian democracy?</strong></p>
         <textarea rows="4" placeholder="Type your answer here..."></textarea>
         
+
         <p><strong>4. How does the Constitution show that Australia borrowed ideas from Britain but also adapted them for a federal system?</strong></p>
         <textarea rows="4" placeholder="Type your answer here..."></textarea>
     </div>
@@ -180,21 +352,36 @@
         };
 
         function selectTerm(element, id) {
+            if (element.disabled) return;
+
             if (selectedTerm === null) {
                 selectedTerm = {element: element, id: id};
+                selectedTerm = { element: element, id: id };
                 element.style.background = '#fff3cd';
             } else {
                 const termId = selectedTerm.id;
                 const defId = id;
                 if (answers[termId] === defId || answers[defId] === termId) {
+                const firstId = selectedTerm.id;
+                const secondId = id;
+                const isCorrect = answers[firstId] === secondId || answers[secondId] === firstId;
+
+                if (isCorrect) {
                     selectedTerm.element.style.background = '#d4edda';
                     element.style.background = '#d4edda';
+                    selectedTerm.element.disabled = true;
+                    element.disabled = true;
                     correctMatches++;
                     document.getElementById('match-score').innerText = `Correct matches: ${correctMatches} / 5`;
                 } else {
                     selectedTerm.element.style.background = '#f8d7da';
                     element.style.background = '#f8d7da';
                     setTimeout(() => { selectedTerm.element.style.background = ''; element.style.background = ''; }, 800);
+                    const previousSelection = selectedTerm.element;
+                    setTimeout(() => {
+                        previousSelection.style.background = '';
+                        element.style.background = '';
+                    }, 800);
                 }
                 selectedTerm = null;
             }
@@ -207,6 +394,16 @@
             {term: "Referendum", def: "Vote to change Constitution"},
             {term: "Federalism", def: "Power sharing"},
             {term: "High Court", def: "Interprets Constitution"}
+            { pair: 'federation', text: 'Federation' },
+            { pair: 'federation', text: 'Joining of colonies' },
+            { pair: 'constitution', text: 'Constitution' },
+            { pair: 'constitution', text: 'Rulebook for Australia' },
+            { pair: 'referendum', text: 'Referendum' },
+            { pair: 'referendum', text: 'Vote to change Constitution' },
+            { pair: 'federalism', text: 'Federalism' },
+            { pair: 'federalism', text: 'Power sharing' },
+            { pair: 'high-court', text: 'High Court' },
+            { pair: 'high-court', text: 'Interprets Constitution' }
         ];
 
         let memoryCards = [];
@@ -215,6 +412,7 @@
 
         function createMemoryGame() {
             memoryCards = [...memoryPairs, ...memoryPairs].sort(() => Math.random() - 0.5);
+            memoryCards = [...memoryPairs].sort(() => Math.random() - 0.5);
             const grid = document.getElementById('memory-grid');
             grid.innerHTML = '';
             memoryCards.forEach((card, index) => {
@@ -222,6 +420,7 @@
                 div.className = 'memory-card';
                 div.dataset.index = index;
                 div.dataset.value = card.term;
+                div.dataset.value = card.pair;
                 div.textContent = '?';
                 div.onclick = () => flipCard(div, index);
                 grid.appendChild(div);
@@ -231,6 +430,7 @@
         function flipCard(card, index) {
             if (flippedCards.length >= 2 || card.textContent !== '?') return;
             card.textContent = memoryCards[index].term;
+            card.textContent = memoryCards[index].text;
             flippedCards.push(card);
             if (flippedCards.length === 2) {
                 setTimeout(checkMatch, 800);
@@ -241,6 +441,8 @@
             const [card1, card2] = flippedCards;
             if (card1.dataset.value === card2.dataset.value) {
                 pairsFound++;
+                card1.classList.add('matched');
+                card2.classList.add('matched');
                 document.getElementById('memory-score').innerText = `Pairs found: ${pairsFound} / 5`;
             } else {
                 card1.textContent = '?';
@@ -266,14 +468,3 @@
                     const timeAway = Math.round((Date.now() - awayTime) / 1000);
                     console.log('✅ Student returned after ' + timeAway + ' seconds');
                     awayTime = 0;
-                }
-            }
-        });
-
-        window.addEventListener('beforeunload', () => {
-            const totalTime = Math.round((Date.now() - startTime) / 1000);
-            console.log('Session ended. Total time on lesson: ' + totalTime + 's | Tab switches: ' + tabSwitches);
-        });
-    </script>
-</body>
-</html>
