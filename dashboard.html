@@ -3,92 +3,589 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deborah Dashboard</title>
+    <title>Deborah Dashboard | Year 9 Civics 2026</title>
+
+    <!-- Favicon: keep bee-favicon-192.png in the same folder as this HTML file, or change this path to /bee-favicon-192.png if it is in the site root. -->
+    <link rel="icon" href="./bee-favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="./bee-favicon-192.png">
+
     <style>
-        body { font-family: Arial, sans-serif; background: #E5F0FA; margin:0; padding:0; color:#000; }
-        .header { background: #A2D2FF; padding:20px; text-align:center; }
-        .card { background:#BDE0FE; border-radius:15px; padding:25px; margin:20px; }
-        .week-section { margin-bottom:30px; }
-        .week-title { background:#8FC9FF; padding:15px; border-radius:12px; font-size:1.2em; margin-bottom:10px; }
-        .lesson-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:10px; }
-        .lesson-tile { background:#D1E8FC; padding:15px; border-radius:10px; text-align:center; cursor:pointer; }
-        button { background:#8FC9FF; padding:10px 16px; margin:5px; border:none; border-radius:8px; cursor:pointer; }
+        :root {
+            --navy: #1f3246;
+            --navy-2: #2C3E50;
+            --cream: #F5F0E6;
+            --cream-2: #FAF6EB;
+            --gold: #C9A227;
+            --gold-soft: #E8D59A;
+            --blue-soft: #E9F3FB;
+            --blue-mid: #CFE7F7;
+            --sage: #E7EFE4;
+            --ink: #1f2933;
+            --muted: #5d6875;
+            --shadow: 0 14px 35px rgba(31, 50, 70, 0.18);
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, rgba(201,162,39,0.16), transparent 32rem),
+                linear-gradient(135deg, #F5F0E6 0%, #EAF4FB 55%, #F7EFD9 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: 8px;
+            background: var(--gold);
+            color: #111;
+            padding: 10px 14px;
+            border-radius: 8px;
+            z-index: 999;
+        }
+
+        .skip-link:focus {
+            left: 12px;
+        }
+
+        .hero {
+            background:
+                linear-gradient(130deg, rgba(31,50,70,0.98), rgba(44,62,80,0.94)),
+                radial-gradient(circle at top right, rgba(201,162,39,0.28), transparent 24rem);
+            color: var(--cream);
+            border-bottom: 8px solid var(--gold);
+            padding: 34px 22px 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: auto -10% -60px auto;
+            width: 330px;
+            height: 330px;
+            border: 1px solid rgba(232,213,154,0.28);
+            border-radius: 50%;
+        }
+
+        .hero-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .kicker {
+            color: var(--gold-soft);
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin: 0 0 8px;
+        }
+
+        h1 {
+            font-size: clamp(2.1rem, 5vw, 4.25rem);
+            margin: 0;
+            line-height: 1.02;
+            letter-spacing: -0.04em;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: 14px 0 0;
+            font-size: 1.08rem;
+            color: #F4E8C1;
+        }
+
+        .welcome-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            padding: 8px 14px;
+            border: 1px solid rgba(232,213,154,0.58);
+            border-radius: 999px;
+            background: rgba(250,246,235,0.08);
+            color: #fff;
+        }
+
+        .hero-mascot {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            border-radius: 50%;
+            padding: 14px;
+            background: rgba(250,246,235,0.12);
+            border: 3px solid rgba(201,162,39,0.75);
+            box-shadow: 0 16px 35px rgba(0,0,0,0.25);
+            animation: bob 2.8s infinite ease-in-out;
+        }
+
+        @keyframes bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .page-wrap {
+            width: min(1120px, calc(100% - 32px));
+            margin: 26px auto 44px;
+        }
+
+        .top-actions {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .panel {
+            background: rgba(250,246,235,0.92);
+            border: 2px solid rgba(201,162,39,0.52);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px;
+        }
+
+        .panel h2,
+        .week-title h2 {
+            margin: 0;
+            color: var(--navy);
+            font-size: 1.45rem;
+        }
+
+        .panel p {
+            margin: 8px 0 0;
+            color: var(--muted);
+        }
+
+        .admin-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        button,
+        .button-link {
+            background: var(--gold);
+            color: #17202a;
+            padding: 11px 16px;
+            border: 0;
+            border-radius: 999px;
+            cursor: pointer;
+            font-family: Georgia, "Times New Roman", serif;
+            font-weight: bold;
+            box-shadow: 0 5px 0 rgba(124, 92, 15, 0.45);
+            transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        button:hover,
+        .button-link:hover {
+            background: #D8B74B;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 rgba(124, 92, 15, 0.45);
+        }
+
+        button:active,
+        .button-link:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 0 rgba(124, 92, 15, 0.45);
+        }
+
+        .course-shell {
+            background: rgba(255,255,255,0.38);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 24px;
+            padding: 18px;
+            box-shadow: 0 20px 50px rgba(31,50,70,0.12);
+        }
+
+        .course-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 16px;
+            padding: 12px 8px 20px;
+        }
+
+        .course-heading h2 {
+            margin: 0;
+            font-size: 1.9rem;
+            color: var(--navy);
+        }
+
+        .course-heading p {
+            margin: 4px 0 0;
+            color: var(--muted);
+        }
+
+        .status-chip {
+            white-space: nowrap;
+            border: 1px solid rgba(44,62,80,0.18);
+            background: var(--sage);
+            border-radius: 999px;
+            padding: 8px 13px;
+            color: var(--navy);
+            font-weight: bold;
+            font-size: 0.92rem;
+        }
+
+        .week-section {
+            background: rgba(250,246,235,0.96);
+            border: 2px solid rgba(201,162,39,0.5);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin: 0 0 18px;
+            box-shadow: 0 10px 26px rgba(31,50,70,0.1);
+        }
+
+        .week-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid rgba(201,162,39,0.55);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .week-meta {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+            gap: 14px;
+        }
+
+        .lesson-tile {
+            position: relative;
+            background: linear-gradient(180deg, #FFFFFF 0%, var(--blue-soft) 100%);
+            border: 2px solid rgba(44,62,80,0.12);
+            border-left: 6px solid var(--gold);
+            border-radius: 16px;
+            padding: 18px;
+            min-height: 148px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+        }
+
+        .lesson-tile::after {
+            content: "";
+            position: absolute;
+            right: -36px;
+            bottom: -36px;
+            width: 105px;
+            height: 105px;
+            border-radius: 50%;
+            background: rgba(201,162,39,0.11);
+        }
+
+        .lesson-tile:hover,
+        .lesson-tile:focus-visible {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 28px rgba(31,50,70,0.16);
+            border-color: rgba(201,162,39,0.85);
+            outline: none;
+        }
+
+        .lesson-number {
+            display: inline-flex;
+            width: fit-content;
+            background: var(--navy);
+            color: var(--cream);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.82rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .lesson-title {
+            font-weight: bold;
+            color: var(--navy);
+            font-size: 1.08rem;
+            line-height: 1.25;
+            margin: 0 0 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lesson-description {
+            color: var(--muted);
+            font-size: 0.94rem;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .open-lesson {
+            margin-top: 14px;
+            color: var(--navy);
+            font-weight: bold;
+            font-size: 0.92rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: var(--muted);
+            margin: 26px 0 0;
+            font-size: 0.94rem;
+        }
+
+        @media (max-width: 780px) {
+            .hero-inner,
+            .top-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-mascot {
+                width: 110px;
+                height: 110px;
+            }
+
+            .course-heading,
+            .week-title {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .status-chip {
+                white-space: normal;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🐝 Deborah - Year 9 Civics 2026</h1>
-        <p>Welcome, <span id="userCode">Teacher</span></p>
-    </div>
+    <a href="#course-dashboard" class="skip-link">Skip to course dashboard</a>
 
-    <div class="card">
-        <h2>Admin Tools (Teachers Only)</h2>
-        <button onclick="createTeacher()">Create New Teacher Account</button>
-        <button onclick="createStudent()">Add New Student (Random Code)</button>
-        <button onclick="viewReport()">View Class Report</button>
-    </div>
-
-    <div class="card">
-        <h2>Course Dashboard</h2>
-
-        <div class="week-section">
-            <div class="week-title">Week 1</div>
-            <div class="lesson-grid">
-                <a href="week1-lesson1.html" class="lesson-tile">Lesson 1: The Australian Constitution</a>
-                <a href="week1-lesson2.html" class="lesson-tile">Lesson 2: The Eureka Stockade</a>
-                <a href="week1-lesson3.html" class="lesson-tile">Lesson 3: Division of Powers & Washminster System</a>
-                <a href="week1-lesson4.html" class="lesson-tile">Lesson 4: Referendums and Changing the Constitution</a>
+    <header class="hero">
+        <div class="hero-inner">
+            <div>
+                <p class="kicker">Year 9 Civics and Citizenship</p>
+                <h1>Deborah Dashboard</h1>
+                <p>Welcome to the course hub for the 2026 Civics unit. Choose a weekly lesson, launch activities, and keep your class moving without leaving the site.</p>
+                <div class="welcome-pill">🐝 Welcome, <strong id="userCode">Teacher</strong></div>
             </div>
+            <img src="./bee_static_alpha_512.png" alt="Deborah the Bee" class="hero-mascot" onerror="this.style.display='none'">
         </div>
+    </header>
 
-        <div class="week-section">
-            <div class="week-title">Week 2</div>
-            <div class="lesson-grid">
-                <a href="week2-lesson1.html" class="lesson-tile">Lesson 1: From Idea to Cabinet</a>
-                <a href="week2-lesson2.html" class="lesson-tile">Lesson 2: Parliament – House & Senate</a>
-                <a href="week2-lesson3.html" class="lesson-tile">Lesson 3: Passing a Bill</a>
-                <a href="week2-lesson4.html" class="lesson-tile">Lesson 4: Committees, Public Input & Media</a>
+    <main class="page-wrap">
+        <section class="top-actions" aria-label="Teacher tools and course overview">
+            <div class="panel">
+                <h2>Teacher Tools</h2>
+                <p>Use these quick tools to create access codes or open the class report.</p>
+                <div class="admin-buttons">
+                    <button onclick="createTeacher()">Create Teacher Code</button>
+                    <button onclick="createStudent()">Add Student Code</button>
+                    <button onclick="viewReport()">View Class Report</button>
+                </div>
             </div>
-        </div>
 
-        <div class="week-section">
-            <div class="week-title">Week 3</div>
-            <div class="lesson-grid">
-                <a href="week3-lesson1.html" class="lesson-tile">Lesson 1: Separation of Powers & Court Hierarchy</a>
-                <a href="week3-lesson2.html" class="lesson-tile">Lesson 2: Criminal vs Civil Law</a>
-                <a href="week3-lesson3.html" class="lesson-tile">Lesson 3: Key Case Studies</a>
-                <a href="week3-lesson4.html" class="lesson-tile">Lesson 4: Principles of Justice & Capital Punishment</a>
+            <div class="panel">
+                <h2>Course Snapshot</h2>
+                <p><strong>5 weeks</strong> of lessons covering the Constitution, democratic participation, law-making, courts, justice, elections, identity and civic values.</p>
+                <p>All lesson tiles open in the same browser tab so students stay within the course structure.</p>
             </div>
-        </div>
+        </section>
 
-        <div class="week-section">
-            <div class="week-title">Week 4</div>
-            <div class="lesson-grid">
-                <a href="week4-lesson1.html" class="lesson-tile">Lesson 1: Voting, Elections & Political Parties</a>
-                <a href="week4-lesson2.html" class="lesson-tile">Lesson 2: Interest Groups, NGOs & Global Citizenship</a>
+        <section class="course-shell" id="course-dashboard">
+            <div class="course-heading">
+                <div>
+                    <h2>Course Dashboard</h2>
+                    <p>Select a lesson below to begin.</p>
+                </div>
+                <span class="status-chip">🐝 Deborah-led learning pathway</span>
             </div>
-        </div>
 
-        <div class="week-section">
-            <div class="week-title">Week 5</div>
-            <div class="lesson-grid">
-                <a href="week5-lesson1.html" class="lesson-tile">Lesson 1: Media Influence on Australian Identity</a>
-                <a href="week5-lesson2.html" class="lesson-tile">Lesson 2: Shared Values, Diversity & Immigration</a>
-            </div>
-        </div>
-    </div>
+            <section class="week-section" aria-labelledby="week1-title">
+                <div class="week-title">
+                    <h2 id="week1-title">Week 1</h2>
+                    <span class="week-meta">Foundations of Australian democracy</span>
+                </div>
+                <div class="lesson-grid">
+                    <a href="week1-lesson1.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 1</span>
+                        <p class="lesson-title">The Australian Constitution</p>
+                        <p class="lesson-description">Explore the rulebook that created Australia’s federal system.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                    <a href="week1-lesson2.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 2</span>
+                        <p class="lesson-title">The Eureka Stockade</p>
+                        <p class="lesson-description">Trace causes, tension and democratic reform on the goldfields.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                    <a href="week1-lesson3.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 3</span>
+                        <p class="lesson-title">Division of Powers and the Washminster System</p>
+                        <p class="lesson-description">Sort government powers and build Australia’s blended system.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                    <a href="week1-lesson4.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 4</span>
+                        <p class="lesson-title">Referendums and Changing the Constitution</p>
+                        <p class="lesson-description">Learn how Australians vote on constitutional change.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="week-section" aria-labelledby="week2-title">
+                <div class="week-title">
+                    <h2 id="week2-title">Week 2</h2>
+                    <span class="week-meta">Law-making and Parliament</span>
+                </div>
+                <div class="lesson-grid">
+                    <a href="week2-lesson1.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 1</span>
+                        <p class="lesson-title">From Idea to Cabinet</p>
+                        <p class="lesson-description">Follow a policy idea before it becomes a proposed law.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                    <a href="week2-lesson2.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 2</span>
+                        <p class="lesson-title">Parliament: House and Senate</p>
+                        <p class="lesson-description">Compare the roles of Australia’s two federal houses.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                    <a href="week2-lesson3.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 3</span>
+                        <p class="lesson-title">Passing a Bill</p>
+                        <p class="lesson-description">Step through how a bill becomes law.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                    <a href="week2-lesson4.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 4</span>
+                        <p class="lesson-title">Committees, Public Input and Media</p>
+                        <p class="lesson-description">See how citizens and media influence law-making.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="week-section" aria-labelledby="week3-title">
+                <div class="week-title">
+                    <h2 id="week3-title">Week 3</h2>
+                    <span class="week-meta">Courts, law and justice</span>
+                </div>
+                <div class="lesson-grid">
+                    <a href="week3-lesson1.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 1</span>
+                        <p class="lesson-title">Separation of Powers and Court Hierarchy</p>
+                        <p class="lesson-description">Identify the branches of government and the court structure.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                    <a href="week3-lesson2.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 2</span>
+                        <p class="lesson-title">Criminal vs Civil Law</p>
+                        <p class="lesson-description">Compare two major areas of law using simple examples.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                    <a href="week3-lesson3.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 3</span>
+                        <p class="lesson-title">Key Case Studies</p>
+                        <p class="lesson-description">Use case examples to understand legal principles.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                    <a href="week3-lesson4.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 4</span>
+                        <p class="lesson-title">Principles of Justice and Capital Punishment</p>
+                        <p class="lesson-description">Examine fairness, equality and access in justice debates.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="week-section" aria-labelledby="week4-title">
+                <div class="week-title">
+                    <h2 id="week4-title">Week 4</h2>
+                    <span class="week-meta">Participation and influence</span>
+                </div>
+                <div class="lesson-grid">
+                    <a href="week4-lesson1.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 1</span>
+                        <p class="lesson-title">Voting, Elections and Political Parties</p>
+                        <p class="lesson-description">Understand participation in Australia’s representative democracy.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                    <a href="week4-lesson2.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 2</span>
+                        <p class="lesson-title">Interest Groups, NGOs and Global Citizenship</p>
+                        <p class="lesson-description">Explore how groups and citizens advocate for change.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="week-section" aria-labelledby="week5-title">
+                <div class="week-title">
+                    <h2 id="week5-title">Week 5</h2>
+                    <span class="week-meta">Identity, values and diversity</span>
+                </div>
+                <div class="lesson-grid">
+                    <a href="week5-lesson1.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 1</span>
+                        <p class="lesson-title">Media Influence on Australian Identity</p>
+                        <p class="lesson-description">Investigate how media shapes belonging and identity.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                    <a href="week5-lesson2.html" class="lesson-tile">
+                        <span class="lesson-number">Lesson 2</span>
+                        <p class="lesson-title">Shared Values, Diversity and Immigration</p>
+                        <p class="lesson-description">Reflect on Australian values in a diverse society.</p>
+                        <span class="open-lesson">Open lesson →</span>
+                    </a>
+                </div>
+            </section>
+        </section>
+
+        <p class="footer-note">Deborah says: strong civics knowledge is like a good democracy sausage — best when carefully assembled.</p>
+    </main>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         document.getElementById('userCode').textContent = urlParams.get('code') || 'Teacher';
 
         function createTeacher() {
-            const newCode = "TA" + Math.random().toString(36).substring(2,6).toUpperCase();
+            const newCode = "TA" + Math.random().toString(36).substring(2, 6).toUpperCase();
             alert("New Teacher Account Created!\nCode: " + newCode);
         }
 
         function createStudent() {
-            const newCode = "S" + Math.random().toString(36).substring(2,6).toUpperCase();
+            const newCode = "S" + Math.random().toString(36).substring(2, 6).toUpperCase();
             alert("New Student Added!\nCode: " + newCode);
         }
 
