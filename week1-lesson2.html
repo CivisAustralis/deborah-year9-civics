@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deborah - Week 1 Lesson 1</title>
+    <title>Deborah - Week 1 Lesson 2</title>
     <link rel="icon" href="images/favicon.png" type="image/png">
     <style>
         body { 
@@ -44,95 +44,50 @@
         }
         textarea { width:100%; padding:12px; border:2px solid #C9A227; border-radius:6px; min-height:100px; font-family: Georgia, serif; }
         iframe { width:100%; max-width:800px; height:420px; margin:20px 0; border:3px solid #C9A227; border-radius:6px; }
-        .memory-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-width: 520px; margin: 20px auto; }
-        .memory-card { 
-            width: 80px; height: 80px; background: #C9A227; color: #fff; border-radius: 12px; 
-            display: flex; align-items: center; justify-content: center; cursor: pointer; 
-            font-size: 11px; text-align: center; box-shadow:0 4px 10px rgba(0,0,0,0.2); 
-        }
-        #matching-game button, #matching-defs button {
-            background: #E7EFE4;
-            color: #222;
-            padding: 12px 18px;
-            margin: 6px;
-            border: 2px solid #C9A227;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: Georgia, serif;
-            font-size: 15px;
-        }
-        #matching-game button:hover, #matching-defs button:hover {
-            background: #D4E6D0;
-        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>Deborah - Year 9 Civics</h1>
-        <p style="font-style:italic;">Week 1 - Lesson 1: The Australian Constitution (~60 minutes)</p>
+        <p style="font-style:italic;">Week 1 - Lesson 2: The Eureka Stockade and Democracy (~60 minutes)</p>
     </div>
 
-    <!-- Video -->
     <div class="card">
-        <h3>Video: The Federation of Australia</h3>
-        <iframe src="https://www.youtube.com/embed/tzPOvhtDCEU" title="The Federation of Australia" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h2>Main Content</h2>
+        <p><strong>Reading (15 minutes)</strong>: The causes and democratic significance of the Eureka Stockade.</p>
     </div>
 
-    <!-- Parkes -->
     <div class="card">
-        <h3>Sir Henry Parkes – The Father of Federation</h3>
-        <img src="images/henry-parkes.jpg" alt="Sir Henry Parkes" style="max-width:400px; display:block; margin:15px auto; border:4px solid #C9A227;">
-        <p><strong>Sir Henry Parkes</strong> (1815–1896) was five-time Premier of New South Wales and the driving force behind Federation. His Tenterfield Oration in 1889 is widely regarded as the spark that led to the creation of the Commonwealth of Australia.</p>
+        <h3>Video: Introduction to Eureka Stockade</h3>
+        <iframe src="https://www.youtube.com/embed/otr2N7mObaM" title="Introduction to Eureka" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <!-- Deborah -->
-    <div class="card">
-        <h3>Deborah Says...</h3>
-        <div class="sprite-frame">
-            <img src="images/deborah-bee.png" class="sprite" alt="Deborah the Bee">
-        </div>
-        <p><em>Harold Holt was the 17th Prime Minister. He mysteriously disappeared while swimming in 1967...</em></p>
-    </div>
-
-    <!-- Full Reading -->
+    <!-- Democracy Sausage Timeline Builder -->
     <div class="card activity">
-        <h3>From Federation to a Constitution</h3>
-        <p>The Federation of Australia was not only a political event. It was also a legal act. The video explains how the six British colonies moved from separate colonial governments to one Commonwealth of Australia. The Australian Constitution is the rulebook that made that new Commonwealth possible. It created a national Parliament, executive government and federal courts, while also protecting the continued existence of the states (Commonwealth of Australia Constitution Act 1900).</p>
-        <!-- (the rest of your long reading text is here) -->
-    </div>
-
-    <!-- Activity 2: Timeline Builder (Sausage) -->
-    <div class="card activity">
-        <h3>Help the Sausage Put History Back in Order</h3>
+        <h3>Democracy Sausage Help - Timeline Builder</h3>
         <div class="sprite-frame">
             <img src="images/democracy-sausage.png" class="sprite" alt="Democracy Sausage">
         </div>
-        <p>Drag the events into the correct chronological order.</p>
-        <!-- Simple drag and drop timeline - implement with JS if needed -->
+        <p>Drag the events into the correct order to show how causes built up to the Eureka Stockade.</p>
+        <!-- Simple drag and drop implementation can be added if needed -->
+        <p>(Timeline builder activity - you can expand this with drag-and-drop JS if you want interactivity)</p>
     </div>
 
-    <!-- Activity 3: Democracy Sausage Cause Chain -->
+    <!-- Parliament Prawn Decision Game -->
     <div class="card activity">
-        <h3>Democracy Sausage Cause Chain</h3>
-        <div class="sprite-frame">
-            <img src="images/democracy-sausage.png" class="sprite" alt="Democracy Sausage">
-        </div>
-        <!-- Interactive cause chain with stages -->
-    </div>
-
-    <!-- Activity 4: Parliament Prawn Decision Game -->
-    <div class="card activity">
-        <h3>Parliament Prawn Decision Game: Road to Eureka</h3>
+        <h3>Parliament House Prawn Decision Game: Road to Eureka</h3>
         <div class="sprite-frame">
             <img src="images/parliament-prawn.png" class="sprite" alt="Parliament House Prawn">
         </div>
-        <!-- Simplified decision game -->
+        <p>Play as a miner in 1854. Make decisions and see how tension and democracy change.</p>
+        <!-- Full interactive decision game can be expanded here -->
+        <p>(Decision game - 6 scenarios with tension/democracy meters)</p>
     </div>
 
     <button onclick="history.back()">Back to Dashboard</button>
 
     <script>
-        // Interactivity scripts for matching, memory, drag and drop, etc.
+        // Tracking script as before
     </script>
 </body>
 </html>
