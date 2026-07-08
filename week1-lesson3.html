@@ -4,49 +4,963 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deborah - Week 1 Lesson 3</title>
+    <link rel="icon" href="./bee-favicon-192.png" type="image/png">
     <style>
-        body { font-family: Arial, sans-serif; background: #E5F0FA; margin:0; padding:0; color:#000; }
-        .header { background: #A2D2FF; padding:15px; text-align:center; }
-        .card { background:#BDE0FE; border-radius:15px; padding:20px; margin:15px; }
-        .sprite {
-            width: 100px;
-            height: 100px;
-            vertical-align: middle;
-            animation: bob 2s infinite ease-in-out;
-            display: inline-block;
+        :root {
+            --navy: #2C3E50;
+            --cream: #F5F0E6;
+            --card: #FAF6EB;
+            --gold: #C9A227;
+            --gold-dark: #9B7B18;
+            --green-soft: #E7EFE4;
+            --green: #D4EDDA;
+            --red-soft: #F8D7DA;
+            --blue-soft: #E8F4FA;
+            --ink: #222;
+            --shadow: rgba(0,0,0,0.16);
         }
-        @keyframes bob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: var(--navy);
+            color: #F4E8C1;
+            padding: 28px 18px;
+            text-align: center;
+            border-bottom: 8px solid var(--gold);
+        }
+
+        .header h1 { margin: 0 0 8px 0; font-size: clamp(1.8rem, 4vw, 2.8rem); }
+        .header p { margin: 0; font-style: italic; font-size: 1.05rem; }
+
+        .card {
+            background: var(--card);
+            border: 3px solid var(--gold);
+            border-radius: 10px;
+            padding: 26px;
+            margin: 24px auto;
+            max-width: 980px;
+            box-shadow: 0 8px 20px var(--shadow);
+        }
+
+        .activity { position: relative; }
+
+        h2, h3 {
+            color: var(--navy);
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+
+        h4 { color: var(--navy); margin-bottom: 8px; }
+
+        .lesson-goal {
+            background: #fff;
+            border-left: 8px solid var(--gold);
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+
+        .sprite-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .sprite-frame {
+            border: 6px solid var(--gold);
+            padding: 12px;
+            background: #fff;
+            display: inline-block;
+            margin: 12px 0;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            flex: 0 0 auto;
+        }
+
+        .sprite {
+            width: 150px;
+            max-width: 32vw;
+            height: auto;
+            display: block;
+        }
+
+        .deborah-note, .sausage-note, .prawn-note {
+            background: #fff;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin: 12px 0;
+        }
+
+        .time-badge, .stage-badge {
+            display: inline-block;
+            background: var(--navy);
+            color: #F4E8C1;
+            border-radius: 999px;
+            padding: 5px 12px;
+            font-size: 0.92rem;
+            margin: 4px 6px 8px 0;
+            font-weight: bold;
+        }
+
+        .key-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .key-box {
+            background: #fff;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        .button-row { margin-top: 16px; }
+
+        button {
+            background: var(--gold);
+            color: #222;
+            padding: 10px 18px;
+            margin: 6px 6px 6px 0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        button:hover, button:focus {
+            background: #D8B73B;
+            outline: 3px solid rgba(44,62,80,0.25);
+        }
+
+        button.secondary { background: var(--green-soft); border: 2px solid var(--gold); }
+        button.secondary:hover, button.secondary:focus { background: #D4E6D0; }
+        button:disabled { opacity: 0.55; cursor: not-allowed; }
+
+        .sort-area {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+            margin-top: 16px;
+        }
+
+        .source-bank, .zone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 12px;
+            align-items: start;
+        }
+
+        .source-bank {
+            background: var(--blue-soft);
+            border: 2px dashed var(--navy);
+            border-radius: 10px;
+            padding: 12px;
+            min-height: 92px;
+        }
+
+        .drop-zone {
+            background: #fff;
+            border: 2px dashed var(--gold-dark);
+            border-radius: 10px;
+            min-height: 140px;
+            padding: 12px;
+        }
+
+        .drop-zone h4 { margin: 0 0 8px 0; }
+
+        .sort-card {
+            background: var(--green-soft);
+            border: 2px solid var(--gold);
+            border-radius: 9px;
+            padding: 11px 12px;
+            margin: 7px 0;
+            cursor: grab;
+            user-select: none;
+            box-shadow: 0 3px 7px rgba(0,0,0,0.12);
+        }
+
+        .sort-card:focus, .sort-card.selected {
+            outline: 4px solid var(--navy);
+            background: #FFF3CD;
+        }
+
+        .sort-card.correct { background: var(--green); border-color: #3D8B40; }
+        .sort-card.incorrect { background: var(--red-soft); border-color: #A94442; }
+
+        .feedback {
+            margin-top: 14px;
+            padding: 14px 16px;
+            background: #fff;
+            border: 2px solid var(--gold);
+            border-radius: 9px;
+            min-height: 48px;
+        }
+
+        .feedback.good { border-color: #3D8B40; background: #ECF8EE; }
+        .feedback.try { border-color: #A94442; background: #FFF1F1; }
+
+        .quiz-card {
+            background: #fff;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 14px;
+        }
+
+        .option-button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: var(--green-soft);
+            border: 2px solid var(--gold);
+            margin: 8px 0;
+            font-weight: normal;
+        }
+
+        .option-button.chosen { outline: 4px solid var(--navy); background: #FFF3CD; }
+        .option-button.correct { background: var(--green); border-color: #3D8B40; }
+        .option-button.incorrect { background: var(--red-soft); border-color: #A94442; }
+
+        .meter-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin: 15px 0;
+        }
+
+        .meter-box {
+            background: #fff;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .meter-label { font-weight: bold; margin-bottom: 6px; color: var(--navy); }
+
+        .meter-outer {
+            height: 22px;
+            background: #eee;
+            border: 1px solid #999;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .meter-inner {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #C9A227, #E8C756);
+            transition: width 0.3s ease;
+        }
+
+        .scenario-progress {
+            font-weight: bold;
+            color: var(--navy);
+        }
+
+        .paragraph-builder select {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1rem;
+            padding: 7px;
+            border: 2px solid var(--gold);
+            border-radius: 6px;
+            margin: 4px;
+            background: #fff;
+            max-width: 100%;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            min-height: 110px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1rem;
+            background: #fff;
+        }
+
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .word-chip {
+            background: var(--green-soft);
+            border: 1px solid var(--gold);
+            border-radius: 999px;
+            padding: 5px 10px;
+        }
+
+        .nav-button-wrap {
+            max-width: 980px;
+            margin: 0 auto 30px auto;
+            padding: 0 24px;
+        }
+
+        .small-note { font-size: 0.95rem; color: #333; }
+
+        @media (max-width: 620px) {
+            .card { margin: 16px 10px; padding: 18px; }
+            .sprite { width: 110px; }
+            .source-bank, .zone-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🐝 Deborah - Year 9 Civics</h1>
-        <p>Week 1 - Lesson 3: Division of Powers & the Washminster System</p>
+        <p>Week 1 - Lesson 3: Division of Powers & the Washminster System (~50–60 minutes)</p>
     </div>
 
     <div class="card">
-        <h2>Main Content (Deborah-Led) <img src="./bee_static_alpha_512.png" class="sprite"></h2>
-        <p>Australia has a federal system with powers divided between federal and state governments. Our "Washminster" system blends the British Westminster model with American influences for stability.</p>
-        <p class="character">🐝 Deborah says: "This practical system gives us strong leadership while protecting against too much power in one place."</p>
+        <h2>Lesson Goal</h2>
+        <div class="sprite-row">
+            <div class="sprite-frame">
+                <img src="./bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee">
+            </div>
+            <div class="lesson-goal">
+                <p><strong>Today’s big idea:</strong> Australia has a federal system with powers divided between federal and state governments. Our “Washminster” system blends the British Westminster model with American influences for stability.</p>
+                <p><strong>Lesson question:</strong> Who has the power, and how does Australia stop too much power sitting in one place?</p>
+            </div>
+        </div>
     </div>
 
     <div class="card">
-        <h3>Democracy Sausage Help <img src="./sausage_suit_pants_alpha_512.png" class="sprite"></h3>
-        <p>Label the diagram: Federal powers vs State powers.</p>
+        <h2>Main Content: Deborah Explains</h2>
+        <span class="time-badge">Suggested time: 8–10 minutes</span>
+        <p>Australia does not give all government power to one group. Some powers belong mostly to the <strong>federal government</strong>, some belong mostly to the <strong>state governments</strong>, and some are <strong>shared or overlapping</strong>. This is called <strong>federalism</strong>.</p>
+        <p>The federal government deals with national issues such as defence, immigration, currency, foreign affairs, and trade with other countries. State governments deal with many everyday services, such as public schools, public hospitals, police, roads, and criminal law. Sometimes both levels are involved. For example, health, education, disaster response, housing, and infrastructure can involve both federal and state governments.</p>
+        <p>Australia’s system is sometimes called <strong>Washminster</strong>. This word combines <strong>Washington</strong> and <strong>Westminster</strong>. It means Australia borrowed ideas from both the United States and Britain, but mixed them into our own system.</p>
+
+        <div class="key-grid">
+            <div class="key-box">
+                <h3>British Westminster influences</h3>
+                <p>Australia has a Prime Minister, Cabinet, ministers who sit in Parliament, an Opposition, and responsible government. Responsible government means the government must stay answerable to Parliament, especially the House of Representatives.</p>
+            </div>
+            <div class="key-box">
+                <h3>American influences</h3>
+                <p>Australia has a written Constitution, federalism, a High Court that interprets the Constitution, and a Senate designed to represent the states.</p>
+            </div>
+            <div class="key-box">
+                <h3>Australian blend</h3>
+                <p>Australia did not copy one system exactly. Parliament makes laws, but the Constitution limits what each level of government can do. The High Court can decide whether laws are valid. This helps divide and control power.</p>
+            </div>
+        </div>
+
+        <div class="deborah-note">
+            🐝 <strong>Deborah says:</strong> “Federalism is basically government job-sharing. Washminster is Australia saying, ‘We like this bit from Britain, this bit from America, and we’ll make it work our own way.’ Very practical. Very Australian.”
+        </div>
     </div>
 
-    <div class="card">
-        <h3>Parliament House Prawn Challenge <img src="./prawn_static_alpha.png" class="sprite"></h3>
-        <p>Compare Australia's Washminster system with a pure Westminster or presidential system. What are its strengths?</p>
+    <div class="card activity" id="activity-power-sort">
+        <h2>Activity 1: Democracy Sausage Power Sort</h2>
+        <span class="time-badge">Suggested time: 10–12 minutes</span>
+        <div class="sprite-row">
+            <div class="sprite-frame">
+                <img src="./sausage_suit_pants_alpha_512.png" class="sprite" alt="Democracy Sausage">
+            </div>
+            <div class="sausage-note">
+                🌭 <strong>Democracy Sausage says:</strong> “Help me sort these government jobs. Some are federal, some are state, and some are shared. Like onions. Sometimes they end up everywhere.”
+            </div>
+        </div>
+        <p><strong>Instructions:</strong> Click a card, then click the correct box. You can also drag cards on a computer. When all cards are placed, click <strong>Check answers</strong>.</p>
+
+        <div class="sort-area">
+            <h3>Power cards</h3>
+            <div class="source-bank" id="power-source" aria-label="Power cards to sort"></div>
+            <div class="zone-grid">
+                <div class="drop-zone" data-zone-group="power" data-category="federal" tabindex="0" aria-label="Federal Government drop zone"><h4>Federal Government</h4></div>
+                <div class="drop-zone" data-zone-group="power" data-category="state" tabindex="0" aria-label="State Government drop zone"><h4>State Government</h4></div>
+                <div class="drop-zone" data-zone-group="power" data-category="shared" tabindex="0" aria-label="Shared or Overlapping drop zone"><h4>Shared or Overlapping</h4></div>
+            </div>
+        </div>
+        <div class="button-row">
+            <button onclick="checkSort('power')">Check answers</button>
+            <button class="secondary" onclick="resetSort('power')">Reset activity</button>
+        </div>
+        <div id="power-feedback" class="feedback" aria-live="polite">Place all cards into the boxes, then check your answers.</div>
     </div>
 
-    <button onclick="history.back()">Back to Dashboard</button>
+    <div class="card activity" id="activity-scenarios">
+        <h2>Activity 2: Whose Problem Is It?</h2>
+        <span class="time-badge">Suggested time: 10–12 minutes</span>
+        <div class="sprite-row">
+            <div class="sprite-frame">
+                <img src="./bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee">
+            </div>
+            <div class="deborah-note">
+                🐝 <strong>Deborah says:</strong> “Now apply the idea. Read each situation and decide which level of government is most likely involved.”
+            </div>
+        </div>
+        <div id="scenario-box" class="quiz-card" aria-live="polite"></div>
+    </div>
 
-    <!-- Tracking Script -->
+    <div class="card activity" id="activity-washminster">
+        <h2>Activity 3: Parliament Prawn Builds Washminster</h2>
+        <span class="time-badge">Suggested time: 12–15 minutes</span>
+        <div class="sprite-row">
+            <div class="sprite-frame">
+                <img src="./prawn_static_alpha.png" class="sprite" alt="Parliament House Prawn">
+            </div>
+            <div class="prawn-note">
+                🦐 <strong>Parliament Prawn says:</strong> “Australia did not copy one country’s system exactly. Sort each feature into British influence, American influence, or the Australian blend.”
+            </div>
+        </div>
+        <p><strong>Instructions:</strong> Click a card, then click the correct box. Look for clues: Prime Minister and Cabinet are Westminster ideas. Written Constitution, federalism and the High Court show American influence. Some cards describe Australia’s special blend.</p>
+
+        <div class="sort-area">
+            <h3>Washminster feature cards</h3>
+            <div class="source-bank" id="wash-source" aria-label="Washminster feature cards to sort"></div>
+            <div class="zone-grid">
+                <div class="drop-zone" data-zone-group="wash" data-category="british" tabindex="0" aria-label="British Westminster influence drop zone"><h4>British Westminster influence</h4></div>
+                <div class="drop-zone" data-zone-group="wash" data-category="american" tabindex="0" aria-label="American influence drop zone"><h4>American influence</h4></div>
+                <div class="drop-zone" data-zone-group="wash" data-category="blend" tabindex="0" aria-label="Australian blend drop zone"><h4>Australian blend</h4></div>
+            </div>
+        </div>
+        <div class="button-row">
+            <button onclick="checkSort('wash')">Check answers</button>
+            <button class="secondary" onclick="resetSort('wash')">Reset activity</button>
+        </div>
+        <div id="wash-feedback" class="feedback" aria-live="polite">Place all cards into the boxes, then check your answers.</div>
+    </div>
+
+    <div class="card activity" id="activity-checks">
+        <h2>Activity 4: Too Much Power? Checks and Balances Challenge</h2>
+        <span class="time-badge">Suggested time: 8–10 minutes</span>
+        <div class="sprite-row">
+            <div class="sprite-frame">
+                <img src="./prawn_static_alpha.png" class="sprite" alt="Parliament House Prawn">
+            </div>
+            <div class="prawn-note">
+                🦐 <strong>Parliament Prawn says:</strong> “When someone tries to use power, our system has limits. Choose which feature helps control the power.”
+            </div>
+        </div>
+
+        <div class="meter-panel">
+            <div class="meter-box">
+                <div class="meter-label">Power Control Score: <span id="control-score-text">0 out of 5</span></div>
+                <div class="meter-outer"><div class="meter-inner" id="control-meter"></div></div>
+            </div>
+        </div>
+
+        <div id="checks-box" class="quiz-card" aria-live="polite"></div>
+    </div>
+
+    <div class="card activity" id="final-reflection">
+        <h2>Final Reflection: Build Your Explanation</h2>
+        <span class="time-badge">Suggested time: 5–8 minutes</span>
+        <p><strong>Question:</strong> Explain how Australia’s Washminster system helps divide and control government power.</p>
+
+        <div class="paragraph-builder quiz-card">
+            <h3>Scaffolded paragraph</h3>
+            <p>
+                Australia divides power between the
+                <select id="final-one" aria-label="first paragraph blank">
+                    <option value="">choose...</option>
+                    <option value="federal">federal</option>
+                    <option value="school">school</option>
+                    <option value="sporting">sporting</option>
+                </select>
+                government and the
+                <select id="final-two" aria-label="second paragraph blank">
+                    <option value="">choose...</option>
+                    <option value="state">state</option>
+                    <option value="private">private</option>
+                    <option value="international">international</option>
+                </select>
+                governments. This is called
+                <select id="final-three" aria-label="third paragraph blank">
+                    <option value="">choose...</option>
+                    <option value="federalism">federalism</option>
+                    <option value="monopoly">monopoly</option>
+                    <option value="homework">homework</option>
+                </select>.
+                Australia’s system is sometimes called
+                <select id="final-four" aria-label="fourth paragraph blank">
+                    <option value="">choose...</option>
+                    <option value="Washminster">Washminster</option>
+                    <option value="Canberra soup">Canberra soup</option>
+                    <option value="Power pile-up">Power pile-up</option>
+                </select>
+                because it combines British ideas, such as the Prime Minister and responsible government, with American ideas, such as a written Constitution and federalism. This helps democracy because power is
+                <select id="final-five" aria-label="fifth paragraph blank">
+                    <option value="">choose...</option>
+                    <option value="divided and limited">divided and limited</option>
+                    <option value="hidden forever">hidden forever</option>
+                    <option value="given to one person">given to one person</option>
+                </select>
+                instead of being held by only one group.
+            </p>
+            <button onclick="checkFinalParagraph()">Check paragraph</button>
+            <div id="final-paragraph-feedback" class="feedback" aria-live="polite">Complete the dropdowns, then check your paragraph.</div>
+        </div>
+
+        <h3>Write your own answer</h3>
+        <p>Use the word bank to help you write 3–5 sentences.</p>
+        <div class="word-bank" aria-label="Word bank">
+            <span class="word-chip">federalism</span>
+            <span class="word-chip">federal government</span>
+            <span class="word-chip">state government</span>
+            <span class="word-chip">Constitution</span>
+            <span class="word-chip">Westminster</span>
+            <span class="word-chip">responsible government</span>
+            <span class="word-chip">Prime Minister</span>
+            <span class="word-chip">Senate</span>
+            <span class="word-chip">High Court</span>
+            <span class="word-chip">accountability</span>
+        </div>
+        <textarea id="student-reflection" placeholder="Australia’s Washminster system helps divide and control power because..."></textarea>
+        <button onclick="showReflectionFeedback()">Mark reflection as complete</button>
+        <div id="reflection-feedback" class="feedback" aria-live="polite">Write your answer, then mark it as complete.</div>
+    </div>
+
+    <div class="nav-button-wrap">
+        <button onclick="history.back()">Back to Dashboard</button>
+    </div>
+
     <script>
+        // ---------- General helpers ----------
+        function shuffle(array) {
+            const copy = [...array];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function clamp(num, min, max) {
+            return Math.min(Math.max(num, min), max);
+        }
+
+        // ---------- Sorting activities ----------
+        const sortData = {
+            power: {
+                sourceId: 'power-source',
+                feedbackId: 'power-feedback',
+                cards: [
+                    { id: 'defence', text: 'Defence', category: 'federal' },
+                    { id: 'immigration', text: 'Immigration', category: 'federal' },
+                    { id: 'currency', text: 'Currency and money', category: 'federal' },
+                    { id: 'foreign', text: 'Foreign affairs', category: 'federal' },
+                    { id: 'police', text: 'Police', category: 'state' },
+                    { id: 'schools', text: 'Public schools', category: 'state' },
+                    { id: 'hospitals', text: 'Public hospitals', category: 'state' },
+                    { id: 'criminal', text: 'Criminal law', category: 'state' },
+                    { id: 'health-funding', text: 'Health funding', category: 'shared' },
+                    { id: 'disasters', text: 'Disaster response', category: 'shared' },
+                    { id: 'environment', text: 'Environmental protection', category: 'shared' },
+                    { id: 'infrastructure', text: 'Major infrastructure projects', category: 'shared' }
+                ],
+                correctMessage: 'Correct! Federalism means government power is divided. Some jobs are mainly national, some are mainly state-based, and some overlap. This stops every decision being controlled by one level of government.',
+                hintMessage: 'Not quite yet. Think about whether the issue affects the whole country, is usually run by states, or often involves both levels working together.'
+            },
+            wash: {
+                sourceId: 'wash-source',
+                feedbackId: 'wash-feedback',
+                cards: [
+                    { id: 'pm', text: 'Prime Minister leads the government', category: 'british' },
+                    { id: 'cabinet', text: 'Cabinet made up of senior ministers', category: 'british' },
+                    { id: 'responsible', text: 'Responsible government', category: 'british' },
+                    { id: 'opposition', text: 'Opposition questions the government in Parliament', category: 'british' },
+                    { id: 'written', text: 'Written Constitution', category: 'american' },
+                    { id: 'federal-division', text: 'Federal division of powers', category: 'american' },
+                    { id: 'senate-states', text: 'Senate designed to represent the states', category: 'american' },
+                    { id: 'high-court', text: 'High Court interprets the Constitution', category: 'american' },
+                    { id: 'blend-one', text: 'Parliament makes laws, but the Constitution limits power', category: 'blend' },
+                    { id: 'blend-two', text: 'Prime Minister leads, but must stay answerable to Parliament', category: 'blend' },
+                    { id: 'blend-three', text: 'House reflects population while Senate represents states', category: 'blend' },
+                    { id: 'blend-four', text: 'High Court can decide if federal laws are valid', category: 'blend' }
+                ],
+                correctMessage: 'Excellent! Washminster is Australia’s blend: British-style parliamentary government plus American-style federalism, a written Constitution, a Senate, and High Court interpretation.',
+                hintMessage: 'Try again. British clues include Prime Minister, Cabinet and responsible government. American clues include written Constitution, federalism, Senate and High Court. Blend cards combine the ideas.'
+            }
+        };
+
+        let selectedSortCard = null;
+
+        function createSortCard(group, card) {
+            const div = document.createElement('div');
+            div.className = 'sort-card';
+            div.draggable = true;
+            div.tabIndex = 0;
+            div.textContent = card.text;
+            div.dataset.cardId = card.id;
+            div.dataset.group = group;
+            div.setAttribute('role', 'button');
+            div.setAttribute('aria-label', card.text + '. Click then choose a box.');
+
+            div.addEventListener('click', () => selectSortCard(div));
+            div.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    selectSortCard(div);
+                }
+            });
+            div.addEventListener('dragstart', (event) => {
+                event.dataTransfer.setData('text/plain', card.id);
+                event.dataTransfer.setData('group', group);
+            });
+            return div;
+        }
+
+        function selectSortCard(cardEl) {
+            if (selectedSortCard) selectedSortCard.classList.remove('selected');
+            selectedSortCard = cardEl;
+            selectedSortCard.classList.add('selected');
+        }
+
+        function initDropZones() {
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.addEventListener('click', () => placeSelectedCard(zone));
+                zone.addEventListener('keydown', (event) => {
+                    if ((event.key === 'Enter' || event.key === ' ') && selectedSortCard) {
+                        event.preventDefault();
+                        placeSelectedCard(zone);
+                    }
+                });
+                zone.addEventListener('dragover', (event) => event.preventDefault());
+                zone.addEventListener('drop', (event) => {
+                    event.preventDefault();
+                    const cardId = event.dataTransfer.getData('text/plain');
+                    const group = event.dataTransfer.getData('group');
+                    if (group !== zone.dataset.zoneGroup) return;
+                    const cardEl = document.querySelector(`.sort-card[data-card-id="${cardId}"][data-group="${group}"]`);
+                    if (cardEl) zone.appendChild(cardEl);
+                    clearCardStyles(cardEl);
+                });
+            });
+        }
+
+        function placeSelectedCard(zone) {
+            if (!selectedSortCard) return;
+            if (selectedSortCard.dataset.group !== zone.dataset.zoneGroup) return;
+            zone.appendChild(selectedSortCard);
+            clearCardStyles(selectedSortCard);
+            selectedSortCard = null;
+        }
+
+        function clearCardStyles(cardEl) {
+            if (!cardEl) return;
+            cardEl.classList.remove('selected', 'correct', 'incorrect');
+        }
+
+        function resetSort(group) {
+            const config = sortData[group];
+            const source = document.getElementById(config.sourceId);
+            const feedback = document.getElementById(config.feedbackId);
+            source.innerHTML = '';
+            document.querySelectorAll(`.drop-zone[data-zone-group="${group}"]`).forEach(zone => {
+                const heading = zone.querySelector('h4');
+                zone.innerHTML = '';
+                zone.appendChild(heading);
+            });
+            shuffle(config.cards).forEach(card => source.appendChild(createSortCard(group, card)));
+            feedback.className = 'feedback';
+            feedback.textContent = 'Place all cards into the boxes, then check your answers.';
+            selectedSortCard = null;
+        }
+
+        function checkSort(group) {
+            const config = sortData[group];
+            const feedback = document.getElementById(config.feedbackId);
+            const categoryMap = {};
+            config.cards.forEach(card => categoryMap[card.id] = card.category);
+            let placed = 0;
+            let correct = 0;
+
+            document.querySelectorAll(`.sort-card[data-group="${group}"]`).forEach(cardEl => {
+                cardEl.classList.remove('correct', 'incorrect', 'selected');
+                const parentZone = cardEl.closest('.drop-zone');
+                if (!parentZone) return;
+                placed++;
+                const correctCategory = categoryMap[cardEl.dataset.cardId];
+                if (parentZone.dataset.category === correctCategory) {
+                    correct++;
+                    cardEl.classList.add('correct');
+                    cardEl.setAttribute('aria-label', cardEl.textContent + '. Correct.');
+                } else {
+                    cardEl.classList.add('incorrect');
+                    cardEl.setAttribute('aria-label', cardEl.textContent + '. Incorrect. Try another box.');
+                }
+            });
+
+            if (placed < config.cards.length) {
+                feedback.className = 'feedback try';
+                feedback.textContent = `You have placed ${placed} out of ${config.cards.length} cards. Place every card before checking.`;
+                return;
+            }
+
+            if (correct === config.cards.length) {
+                feedback.className = 'feedback good';
+                feedback.textContent = '✓ ' + config.correctMessage;
+            } else {
+                feedback.className = 'feedback try';
+                feedback.textContent = `Not quite. You have ${correct} out of ${config.cards.length} correct. ` + config.hintMessage;
+            }
+        }
+
+        // ---------- Activity 2: Whose Problem Is It? ----------
+        const scenarioQuestions = [
+            {
+                question: 'Australia needs to decide who can enter the country and become a permanent resident.',
+                options: ['Federal government', 'State government', 'Shared or overlapping', 'No government at all'],
+                answer: 0,
+                feedback: 'Correct. Immigration is mainly a federal responsibility because it affects the whole nation and Australia’s borders.'
+            },
+            {
+                question: 'A Queensland public school needs rules about attendance, behaviour, and everyday school management.',
+                options: ['Federal government only', 'State government', 'Foreign government', 'The High Court writes the school rules'],
+                answer: 1,
+                feedback: 'Correct. Public schools are mainly run by state governments, although the federal government may provide some funding.'
+            },
+            {
+                question: 'A new public hospital needs funding, staffing, and services for patients.',
+                options: ['Federal government only', 'State government only', 'Shared or overlapping', 'Local sporting club'],
+                answer: 2,
+                feedback: 'Correct. States run public hospitals, but the federal government also helps fund health care, so this is shared or overlapping.'
+            },
+            {
+                question: 'Australia signs an agreement with another country.',
+                options: ['Federal government', 'State government', 'Local council', 'A school principal'],
+                answer: 0,
+                feedback: 'Correct. Foreign affairs and international agreements are mainly federal responsibilities.'
+            },
+            {
+                question: 'A road near your suburb needs repairs. Depending on the road, it may involve local or state responsibility.',
+                options: ['Usually state or local government', 'Always the federal government', 'The Governor-General personally', 'No one is responsible'],
+                answer: 0,
+                feedback: 'Correct. Roads can involve state or local government. Local councils are created and controlled by state law.'
+            },
+            {
+                question: 'The federal Parliament passes a law, but a state says the Constitution does not give the federal Parliament that power.',
+                options: ['The High Court may decide', 'The Prime Minister decides alone', 'A local council decides', 'The law automatically disappears'],
+                answer: 0,
+                feedback: 'Correct. The High Court can interpret the Constitution and decide whether a law is valid.'
+            }
+        ];
+        let scenarioIndex = 0;
+        let scenarioScore = 0;
+
+        function renderScenario() {
+            const box = document.getElementById('scenario-box');
+            if (scenarioIndex >= scenarioQuestions.length) {
+                box.innerHTML = `
+                    <p class="scenario-progress">Complete!</p>
+                    <h3>Deborah says: Nice work.</h3>
+                    <p>You scored <strong>${scenarioScore} out of ${scenarioQuestions.length}</strong>. The important idea is that Australian federalism divides government responsibilities, but some real-life problems involve more than one level of government.</p>
+                    <button onclick="restartScenarios()">Replay challenge</button>
+                `;
+                return;
+            }
+            const item = scenarioQuestions[scenarioIndex];
+            box.innerHTML = `
+                <p class="scenario-progress">Scenario ${scenarioIndex + 1} of ${scenarioQuestions.length}</p>
+                <h3>Whose problem is it?</h3>
+                <p>${item.question}</p>
+                <div id="scenario-options"></div>
+                <div id="scenario-feedback" class="feedback">Choose an answer.</div>
+            `;
+            const options = document.getElementById('scenario-options');
+            item.options.forEach((option, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-button';
+                btn.textContent = String.fromCharCode(65 + idx) + '. ' + option;
+                btn.onclick = () => chooseScenarioOption(idx);
+                options.appendChild(btn);
+            });
+        }
+
+        function chooseScenarioOption(choice) {
+            const item = scenarioQuestions[scenarioIndex];
+            const buttons = document.querySelectorAll('#scenario-options .option-button');
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === item.answer) btn.classList.add('correct');
+                if (idx === choice && idx !== item.answer) btn.classList.add('incorrect');
+            });
+            const feedback = document.getElementById('scenario-feedback');
+            if (choice === item.answer) {
+                scenarioScore++;
+                feedback.className = 'feedback good';
+                feedback.textContent = '✓ ' + item.feedback;
+            } else {
+                feedback.className = 'feedback try';
+                feedback.textContent = 'Not quite. ' + item.feedback;
+            }
+            const nextBtn = document.createElement('button');
+            nextBtn.textContent = scenarioIndex === scenarioQuestions.length - 1 ? 'Finish challenge' : 'Next scenario';
+            nextBtn.onclick = () => { scenarioIndex++; renderScenario(); };
+            feedback.appendChild(document.createElement('br'));
+            feedback.appendChild(nextBtn);
+        }
+
+        function restartScenarios() {
+            scenarioIndex = 0;
+            scenarioScore = 0;
+            renderScenario();
+        }
+
+        // ---------- Activity 4: Checks and balances challenge ----------
+        const checksQuestions = [
+            {
+                question: 'The federal Parliament passes a law, but someone argues the Constitution does not give the federal Parliament power to make that law. Who can decide if the law is valid?',
+                options: ['The Prime Minister', 'The High Court', 'The local council', 'The school captain'],
+                answer: 1,
+                feedback: 'The High Court interprets the Constitution and can decide whether federal laws are constitutionally valid.'
+            },
+            {
+                question: 'The government loses support in the House of Representatives. Which idea helps explain why this is serious?',
+                options: ['Responsible government', 'Currency', 'Immigration', 'Road repairs'],
+                answer: 0,
+                feedback: 'Responsible government means the government must remain answerable to Parliament and keep the confidence of the lower house.'
+            },
+            {
+                question: 'A valid federal law and a state law conflict. What usually happens where they are inconsistent?',
+                options: ['The state law always wins', 'The federal law prevails to the extent of the inconsistency', 'Both laws disappear completely', 'The local council chooses'],
+                answer: 1,
+                feedback: 'When a valid federal law conflicts with a state law, the federal law prevails where they are inconsistent.'
+            },
+            {
+                question: 'A state wants to run its own public schools and police service. Which feature of Australia’s system allows states to keep many powers?',
+                options: ['Federalism', 'A single national ruler', 'No Constitution', 'A sporting code'],
+                answer: 0,
+                feedback: 'Federalism divides power between the Commonwealth and the states, so states keep many responsibilities.'
+            },
+            {
+                question: 'The Senate gives equal representation to the original states. Which influence does this show most clearly?',
+                options: ['American federal influence', 'A monarchy only', 'Local council influence', 'No democratic influence at all'],
+                answer: 0,
+                feedback: 'The Senate’s state representation reflects American federal influence, adapted into Australia’s own system.'
+            }
+        ];
+        let checksIndex = 0;
+        let checksScore = 0;
+
+        function updateControlMeter() {
+            const percent = (checksScore / checksQuestions.length) * 100;
+            document.getElementById('control-meter').style.width = percent + '%';
+            document.getElementById('control-score-text').textContent = `${checksScore} out of ${checksQuestions.length}`;
+        }
+
+        function renderChecksQuestion() {
+            updateControlMeter();
+            const box = document.getElementById('checks-box');
+            if (checksIndex >= checksQuestions.length) {
+                box.innerHTML = `
+                    <p class="scenario-progress">Challenge complete!</p>
+                    <h3>Parliament Prawn says: Power controlled.</h3>
+                    <p>You scored <strong>${checksScore} out of ${checksQuestions.length}</strong>. Australia’s system controls power through federalism, responsible government, the Constitution, Parliament, and the High Court.</p>
+                    <button onclick="restartChecks()">Replay challenge</button>
+                `;
+                return;
+            }
+            const item = checksQuestions[checksIndex];
+            box.innerHTML = `
+                <p class="scenario-progress">Question ${checksIndex + 1} of ${checksQuestions.length}</p>
+                <h3>Too much power?</h3>
+                <p>${item.question}</p>
+                <div id="checks-options"></div>
+                <div id="checks-feedback" class="feedback">Choose an answer.</div>
+            `;
+            const options = document.getElementById('checks-options');
+            item.options.forEach((option, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-button';
+                btn.textContent = String.fromCharCode(65 + idx) + '. ' + option;
+                btn.onclick = () => chooseChecksOption(idx);
+                options.appendChild(btn);
+            });
+        }
+
+        function chooseChecksOption(choice) {
+            const item = checksQuestions[checksIndex];
+            const buttons = document.querySelectorAll('#checks-options .option-button');
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === item.answer) btn.classList.add('correct');
+                if (idx === choice && idx !== item.answer) btn.classList.add('incorrect');
+            });
+            const feedback = document.getElementById('checks-feedback');
+            if (choice === item.answer) {
+                checksScore++;
+                feedback.className = 'feedback good';
+                feedback.textContent = '✓ Correct. ' + item.feedback;
+            } else {
+                feedback.className = 'feedback try';
+                feedback.textContent = 'Not quite. ' + item.feedback;
+            }
+            updateControlMeter();
+            const nextBtn = document.createElement('button');
+            nextBtn.textContent = checksIndex === checksQuestions.length - 1 ? 'Finish challenge' : 'Next question';
+            nextBtn.onclick = () => { checksIndex++; renderChecksQuestion(); };
+            feedback.appendChild(document.createElement('br'));
+            feedback.appendChild(nextBtn);
+        }
+
+        function restartChecks() {
+            checksIndex = 0;
+            checksScore = 0;
+            renderChecksQuestion();
+        }
+
+        // ---------- Final paragraph ----------
+        function checkFinalParagraph() {
+            const answers = {
+                'final-one': 'federal',
+                'final-two': 'state',
+                'final-three': 'federalism',
+                'final-four': 'Washminster',
+                'final-five': 'divided and limited'
+            };
+            let correct = 0;
+            Object.keys(answers).forEach(id => {
+                const select = document.getElementById(id);
+                if (select.value === answers[id]) correct++;
+                select.style.background = select.value === answers[id] ? '#D4EDDA' : '#F8D7DA';
+            });
+            const feedback = document.getElementById('final-paragraph-feedback');
+            if (correct === Object.keys(answers).length) {
+                feedback.className = 'feedback good';
+                feedback.textContent = '✓ Excellent. Your paragraph explains federalism, Washminster and the idea that power is divided and limited.';
+            } else {
+                feedback.className = 'feedback try';
+                feedback.textContent = `You have ${correct} out of ${Object.keys(answers).length} correct. Read the sentence carefully and choose the options that explain Australian government.`;
+            }
+        }
+
+        function showReflectionFeedback() {
+            const text = document.getElementById('student-reflection').value.trim();
+            const feedback = document.getElementById('reflection-feedback');
+            if (text.length < 40) {
+                feedback.className = 'feedback try';
+                feedback.textContent = 'Add a little more detail. Try using at least three key words from the word bank.';
+            } else {
+                feedback.className = 'feedback good';
+                feedback.textContent = '✓ Reflection marked as complete. Nice work explaining how Australia divides and controls power.';
+            }
+        }
+
+        // ---------- Tracking ----------
         let startTime = Date.now();
         let awayTime = 0;
         let tabSwitches = 0;
@@ -69,6 +983,13 @@
             const totalTime = Math.round((Date.now() - startTime) / 1000);
             console.log('Session ended. Total time on lesson: ' + totalTime + 's | Tab switches: ' + tabSwitches);
         });
+
+        // ---------- Init ----------
+        initDropZones();
+        resetSort('power');
+        resetSort('wash');
+        renderScenario();
+        renderChecksQuestion();
     </script>
 </body>
 </html>
