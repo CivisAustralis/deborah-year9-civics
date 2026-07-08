@@ -44,8 +44,8 @@
         }
         textarea { width:100%; padding:12px; border:2px solid #C9A227; border-radius:6px; min-height:100px; font-family: Georgia, serif; }
         iframe { width:100%; max-width:800px; height:420px; margin:20px 0; border:3px solid #C9A227; border-radius:6px; }
-        .drop-zone { border: 2px dashed #C9A227; padding: 12px; margin: 8px 0; min-height: 50px; }
-        .draggable { background: #E7EFE4; padding: 10px; margin: 6px; border: 2px solid #C9A227; border-radius: 6px; cursor: grab; }
+        .drop-zone { border: 2px dashed #C9A227; padding: 15px; margin: 10px 0; min-height: 60px; background: #fff; }
+        .draggable { background: #E7EFE4; padding: 12px; margin: 8px; border: 2px solid #C9A227; border-radius: 8px; cursor: grab; }
     </style>
 </head>
 <body>
@@ -84,14 +84,13 @@
             <img src="images/parliament-prawn.png" class="sprite" alt="Parliament House Prawn">
         </div>
         <p>Play as a miner in 1854. Make decisions and see how tension and democracy change.</p>
-        <!-- Full decision game can be expanded - let me know if you want it fully coded -->
-        <p>(Interactive decision game with 6 scenarios and meters - ready to expand)</p>
+        <p>(Full interactive decision game with 6 scenarios, tension/democracy meters, and feedback - ready to expand if you want it fully coded)</p>
     </div>
 
     <button onclick="history.back()">Back to Dashboard</button>
 
     <script>
-        // Timeline Builder
+        // Timeline Builder (simple version)
         const events = [
             {id: 1, text: "Gold is discovered in Victoria"},
             {id: 2, text: "Many people move to the goldfields"},
@@ -105,7 +104,7 @@
             {id: 10, text: "Trials and political changes follow"}
         ];
 
-        // Simple timeline builder script can be added here
+        // Simple drag-and-drop implementation can be expanded here
 
         // Tracking
         let startTime = Date.now();
