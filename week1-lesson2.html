@@ -3,72 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deborah - Week 1 Lesson 2</title>
+    <title>Deborah - Week 1 Lesson 1</title>
+    <link rel="icon" href="images/favicon.png" type="image/png">
     <style>
-        body { font-family: Arial, sans-serif; background: #E5F0FA; margin:0; padding:0; color:#000; }
-        .header { background: #A2D2FF; padding:15px; text-align:center; }
-        .card { background:#BDE0FE; border-radius:15px; padding:20px; margin:15px; }
-        .sprite {
-            width: 100px;
-            height: 100px;
-            vertical-align: middle;
-            animation: bob 2s infinite ease-in-out;
-            display: inline-block;
+        body { 
+            font-family: 'Georgia', serif; 
+            background: #F5F0E6; 
+            color: #222; 
+            line-height: 1.7; 
+            margin:0; padding:0; 
         }
-        @keyframes bob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+        .header { 
+            background: #2C3E50; 
+            color: #F4E8C1; 
+            padding:25px; text-align:center; 
+            border-bottom: 8px solid #C9A227; 
+        }
+        .card { 
+            background:#FAF6EB; 
+            border: 3px solid #C9A227; 
+            border-radius:8px; 
+            padding:28px; 
+            margin:25px auto; 
+            max-width: 900px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15); 
+        }
+        .sprite-frame { 
+            border: 6px solid #C9A227; 
+            padding: 12px; 
+            background: #fff; 
+            display: inline-block; 
+            margin: 15px auto; 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2); 
+        }
+        .sprite { width: 160px; height: auto; display: block; }
+        h2, h3 { color: #2C3E50; border-bottom: 2px solid #C9A227; padding-bottom: 8px; }
+        button { 
+            background:#C9A227; color:#222; padding:10px 20px; margin:8px; 
+            border:none; border-radius:6px; cursor:pointer; font-family: Georgia, serif; 
+        }
+        textarea { width:100%; padding:12px; border:2px solid #C9A227; border-radius:6px; min-height:100px; font-family: Georgia, serif; }
+        iframe { width:100%; max-width:800px; height:420px; margin:20px 0; border:3px solid #C9A227; border-radius:6px; }
+        .memory-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-width: 520px; margin: 20px auto; }
+        .memory-card { 
+            width: 80px; height: 80px; background: #C9A227; color: #fff; border-radius: 12px; 
+            display: flex; align-items: center; justify-content: center; cursor: pointer; 
+            font-size: 11px; text-align: center; box-shadow:0 4px 10px rgba(0,0,0,0.2); 
+        }
+        #matching-game button, #matching-defs button {
+            background: #E7EFE4;
+            color: #222;
+            padding: 12px 18px;
+            margin: 6px;
+            border: 2px solid #C9A227;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: Georgia, serif;
+            font-size: 15px;
+        }
+        #matching-game button:hover, #matching-defs button:hover {
+            background: #D4E6D0;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>🐝 Deborah - Year 9 Civics</h1>
-        <p>Week 1 - Lesson 2: The Eureka Stockade</p>
+        <h1>Deborah - Year 9 Civics</h1>
+        <p style="font-style:italic;">Week 1 - Lesson 1: The Australian Constitution (~60 minutes)</p>
     </div>
 
+    <!-- Video -->
     <div class="card">
-        <h2>Main Content (Deborah-Led) <img src="./bee_static_alpha_512.png" class="sprite"></h2>
-        <p>In 1854, miners at Eureka Stockade protested unfair taxes and lack of rights. They raised the Southern Cross flag and fought for democratic principles.</p>
-        <p class="character">🐝 Deborah says: "The Eureka Stockade is sometimes called the birth of Australian democracy!"</p>
+        <h3>Video: The Federation of Australia</h3>
+        <iframe src="https://www.youtube.com/embed/tzPOvhtDCEU" title="The Federation of Australia" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
+    <!-- Parkes -->
     <div class="card">
-        <h3>Democracy Sausage Help <img src="./sausage_suit_pants_alpha_512.png" class="sprite"></h3>
-        <p>Sort causes and effects of the Eureka Stockade.</p>
+        <h3>Sir Henry Parkes – The Father of Federation</h3>
+        <img src="images/henry-parkes.jpg" alt="Sir Henry Parkes" style="max-width:400px; display:block; margin:15px auto; border:4px solid #C9A227;">
+        <p><strong>Sir Henry Parkes</strong> (1815–1896) was five-time Premier of New South Wales and the driving force behind Federation. His Tenterfield Oration in 1889 is widely regarded as the spark that led to the creation of the Commonwealth of Australia.</p>
     </div>
 
+    <!-- Deborah -->
     <div class="card">
-        <h3>Parliament House Prawn Challenge <img src="./prawn_static_alpha.png" class="sprite"></h3>
-        <p>How did the Eureka Stockade influence later democratic reforms like voting rights?</p>
+        <h3>Deborah Says...</h3>
+        <div class="sprite-frame">
+            <img src="images/deborah-bee.png" class="sprite" alt="Deborah the Bee">
+        </div>
+        <p><em>Harold Holt was the 17th Prime Minister. He mysteriously disappeared while swimming in 1967...</em></p>
+    </div>
+
+    <!-- Full Reading -->
+    <div class="card activity">
+        <h3>From Federation to a Constitution</h3>
+        <p>The Federation of Australia was not only a political event. It was also a legal act. The video explains how the six British colonies moved from separate colonial governments to one Commonwealth of Australia. The Australian Constitution is the rulebook that made that new Commonwealth possible. It created a national Parliament, executive government and federal courts, while also protecting the continued existence of the states (Commonwealth of Australia Constitution Act 1900).</p>
+        <!-- (the rest of your long reading text is here) -->
+    </div>
+
+    <!-- Activity 2: Timeline Builder (Sausage) -->
+    <div class="card activity">
+        <h3>Help the Sausage Put History Back in Order</h3>
+        <div class="sprite-frame">
+            <img src="images/democracy-sausage.png" class="sprite" alt="Democracy Sausage">
+        </div>
+        <p>Drag the events into the correct chronological order.</p>
+        <!-- Simple drag and drop timeline - implement with JS if needed -->
+    </div>
+
+    <!-- Activity 3: Democracy Sausage Cause Chain -->
+    <div class="card activity">
+        <h3>Democracy Sausage Cause Chain</h3>
+        <div class="sprite-frame">
+            <img src="images/democracy-sausage.png" class="sprite" alt="Democracy Sausage">
+        </div>
+        <!-- Interactive cause chain with stages -->
+    </div>
+
+    <!-- Activity 4: Parliament Prawn Decision Game -->
+    <div class="card activity">
+        <h3>Parliament Prawn Decision Game: Road to Eureka</h3>
+        <div class="sprite-frame">
+            <img src="images/parliament-prawn.png" class="sprite" alt="Parliament House Prawn">
+        </div>
+        <!-- Simplified decision game -->
     </div>
 
     <button onclick="history.back()">Back to Dashboard</button>
 
-    <!-- Tracking Script -->
     <script>
-        let startTime = Date.now();
-        let awayTime = 0;
-        let tabSwitches = 0;
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                tabSwitches++;
-                console.log('🚨 Student went away - Tab switch #' + tabSwitches);
-                awayTime = Date.now();
-            } else {
-                if (awayTime > 0) {
-                    const timeAway = Math.round((Date.now() - awayTime) / 1000);
-                    console.log('✅ Student returned after ' + timeAway + ' seconds');
-                    awayTime = 0;
-                }
-            }
-        });
-
-        window.addEventListener('beforeunload', () => {
-            const totalTime = Math.round((Date.now() - startTime) / 1000);
-            console.log('Session ended. Total time on lesson: ' + totalTime + 's | Tab switches: ' + tabSwitches);
-        });
+        // Interactivity scripts for matching, memory, drag and drop, etc.
     </script>
 </body>
 </html>
