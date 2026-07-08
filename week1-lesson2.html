@@ -84,13 +84,15 @@
             <img src="images/parliament-prawn.png" class="sprite" alt="Parliament House Prawn">
         </div>
         <p>Play as a miner in 1854. Make decisions and see how tension and democracy change.</p>
-        <p>(Full interactive decision game with 6 scenarios, tension/democracy meters, and feedback - ready to expand if you want it fully coded)</p>
+        <div id="decision-game">
+            <!-- Full game will be expanded here -->
+        </div>
     </div>
 
     <button onclick="history.back()">Back to Dashboard</button>
 
     <script>
-        // Timeline Builder (simple version)
+        // Timeline Builder (simple drag and drop)
         const events = [
             {id: 1, text: "Gold is discovered in Victoria"},
             {id: 2, text: "Many people move to the goldfields"},
@@ -104,7 +106,7 @@
             {id: 10, text: "Trials and political changes follow"}
         ];
 
-        // Simple drag-and-drop implementation can be expanded here
+        // Simple timeline builder can be expanded here
 
         // Tracking
         let startTime = Date.now();
