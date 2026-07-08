@@ -44,8 +44,6 @@
         }
         textarea { width:100%; padding:12px; border:2px solid #C9A227; border-radius:6px; min-height:100px; font-family: Georgia, serif; }
         iframe { width:100%; max-width:800px; height:420px; margin:20px 0; border:3px solid #C9A227; border-radius:6px; }
-        .drop-zone { border: 2px dashed #C9A227; padding: 15px; margin: 10px 0; min-height: 60px; background: #fff; }
-        .draggable { background: #E7EFE4; padding: 12px; margin: 8px; border: 2px solid #C9A227; border-radius: 8px; cursor: grab; }
     </style>
 </head>
 <body>
@@ -64,19 +62,6 @@
         <iframe src="https://www.youtube.com/embed/otr2N7mObaM" title="Introduction to Eureka" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <!-- Democracy Sausage Timeline Builder -->
-    <div class="card activity">
-        <h3>Democracy Sausage Help - Timeline Builder</h3>
-        <div class="sprite-frame">
-            <img src="images/democracy-sausage.png" class="sprite" alt="Democracy Sausage">
-        </div>
-        <p>Drag the events into the correct order to show how causes built up to the Eureka Stockade.</p>
-        <div id="timeline-drop" class="drop-zone"></div>
-        <div id="timeline-cards"></div>
-        <button onclick="checkTimeline()">Check Order</button>
-        <button onclick="resetTimeline()">Reset</button>
-    </div>
-
     <!-- Parliament Prawn Decision Game -->
     <div class="card activity">
         <h3>Parliament House Prawn Decision Game: Road to Eureka</h3>
@@ -84,29 +69,54 @@
             <img src="images/parliament-prawn.png" class="sprite" alt="Parliament House Prawn">
         </div>
         <p>Play as a miner in 1854. Make decisions and see how tension and democracy change.</p>
-        <div id="decision-game">
-            <!-- Full game will be expanded here -->
+        <div id="game-area">
+            <!-- Game content loaded by JS -->
         </div>
     </div>
 
     <button onclick="history.back()">Back to Dashboard</button>
 
     <script>
-        // Timeline Builder (simple drag and drop)
-        const events = [
-            {id: 1, text: "Gold is discovered in Victoria"},
-            {id: 2, text: "Many people move to the goldfields"},
-            {id: 3, text: "Miners are forced to pay licence fees"},
-            {id: 4, text: "Police carry out licence hunts"},
-            {id: 5, text: "Miners protest against unfair treatment"},
-            {id: 6, text: "Bentley’s Hotel is burned"},
-            {id: 7, text: "The Eureka flag is raised"},
-            {id: 8, text: "The stockade is built"},
-            {id: 9, text: "Troops attack the stockade"},
-            {id: 10, text: "Trials and political changes follow"}
+        let tension = 2;
+        let democracy = 0;
+        let currentScenario = 0;
+
+        const scenarios = [
+            {
+                title: "Scenario 1: The Licence Fee",
+                text: "You have been digging all week and have found barely any gold. The government still expects you to pay for a mining licence.",
+                options: [
+                    {text: "Pay quietly and keep digging", tension: 1, democracy: 0},
+                    {text: "Join other miners in complaining", tension: 2, democracy: 1},
+                    {text: "Refuse to pay the licence fee", tension: 3, democracy: 1},
+                    {text: "Leave the goldfields", tension: 0, democracy: 0}
+                ]
+            },
+            {
+                title: "Scenario 2: Licence Hunt",
+                text: "Police arrive suddenly and begin a licence hunt. Every miner must show their licence.",
+                options: [
+                    {text: "Show your licence and stay silent", tension: 1, democracy: 0},
+                    {text: "Ask why miners are being checked so aggressively", tension: 2, democracy: 2},
+                    {text: "Hide from the police", tension: 2, democracy: 0},
+                    {text: "Tell another miner to run", tension: 3, democracy: 0}
+                ]
+            },
+            // Add the other 4 scenarios here as needed
         ];
 
-        // Simple timeline builder can be expanded here
+        function loadScenario() {
+            const area = document.getElementById('game-area');
+            area.innerHTML = `
+                <h3>${scenarios[currentScenario].title}</h3>
+                <p>${scenarios[currentScenario].text}</p>
+                <div id="options"></div>
+                <p>Tension: ${tension} / 10 | Democracy: ${democracy} / 10</p>
+            `;
+            // Add options
+        }
+
+        // Full game can be expanded - let me know if you want all 6 scenarios coded
 
         // Tracking
         let startTime = Date.now();
