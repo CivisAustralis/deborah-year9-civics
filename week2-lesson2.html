@@ -7,38 +7,206 @@
 <link rel="icon" href="images/bee-favicon-192.png" type="image/png">
 <link rel="stylesheet" href="css/lesson-style.css">
 </head>
-<body>
-
+<body class="lesson-gold">
 <main>
-<div class="card">
-        <h2>Main Content (Deborah-Led) <img src="images/bee_static_alpha_512.png" class="sprite"></h2>
-        <p>The House of Representatives forms government and reflects population. The Senate is the states' house of review. Together they form part of Australia's Washminster system.</p>
-        <p class="character">🐝 Deborah says: "This balance gives us stable leadership while protecting smaller states."</p>
-    </div>
+<section class="card deborah" aria-labelledby="mission-title">
+    <span class="stage-badge">Mission 6</span><span class="time-badge">50–60 minutes</span>
+    <h2 id="mission-title">🐝 Mission 6 — The Two-Chamber Puzzle</h2>
+    <div class="sprite-row"><div class="sprite-frame"><img src="images/bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee, junior parliamentary adviser guide"></div><div class="helper-text">
+        <p>A fictional proposal has received strong support in the House of Representatives. Some Australians believe that should be enough for it to become law immediately. Others argue that the Senate must examine it independently first.</p>
+        <p>The Prime Minister’s office has asked you, a junior parliamentary adviser, to prepare a briefing explaining why Australia has two Houses, whom each represents, why they may reach different conclusions and how a second chamber can strengthen <strong>scrutiny</strong>.</p>
+        <p>Your mission is not to decide that one House is “better”. Each performs a different democratic role, and together they form one parliamentary system. Let’s investigate both sides of the hive.</p>
+    </div></div>
+</section>
 
-    <div class="card">
-        <h3>Democracy Sausage Help <img src="images/sausage_suit_pants_alpha_512.png" class="sprite"></h3>
-        <p>Label the roles of the House and Senate.</p>
-    </div>
+<section class="card" aria-labelledby="learning-title"><div class="learning-box">
+    <div><h3 id="learning-title">🎯 Learning Intention</h3><p>To understand how the Australian Parliament is structured and why the House of Representatives and Senate perform different but connected roles.</p></div>
+    <div><h3>✅ Success Criteria</h3><p>By the end, you should be able to:</p><ul>
+        <li>identify the three constitutional parts of the Australian Parliament;</li><li>explain the difference between Parliament and government;</li><li>describe whom each House represents;</li><li>compare the roles of the two Houses;</li><li>explain why parliamentary scrutiny matters; and</li><li>apply this knowledge to a fictional parliamentary problem.</li>
+    </ul></div>
+</div></section>
 
-    <div class="card">
-        <h3>Parliament House Prawn Challenge <img src="images/prawn_static_alpha.png" class="sprite"></h3>
-        <p>How does the Senate act as a check on the House?</p>
+<section class="card" aria-labelledby="initial-title">
+    <h2 id="initial-title">🗳️ Initial Decision — One House or Two?</h2>
+    <p>A fictional country is rewriting its Constitution. Select the system you initially prefer, then choose exactly two reasons. There is no automatically incorrect position.</p>
+    <div class="key-grid">
+        <label class="key-box"><input type="radio" name="houseOption" value="A"> <strong>Option A:</strong> One elected chamber. Laws may be passed more quickly.</label>
+        <label class="key-box"><input type="radio" name="houseOption" value="B"> <strong>Option B:</strong> Two elected chambers. Proposed laws may take longer but receive a second examination.</label>
     </div>
+    <fieldset class="quiz-card"><legend>Choose two reasons for your preference:</legend><div class="mini-grid">
+        <label><input type="checkbox" name="houseReason" value="faster"> Faster decision-making</label><label><input type="checkbox" name="houseReason" value="scrutiny"> More scrutiny</label><label><input type="checkbox" name="houseReason" value="responsibility"> Clearer responsibility</label><label><input type="checkbox" name="houseReason" value="representation"> Broader representation</label><label><input type="checkbox" name="houseReason" value="delays"> Fewer delays</label><label><input type="checkbox" name="houseReason" value="protection"> Greater protection against rushed decisions</label>
+    </div></fieldset>
+    <button type="button" id="submitInitial">Submit Initial Decision</button><p id="initialFeedback" class="feedback" aria-live="polite"></p>
+</section>
+
+<section class="card" aria-labelledby="reading-title">
+    <h2 id="reading-title">📖 Investigation File — Two Houses, One System</h2>
+    <details open><summary>Section A — What is Parliament?</summary>
+        <p>Parliament is the institution that debates public issues, examines government action and considers proposed laws. Constitutionally, the Australian Parliament has three parts: <strong>the King, represented federally by the Governor-General; the House of Representatives; and the Senate.</strong></p>
+        <p>The Governor-General’s parliamentary role includes giving Royal Assent to Bills passed by both Houses. The detailed stages for passing a Bill belong to the next lesson. For now, remember that Parliament is not simply another word for government, and Cabinet is part of executive government—not a third parliamentary chamber. Courts interpret and apply law, but they are not part of Parliament.</p>
+    </details>
+    <details><summary>Section B — Parliament and government</summary>
+        <p>Parliament includes government, opposition, minor-party and independent parliamentarians. Government is normally formed by the party or coalition that commands the confidence of the House of Representatives. It develops policy and administers the country through ministers and federal departments.</p>
+        <p>Parliament debates, examines and authorises proposed laws. Opposition members question government decisions and present alternatives. The <strong>crossbench</strong> consists of minor-party and independent parliamentarians who sit apart from government and opposition benches. They may support, oppose or seek changes to proposals. Disagreement is a normal feature of representative democracy, not proof that the system has failed.</p>
+    </details>
+    <details><summary>Section C — The House of Representatives</summary>
+        <p>Australia is divided into geographic <strong>electorates</strong>. Voters in each electorate elect one member to the House. Electorates aim to contain broadly similar numbers of voters, although boundaries change as populations move. Members represent local communities while also making national decisions.</p>
+        <p>The party or coalition with the confidence of the House normally forms government, and the Prime Minister is normally a House member. Many government Bills begin there, and certain taxation and spending proposals must originate there. “Lower House” is a traditional label; it does not mean that the House is less important.</p>
+    </details>
+    <details><summary>Section D — The Senate</summary>
+        <p>Each state has equal representation in the Senate. The territories also elect senators, but have fewer senators than the states. A senator represents an entire state or territory rather than one local electorate. The Senate reviews proposed laws and government activity, so it is often called the “House of review”.</p>
+        <p>The Senate may agree, disagree, request changes or refer an issue for further investigation. Its committees can examine evidence and hear from affected groups. Governments do not always control a majority of Senate votes, so they may need support from opposition or crossbench senators. “Upper House” does not mean that the Senate is simply more powerful.</p>
+    </details>
+    <details><summary>Section E — Why two types of representation?</summary>
+        <p>The two Houses combine different democratic ideas. House representation is based broadly on population, while Senate representation gives each state equal numbers of state senators. Imagine one highly populated state and one less populated state: the first has more House electorates, but both have equal numbers of state senators.</p>
+        <p>Australians therefore receive local, population-based representation and state-based representation. Equal state representation protects smaller states, but students may reasonably debate whether it gives individual voters equal influence. Australia’s <strong>bicameral</strong>—two-chamber—design is a constitutional compromise between these principles.</p>
+    </details>
+    <details><summary>Section F — Government, opposition and crossbench</summary>
+        <p>Government proposes policies, introduces many Bills, administers federal departments and answers questions in Parliament. Opposition questions government decisions, proposes alternatives and tries to demonstrate that it could govern more effectively.</p>
+        <p>Crossbench parliamentarians may support, oppose or negotiate changes to proposals. They can be influential when neither major grouping has enough votes alone. Whatever their position, all elected members and senators have representative duties. A senator may raise local concerns, and a House member also considers state and national interests; representation overlaps even though each chamber has a distinct foundation.</p>
+    </details>
+    <details><summary>Section G — Scrutiny and accountability</summary>
+        <p><strong>Scrutiny</strong> means careful examination. Parliament scrutinises through debate, questions to ministers, committee inquiries, examination of spending, proposed amendments, public reporting, and criticism by opposition and crossbench members. <strong>Accountability</strong> means requiring decision-makers to explain and defend their actions.</p>
+        <p>Scrutiny is not automatic obstruction. It can identify errors, hidden costs or unintended consequences and improve a proposal. Both Houses debate national issues, examine Bills and hold government to account. A second examination is valuable when it is careful and evidence-based, rather than delay for its own sake.</p>
+    </details>
+    <details><summary>Section H — Why the Houses may disagree</summary>
+        <p>The Houses may reach different conclusions because they represent people differently, their party composition may differ, senators may focus on state or territory effects, committees may uncover new evidence, or parliamentarians may disagree about cost, fairness and effectiveness.</p>
+        <p>Disagreement can delay a decision, but it can also prevent rushed law-making. Both Houses participate in ordinary federal law-making; neither is simply the boss. Their disagreement creates a need for explanation, negotiation and sometimes revision.</p>
+    </details>
+    <details><summary>Section I — A brief comparison</summary>
+        <table><thead><tr><th>House of Representatives</th><th>Senate</th><th>Both</th></tr></thead><tbody><tr>
+            <td>Geographic electorates<br>Determines who forms government<br>Prime Minister normally sits here<br>Population-based representation<br>Many government Bills originate here</td>
+            <td>States represented equally<br>Territories also represented<br>Reviews proposed laws<br>Prominent committee and scrutiny role<br>Government may need opposition or crossbench support</td>
+            <td>Elected parliamentarians<br>Debate national issues<br>Examine Bills<br>Represent Australians<br>Hold government accountable<br>Participate in federal law-making</td>
+        </tr></tbody></table>
+    </details>
+</section>
+
+<section class="card sausage" aria-labelledby="sausage-title">
+    <h2 id="sausage-title">🌭 Democracy Sausage’s Parliamentary Sandwich</h2>
+    <div class="sprite-row"><div class="sprite-frame"><img src="images/sausage_suit_pants_alpha_512.png" class="sprite" alt="Democracy Sausage explaining an upper House misconception"></div><div>
+        <p class="sausage-note"><strong>Democracy Sausage:</strong> “The Senate is called the upper House, so obviously it is the boss of the lower House. It’s like the top slice of bread in a parliamentary sandwich.”</p>
+        <p class="deborah-note"><strong>Deborah:</strong> “Not quite, Sausage. ‘Upper’ and ‘lower’ are traditional labels. Neither House is simply the boss. Both are required for ordinary federal Bills to pass. The House determines who forms government, while the Senate has a major review and scrutiny role.”</p>
+    </div></div>
+    <p class="info-box"><strong>Faith Fun Fact:</strong> In the Book of Judges, repeated periods of unstable leadership show problems that can arise when a community lacks consistent institutions and shared standards. Australia’s parliamentary system is very different, but the comparison can help us consider why accountable leadership, agreed laws and checks on power matter.</p>
+</section>
+
+<section class="card" aria-labelledby="sort-title">
+    <h2 id="sort-title">🎮 Activity 1 — Which Chamber?</h2><p>Classify all ten statements as House of Representatives, Senate or Both Houses. Check the explanation for every item, then retry if necessary.</p>
+    <div id="chamberItems"></div><button type="button" id="checkChambers">Check Answers</button><button type="button" id="resetChambers" class="secondary">Reset</button><p id="chamberTotal" class="feedback" aria-live="polite"></p>
+</section>
+
+<section class="card" aria-labelledby="lens-title">
+    <h2 id="lens-title">🔎 Activity 2 — Who Are They Representing?</h2><p>Choose the best answer for each mini-scenario. Representation can overlap, so use the explanation to understand why one answer is strongest.</p>
+    <div id="lensItems"></div><button type="button" id="checkLens">Check Scenarios</button><button type="button" id="resetLens" class="secondary">Reset</button><p id="lensTotal" class="feedback" aria-live="polite"></p>
+</section>
+
+<section class="card" aria-labelledby="briefing-title">
+    <h2 id="briefing-title">📋 Activity 3 — The Second-Look Briefing</h2>
+    <p>The House has passed the fictional <strong>National Disaster Communication Bill</strong>, which would create a national emergency text-alert system. Before the Senate votes, a committee receives this evidence:</p>
+    <ul><li>Some remote communities have unreliable mobile coverage.</li><li>People with limited English may not understand text-only alerts.</li><li>The proposal may collect location information.</li><li>Emergency services strongly support faster national warnings.</li><li>Implementation will be expensive.</li><li>The system could save lives during bushfires and floods.</li></ul>
+    <label for="briefingChoice">Recommend one Senate response:</label><select id="briefingChoice"><option value="">Choose a response…</option><option value="A">A. Pass immediately without further examination.</option><option value="B">B. Reject completely.</option><option value="C">C. Seek amendments addressing accessibility, privacy and remote coverage.</option><option value="D">D. Delay permanently without explanation.</option></select>
+    <label for="briefingReason"><strong>Justify your recommendation using the evidence:</strong></label><textarea id="briefingReason" rows="6" placeholder="I recommend… because… The benefit is… A risk is…"></textarea>
+    <button type="button" id="submitBriefing">Submit Briefing</button><p id="briefingFeedback" class="feedback" aria-live="polite"></p>
+</section>
+
+<section class="card prawn" aria-labelledby="prawn-title">
+    <h2 id="prawn-title">🦐 Parliament House Prawn Extension — Is Equal State Representation Fair?</h2>
+    <div class="sprite-row"><div class="sprite-frame"><img src="images/prawn_static_alpha.png" class="sprite" alt="Parliament House Prawn, extension reasoning mentor"></div><p class="helper-text">“Each Australian state has equal representation in the Senate, even though the states have very different populations. Is this fair?”</p></div>
+    <label for="prawnResponse">Consider equality between states, equality between voters, protection of smaller states, population-based representation in the House and compromise in constitutional design. This extension is optional.</label><textarea id="prawnResponse" rows="7" placeholder="One view is… On the other hand… Overall…"></textarea>
+    <button type="button" id="savePrawn">Save Extension</button><p id="prawnFeedback" class="feedback" aria-live="polite"></p>
+</section>
+
+<section class="card deborah" aria-labelledby="reflection-title">
+    <h2 id="reflection-title">🐝 Reflection</h2><p>Why might disagreement between the House of Representatives and the Senate sometimes strengthen democracy rather than weaken it?</p>
+    <p class="deborah-note"><strong>Scaffold:</strong><br>Disagreement may strengthen democracy because __________.<br>A second examination can reveal __________.<br>However, too much delay could create the problem of __________.<br>Overall, I think __________ because __________.</p>
+    <label for="reflection">Your response:</label><textarea id="reflection" rows="7" placeholder="Use the scaffold to develop your reasoning."></textarea><button type="button" id="saveReflection">Save Reflection</button><p id="reflectionFeedback" class="feedback" aria-live="polite"></p>
+</section>
+
+<section class="card" aria-labelledby="knowledge-title">
+    <h2 id="knowledge-title">🧠 Auto-Marked Knowledge Check</h2><p>Answer all six questions. You need at least 5 out of 6 to complete the check and may retry.</p>
+    <div id="knowledgeItems"></div><button type="button" id="markKnowledge">Mark Knowledge Check</button><button type="button" id="resetKnowledge" class="secondary">Clear Answers</button><p id="knowledgeSummary" class="feedback" aria-live="polite"></p><p id="knowledgeStats" class="note">Attempts: 0 · Latest score: 0/6 · Highest score: 0/6</p>
+</section>
+
+<section class="card" aria-labelledby="exit-title">
+    <h2 id="exit-title">📌 Exit Ticket</h2><p>Answer all four questions in complete sentences.</p><ol><li>What is one major role of the House of Representatives?</li><li>What is one major role of the Senate?</li><li>What is the difference between Parliament and government?</li><li>Give one reason Australia’s two-House structure may improve scrutiny.</li></ol>
+    <label for="exitTicket">Your four answers:</label><textarea id="exitTicket" rows="8" placeholder="1. …&#10;2. …&#10;3. …&#10;4. …"></textarea><button type="button" id="saveExit">Save Exit Ticket</button><p id="exitFeedback" class="feedback" aria-live="polite"></p>
+</section>
+
+<section class="card deborah" aria-labelledby="thought-title"><h2 id="thought-title">🍯 Deborah’s Honeycomb Thought</h2><blockquote class="deborah-note">“Democracy is not strengthened when everyone agrees automatically. It is strengthened when different representatives examine ideas carefully, explain their reasoning and remain accountable to the people they serve.”</blockquote></section>
+<section class="card" aria-labelledby="complete-title"><h2 id="complete-title">✅ Complete the Mission</h2><p>Submit after completing every required section. The Prawn extension remains optional.</p><button type="button" id="completeMission">Complete Mission</button><p id="missionFeedback" class="feedback" aria-live="polite"></p></section>
 </main>
-
 <script src="js/site-config.js"></script>
 <script src="js/lesson-common.js"></script>
 <script>
-setupLesson({
-    lessonId: "week2lesson2",
-    week:     2,
-    lesson:   2,
-    title:    "Parliament: House and Senate",
-    previous: "week2-lesson1.html",
-    next:     "week2-lesson3.html"
-});
-</script>
+setupLesson({ lessonId: "week2lesson2", week: 2, lesson: 2, title: "Parliament: Two Houses, One System", previous: "week2-lesson1.html", next: "week2-lesson3.html" });
 
+(function () {
+"use strict";
+const storageKey = "week2lesson2:activityData";
+const required = ["one-house-or-two", "chamber-sort", "representation-lens", "second-look-briefing", "parliament-reflection", "knowledge-check", "exit-ticket"];
+const labels = {"one-house-or-two":"One House or Two?", "chamber-sort":"Which Chamber?", "representation-lens":"Representation Lens", "second-look-briefing":"Second-Look Briefing", "parliament-reflection":"Reflection", "knowledge-check":"Knowledge Check", "exit-ticket":"Exit Ticket"};
+let extra = loadExtra();
+const chamberData = [
+ ["Represents geographic electorates.","house","House members are elected by voters in geographic electorates."],
+ ["Represents each state equally.","senate","Each state has equal Senate representation; territories have separate representation."],
+ ["Contains elected representatives.","both","Both chambers contain elected parliamentarians."],
+ ["Determines which party or coalition normally forms government.","house","Government normally requires the confidence of the House."],
+ ["Is often called the House of review.","senate","The Senate has a prominent review and scrutiny role."],
+ ["Debates proposed federal laws.","both","Both Houses debate proposed federal laws."],
+ ["The Prime Minister normally sits here.","house","The Prime Minister is normally a House member."],
+ ["Uses committees to investigate public issues.","both","Both use committees, although Senate committees are particularly prominent."],
+ ["May include government, opposition, minor-party and independent members.","both","Both chambers can include these political groupings."],
+ ["Represents an entire state or territory rather than one local electorate.","senate","Senators represent a whole state or territory."]
+];
+const lensData = [
+ {q:"Residents of one local electorate are concerned that a dangerous intersection has not received federal infrastructure funding.", options:["Their local House member","Only the Governor-General","Only the courts"], a:0, why:"Their local House member is the strongest first representative, although senators may also raise infrastructure concerns."},
+ {q:"A proposal may affect the interests of an entire state, including rural and urban areas.", options:["The state’s senators","Only one local House member","No elected representative"], a:0, why:"State senators represent the entire state, although House members may also raise state-wide concerns."},
+ {q:"A proposed federal law must be debated and voted upon.", options:["Both Houses","Cabinet alone","The High Court alone"], a:0, why:"Both Houses participate in ordinary federal law-making."},
+ {q:"No party has enough Senate votes to pass a proposal alone.", options:["The government may need opposition or crossbench senators","The House Speaker decides for the Senate","The proposal automatically passes"], a:0, why:"Negotiation with opposition or crossbench senators may be needed to obtain Senate support."}
+];
+const knowledgeData = [
+ {q:"Which three parts constitutionally make up the Australian Parliament?", options:["The Prime Minister, Cabinet and courts","The King represented by the Governor-General, the House and the Senate","The House, police and public service"], a:1, why:"The constitutional Parliament comprises the King, represented federally by the Governor-General, and the two Houses."},
+ {q:"What normally determines which party or coalition forms the Australian Government?", options:["It commands the confidence of the House of Representatives","It has the most senators only","The courts select it"], a:0, why:"Government normally depends on commanding the confidence of the House."},
+ {q:"How are Australians represented in the House of Representatives?", options:["Through geographic electorates","By equal state representation","Through court districts"], a:0, why:"Each geographic electorate elects one House member."},
+ {q:"Which statement best describes Senate representation?", options:["Every electorate has one senator","Each state has equal representation, while territories also elect senators","Only the most populated states elect senators"], a:1, why:"States have equal Senate representation; territories also elect senators but have fewer."},
+ {q:"What is parliamentary scrutiny?", options:["Careful examination of proposed laws, government decisions and spending","Automatic rejection of every government idea","A court sentence"], a:0, why:"Scrutiny is careful examination, not automatic obstruction."},
+ {q:"True or false: The Senate is the boss of the House because it is called the upper House.", options:["True","False"], a:1, why:"Upper and lower are traditional labels; the Houses have different, connected roles."}
+];
+function id(value) { return document.getElementById(value); }
+function loadExtra() { try { return JSON.parse(localStorage.getItem(storageKey)) || {}; } catch (error) { return {}; } }
+function saveExtra() { extra.prawnResponse = id("prawnResponse").value; localStorage.setItem(storageKey, JSON.stringify(extra)); saveLesson(); }
+function show(target, message, type) { const node = id(target); if (!node) return; node.textContent = message; node.className = "feedback " + (type || ""); }
+function syncProgress() { const count = required.filter(function (name) { return completedActivities.has(name); }).length; lessonProgress = count === required.length ? 100 : Math.round((count / required.length) * 99); updateProgress(); saveLesson(); }
+function finish(name) { completeActivity(name); syncProgress(); saveExtra(); }
+function buildSelectActivity(containerId, data, prefix, choices) {
+ const container = id(containerId); container.textContent = "";
+ data.forEach(function (item, index) { const card = document.createElement("div"); card.className = "quiz-card"; const label = document.createElement("label"); label.htmlFor = prefix + index; label.textContent = (index + 1) + ". " + (Array.isArray(item) ? item[0] : item.q); const select = document.createElement("select"); select.id = prefix + index; choices(item).forEach(function (choice) { const option = document.createElement("option"); option.value = choice[0]; option.textContent = choice[1]; select.appendChild(option); }); const result = document.createElement("p"); result.id = prefix + "feedback-" + index; result.setAttribute("aria-live", "polite"); card.append(label, select, result); container.appendChild(card); });
+}
+function checkChambers() { let score = 0; chamberData.forEach(function (item, index) { const correct = id("chamber-" + index).value === item[1]; if (correct) score++; show("chamber-feedback-" + index, (correct ? "✅ Correct. " : "Not yet. ") + item[2], correct ? "success" : "warning"); }); if (score === 10) { show("chamberTotal", "✅ 10/10. You have accurately compared the chambers.", "success"); finish("chamber-sort"); } else show("chamberTotal", "Score: " + score + "/10. You’re very close. Let’s investigate the explanations together, then retry.", "warning"); }
+function checkLens() { let score = 0; lensData.forEach(function (item, index) { const correct = Number(id("lens-" + index).value) === item.a; if (correct) score++; show("lens-feedback-" + index, (correct ? "✅ Correct. " : "Review this representation lens. ") + item.why, correct ? "success" : "warning"); }); if (score === 4) { show("lensTotal", "✅ 4/4. You recognised both distinct and overlapping representation.", "success"); finish("representation-lens"); } else show("lensTotal", "Score: " + score + "/4. Use each explanation and retry.", "warning"); }
+function buildKnowledge() { const wrap = id("knowledgeItems"); wrap.textContent = ""; knowledgeData.forEach(function (item, index) { const fieldset = document.createElement("fieldset"); fieldset.className = "quiz-card"; const legend = document.createElement("legend"); legend.textContent = (index + 1) + ". " + item.q; fieldset.appendChild(legend); item.options.forEach(function (text, optionIndex) { const label = document.createElement("label"); const radio = document.createElement("input"); radio.type = "radio"; radio.name = "knowledge-" + index; radio.value = String(optionIndex); label.append(radio, document.createTextNode(" " + text)); fieldset.append(label, document.createElement("br")); }); const result = document.createElement("p"); result.id = "knowledge-feedback-" + index; result.setAttribute("aria-live", "polite"); fieldset.appendChild(result); wrap.appendChild(fieldset); }); }
+function markKnowledge() { let score = 0; knowledgeData.forEach(function (item, index) { const selected = document.querySelector('input[name="knowledge-' + index + '"]:checked'); const correct = selected && Number(selected.value) === item.a; if (correct) score++; show("knowledge-feedback-" + index, (correct ? "✅ Correct. " : "Review this idea. ") + item.why, correct ? "success" : "warning"); }); extra.attempts = (extra.attempts || 0) + 1; extra.latest = score; extra.highest = Math.max(extra.highest || 0, score); updateStats(); saveExtra(); if (score >= 5) { show("knowledgeSummary", "✅ Score: " + score + "/6. Knowledge check complete.", "success"); finish("knowledge-check"); } else show("knowledgeSummary", "Score: " + score + "/6. Review the targeted feedback and retry. You need 5/6.", "warning"); }
+function updateStats() { id("knowledgeStats").textContent = "Attempts: " + (extra.attempts || 0) + " · Latest score: " + (extra.latest || 0) + "/6 · Highest score: " + (extra.highest || 0) + "/6"; }
+
+id("submitInitial").addEventListener("click", function () { const option = document.querySelector('input[name="houseOption"]:checked'); const reasons = Array.from(document.querySelectorAll('input[name="houseReason"]:checked')).map(function (box) { return box.value; }); if (!option || reasons.length !== 2) { show("initialFeedback", "Select one system and exactly two reasons before submitting.", "warning"); return; } extra.initialOption = option.value; extra.initialReasons = reasons; show("initialFeedback", "✅ Decision recorded. One chamber may act faster; two chambers can add checking and different representation. Every design has trade-offs. Australia uses a bicameral Parliament.", "success"); finish("one-house-or-two"); });
+id("submitBriefing").addEventListener("click", function () { const choice = id("briefingChoice").value; const reason = id("briefingReason").value.trim(); if (!choice) { show("briefingFeedback", "Choose a Senate response before submitting.", "warning"); return; } if (reason.length < 50) { show("briefingFeedback", "Use at least 50 characters to justify your recommendation with evidence.", "warning"); return; } extra.briefingChoice = choice; extra.briefingReason = reason; const lead = choice === "C" ? "✅ C is the strongest recommendation: amendments can preserve public safety while reducing accessibility, privacy and coverage weaknesses. " : "Your recommendation has been recorded. C offers the strongest balance because amendments can preserve public safety while reducing weaknesses. "; show("briefingFeedback", lead + "A second chamber can improve rather than merely block a proposal. Good scrutiny weighs benefits, rights, cost and unintended consequences. Rejection needs strong reasons; permanent unexplained delay shows poor accountability.", choice === "C" ? "success" : "warning"); finish("second-look-briefing"); });
+id("savePrawn").addEventListener("click", function () { saveExtra(); show("prawnFeedback", id("prawnResponse").value.trim().length >= 50 ? "✅ Extension response saved." : "Response saved. Add further reasoning if you wish to complete the extension fully.", id("prawnResponse").value.trim().length >= 50 ? "success" : "warning"); });
+id("saveReflection").addEventListener("click", function () { if (id("reflection").value.trim().length < 120) { show("reflectionFeedback", "You’re very close. Use the scaffold to develop a response of at least 120 characters.", "warning"); return; } finish("parliament-reflection"); show("reflectionFeedback", "✅ Reflection saved. You considered both scrutiny and the risk of delay.", "success"); });
+id("saveExit").addEventListener("click", function () { const value = id("exitTicket").value.trim(); const numbered = ["1","2","3","4"].every(function (number) { return value.includes(number); }); if (value.length < 140 || !numbered) { show("exitFeedback", "Answer all four numbered questions meaningfully (at least 140 characters in total).", "warning"); return; } finish("exit-ticket"); show("exitFeedback", "✅ Exit ticket saved.", "success"); });
+id("completeMission").addEventListener("click", function () { saveExtra(); const missing = required.filter(function (name) { return !completedActivities.has(name); }); if (missing.length) { show("missionFeedback", "Mission not yet complete. Finish: " + missing.map(function (name) { return labels[name]; }).join(", ") + ".", "warning"); return; } lessonProgress = 100; updateProgress(); saveLesson(); achievement("Mission Complete!", "You have completed Parliament: Two Houses, One System."); show("missionFeedback", "✅ Mission complete. Your briefing is saved and shared navigation remains available below.", "success"); });
+id("checkChambers").addEventListener("click", checkChambers); id("resetChambers").addEventListener("click", function () { chamberData.forEach(function (_, index) { id("chamber-" + index).value = ""; id("chamber-feedback-" + index).textContent = ""; }); show("chamberTotal", "Selections reset.", ""); });
+id("checkLens").addEventListener("click", checkLens); id("resetLens").addEventListener("click", function () { lensData.forEach(function (_, index) { id("lens-" + index).value = ""; id("lens-feedback-" + index).textContent = ""; }); show("lensTotal", "Scenarios reset.", ""); });
+id("markKnowledge").addEventListener("click", markKnowledge); id("resetKnowledge").addEventListener("click", function () { document.querySelectorAll('#knowledgeItems input').forEach(function (input) { input.checked = false; }); knowledgeData.forEach(function (_, index) { id("knowledge-feedback-" + index).textContent = ""; }); show("knowledgeSummary", "Answers cleared. Saved score history remains.", ""); });
+
+buildSelectActivity("chamberItems", chamberData, "chamber-", function () { return [["","Choose a chamber…"],["house","House of Representatives"],["senate","Senate"],["both","Both Houses"]]; });
+buildSelectActivity("lensItems", lensData, "lens-", function (item) { return [["","Choose the best answer…"]].concat(item.options.map(function (text, index) { return [String(index), text]; })); });
+buildKnowledge(); updateStats(); syncProgress();
+if (extra.initialOption) { const option = document.querySelector('input[name="houseOption"][value="' + extra.initialOption + '"]'); if (option) option.checked = true; }
+if (Array.isArray(extra.initialReasons)) extra.initialReasons.forEach(function (reason) { const box = document.querySelector('input[name="houseReason"][value="' + reason + '"]'); if (box) box.checked = true; });
+id("briefingChoice").value = extra.briefingChoice || ""; id("briefingReason").value = extra.briefingReason || ""; id("prawnResponse").value = extra.prawnResponse || "";
+window.addEventListener("beforeunload", saveExtra);
+})();
+</script>
 </body>
 </html>
