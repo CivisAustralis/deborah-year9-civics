@@ -253,6 +253,23 @@ textarea{
 
 }
 
+input[type="checkbox"],
+input[type="radio"]{
+
+    width:auto;
+
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible{
+
+    outline:3px solid #2C3E50;
+
+    outline-offset:2px;
+
+}
+
 /* ---------- BUTTONS ---------- */
 
 button{
