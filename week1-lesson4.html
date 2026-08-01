@@ -1,390 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deborah - Week 1 Lesson 4</title>
-    <link rel="icon" href="./bee-favicon-192.png" type="image/png" sizes="192x192">
-    <link rel="apple-touch-icon" href="./bee-favicon-192.png">
-    <style>
-        :root {
-            --navy: #2C3E50;
-            --navy-2: #1f2d3a;
-            --cream: #F5F0E6;
-            --card: #FAF6EB;
-            --gold: #C9A227;
-            --gold-light: #F4E8C1;
-            --sage: #E7EFE4;
-            --sage-2: #D4E6D0;
-            --blue-soft: #EAF3FB;
-            --ink: #222222;
-            --muted: #59636E;
-            --good: #2F6B3F;
-            --bad: #8A2D2D;
-            --warn: #9A6A00;
-            --white: #FFFFFF;
-        }
-
-        * { box-sizing: border-box; }
-
-        body {
-            font-family: Georgia, 'Times New Roman', serif;
-            background: radial-gradient(circle at top left, #FFF9E8 0, var(--cream) 36%, #E8EEF3 100%);
-            color: var(--ink);
-            line-height: 1.65;
-            margin: 0;
-            padding: 0;
-        }
-
-        .header {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 65%, #101820 100%);
-            color: var(--gold-light);
-            padding: 34px 18px 30px;
-            text-align: center;
-            border-bottom: 8px solid var(--gold);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.22);
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: clamp(2rem, 5vw, 3.4rem);
-            letter-spacing: 0.02em;
-        }
-
-        .header p {
-            margin: 8px auto 0;
-            max-width: 820px;
-            font-size: 1.1rem;
-        }
-
-        .container {
-            max-width: 1050px;
-            margin: 0 auto;
-            padding: 22px 16px 50px;
-        }
-
-        .card {
-            background: rgba(250,246,235,0.96);
-            border: 3px solid var(--gold);
-            border-radius: 16px;
-            padding: 28px;
-            margin: 24px auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.14);
-        }
-
-        .hero-card {
-            border-top: 10px solid var(--gold);
-        }
-
-        h2, h3 {
-            color: var(--navy);
-            border-bottom: 2px solid var(--gold);
-            padding-bottom: 8px;
-            margin-top: 0;
-        }
-
-        h2 { font-size: 1.75rem; }
-        h3 { font-size: 1.38rem; }
-
-        .mascot-row {
-            display: flex;
-            gap: 18px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .sprite-frame {
-            border: 6px solid var(--gold);
-            padding: 12px;
-            background: #fff;
-            display: inline-block;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-            border-radius: 14px;
-            flex: 0 0 auto;
-        }
-
-        .sprite {
-            width: 132px;
-            height: auto;
-            display: block;
-            animation: bob 2.6s infinite ease-in-out;
-        }
-
-        @keyframes bob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .deborah-note, .sausage-note, .prawn-note {
-            background: var(--blue-soft);
-            border-left: 8px solid var(--gold);
-            padding: 14px 16px;
-            border-radius: 10px;
-            margin: 14px 0;
-        }
-
-        .sausage-note { background: #FFF7DF; }
-        .prawn-note { background: #EAF3FB; }
-
-        .mini-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 14px;
-            margin-top: 16px;
-        }
-
-        .info-box {
-            background: #fff;
-            border: 2px solid #DEC878;
-            border-radius: 12px;
-            padding: 16px;
-        }
-
-        .info-box strong { color: var(--navy); }
-
-        .activity-header {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
-
-        .activity-header .sprite { width: 108px; }
-
-        .activity-header h3 { flex: 1 1 360px; margin-bottom: 0; }
-
-        .instructions {
-            font-weight: bold;
-            color: var(--navy);
-        }
-
-        button, .button-link {
-            background: var(--gold);
-            color: var(--ink);
-            padding: 11px 18px;
-            margin: 7px 5px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 1rem;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-            transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
-        }
-
-        button:hover, .button-link:hover {
-            background: #D7B53F;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.14);
-        }
-
-        button.secondary { background: #E7EFE4; border: 2px solid var(--gold); }
-        button.secondary:hover { background: #D4E6D0; }
-
-        textarea, select, input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid var(--gold);
-            border-radius: 8px;
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 1rem;
-            background: #fff;
-        }
-
-        textarea { min-height: 110px; }
-
-        .feedback {
-            margin-top: 12px;
-            padding: 14px 16px;
-            border-radius: 10px;
-            border: 2px solid #DEC878;
-            background: #fff;
-            min-height: 48px;
-        }
-
-        .feedback.success {
-            border-color: var(--good);
-            background: #EDF7EE;
-            color: #173D20;
-        }
-
-        .feedback.error {
-            border-color: var(--bad);
-            background: #FAEEEE;
-            color: #4B1717;
-        }
-
-        .feedback.warn {
-            border-color: var(--warn);
-            background: #FFF7E3;
-            color: #533B00;
-        }
-
-        .ordered-list {
-            list-style: none;
-            padding: 0;
-            margin: 18px 0;
-        }
-
-        .order-card {
-            background: var(--sage);
-            border: 2px solid var(--gold);
-            border-radius: 12px;
-            padding: 14px;
-            margin-bottom: 10px;
-            display: grid;
-            grid-template-columns: 38px 1fr auto;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .order-number {
-            background: var(--navy);
-            color: var(--gold-light);
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .move-buttons button {
-            padding: 7px 10px;
-            margin: 2px;
-        }
-
-        .sort-grid, .scenario-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 14px;
-            margin-top: 16px;
-        }
-
-        .sort-card, .scenario-card, .argument-card, .choice-card {
-            background: #fff;
-            border: 2px solid #DEC878;
-            border-radius: 12px;
-            padding: 16px;
-        }
-
-        .sort-card.correct, .argument-card.correct, .scenario-card.correct {
-            border-color: var(--good);
-            background: #F1FAF2;
-        }
-
-        .sort-card.incorrect, .argument-card.incorrect, .scenario-card.incorrect {
-            border-color: var(--bad);
-            background: #FFF0F0;
-        }
-
-        .meter-wrap {
-            margin: 10px 0 16px;
-            background: #fff;
-            border: 2px solid #DEC878;
-            border-radius: 12px;
-            padding: 12px;
-        }
-
-        .meter-label {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            font-weight: bold;
-            color: var(--navy);
-            margin-bottom: 6px;
-        }
-
-        .meter-track {
-            width: 100%;
-            height: 20px;
-            background: #ECECEC;
-            border-radius: 999px;
-            overflow: hidden;
-            border: 1px solid #B7B7B7;
-        }
-
-        .meter-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #D8C06A, var(--gold));
-            transition: width 0.25s ease;
-        }
-
-        .case-options label {
-            display: block;
-            background: #fff;
-            border: 2px solid #DEC878;
-            border-radius: 10px;
-            padding: 12px;
-            margin: 10px 0;
-            cursor: pointer;
-        }
-
-        .case-options input { margin-right: 8px; }
-
-        .word-bank {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .word-bank span {
-            background: var(--sage);
-            border: 1px solid var(--gold);
-            border-radius: 999px;
-            padding: 6px 10px;
-            font-size: 0.95rem;
-        }
-
-        .paragraph-builder {
-            background: #fff;
-            border: 2px solid #DEC878;
-            border-radius: 12px;
-            padding: 16px;
-            margin: 14px 0;
-        }
-
-        .paragraph-builder select {
-            display: inline-block;
-            width: auto;
-            min-width: 170px;
-            margin: 5px 4px;
-        }
-
-        .footer-actions {
-            text-align: center;
-            margin: 28px 0 10px;
-        }
-
-        .small-muted { color: var(--muted); font-size: 0.95rem; }
-
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0,0,0,0);
-            border: 0;
-        }
-
-        @media (max-width: 700px) {
-            .card { padding: 20px; }
-            .order-card { grid-template-columns: 34px 1fr; }
-            .move-buttons { grid-column: 1 / -1; }
-            .sprite { width: 110px; }
-            .activity-header .sprite { width: 92px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deborah - Week 1 Lesson 4</title>
+<link rel="icon" href="images/bee-favicon-192.png" type="image/png">
+<link rel="stylesheet" href="css/lesson-style.css">
 </head>
-<body>
-    <header class="header">
+<body class="lesson-gold">
+
+<main>
+<header class="header">
         <h1>🐝 Deborah - Year 9 Civics</h1>
         <p>Week 1 - Lesson 4: Referendums, Plebiscites and Changing the Constitution</p>
     </header>
@@ -393,7 +19,7 @@
         <section class="card hero-card">
             <div class="mascot-row">
                 <div class="sprite-frame">
-                    <img src="./bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee">
+                    <img src="images/bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee">
                 </div>
                 <div>
                     <h2>Main Content: Changing the Rulebook</h2>
@@ -426,7 +52,7 @@
         <section class="card activity" aria-labelledby="activity1-title">
             <div class="activity-header">
                 <div class="sprite-frame">
-                    <img src="./sausage_suit_pants_alpha_512.png" class="sprite" alt="Democracy Sausage">
+                    <img src="images/sausage_suit_pants_alpha_512.png" class="sprite" alt="Democracy Sausage">
                 </div>
                 <h3 id="activity1-title">Activity 1: Democracy Sausage Referendum Flowchart</h3>
             </div>
@@ -440,7 +66,7 @@
         <section class="card activity" aria-labelledby="activity2-title">
             <div class="activity-header">
                 <div class="sprite-frame">
-                    <img src="./prawn_static_alpha.png" class="sprite" alt="Parliament House Prawn">
+                    <img src="images/prawn_static_alpha.png" class="sprite" alt="Parliament House Prawn">
                 </div>
                 <h3 id="activity2-title">Activity 2: Parliament Prawn Referendum or Plebiscite Sort</h3>
             </div>
@@ -454,7 +80,7 @@
         <section class="card activity" aria-labelledby="activity3-title">
             <div class="activity-header">
                 <div class="sprite-frame">
-                    <img src="./sausage_suit_pants_alpha_512.png" class="sprite" alt="Democracy Sausage">
+                    <img src="images/sausage_suit_pants_alpha_512.png" class="sprite" alt="Democracy Sausage">
                 </div>
                 <h3 id="activity3-title">Activity 3: Democracy Sausage Double Majority Calculator</h3>
             </div>
@@ -469,7 +95,7 @@
         <section class="card activity" aria-labelledby="activity4-title">
             <div class="activity-header">
                 <div class="sprite-frame">
-                    <img src="./bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee">
+                    <img src="images/bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee">
                 </div>
                 <h3 id="activity4-title">Activity 4: Deborah Case Study - Why Did One Referendum Succeed?</h3>
             </div>
@@ -485,7 +111,7 @@
         <section class="card activity" aria-labelledby="activity5-title">
             <div class="activity-header">
                 <div class="sprite-frame">
-                    <img src="./prawn_static_alpha.png" class="sprite" alt="Parliament House Prawn">
+                    <img src="images/prawn_static_alpha.png" class="sprite" alt="Parliament House Prawn">
                 </div>
                 <h3 id="activity5-title">Activity 5: Parliament Prawn Strength or Weakness Challenge</h3>
             </div>
@@ -499,7 +125,7 @@
         <section class="card activity" aria-labelledby="final-title">
             <div class="activity-header">
                 <div class="sprite-frame">
-                    <img src="./bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee">
+                    <img src="images/bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee">
                 </div>
                 <h3 id="final-title">Final Written Response</h3>
             </div>
@@ -548,13 +174,24 @@
             <div id="final-feedback" class="feedback">Use the word bank if you get stuck.</div>
         </section>
 
-        <div class="footer-actions">
-            <button onclick="history.back()">Back to Dashboard</button>
-        </div>
+        
     </main>
+</main>
 
-    <script>
-        // ---------- Activity 1: Flowchart ----------
+<script src="js/site-config.js"></script>
+<script src="js/lesson-common.js"></script>
+<script>
+
+setupLesson({
+    lessonId: "week1lesson4",
+    week:     1,
+    lesson:   4,
+    title:    "Referendums and Changing the Constitution",
+    previous: "week1-lesson3.html",
+    next:     "week2-lesson1.html"
+});
+
+// ---------- Activity 1: Flowchart ----------
         const correctFlowchart = [
             { id: 1, text: 'A proposed constitutional change is written.' },
             { id: 2, text: 'Federal Parliament passes a proposed law for the change.' },
@@ -895,28 +532,13 @@
         }
 
         // ---------- Tracking Script ----------
-        let startTime = Date.now();
+        
         let awayTime = 0;
-        let tabSwitches = 0;
+        
 
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                tabSwitches++;
-                console.log('🚨 Student went away - Tab switch #' + tabSwitches);
-                awayTime = Date.now();
-            } else {
-                if (awayTime > 0) {
-                    const timeAway = Math.round((Date.now() - awayTime) / 1000);
-                    console.log('✅ Student returned after ' + timeAway + ' seconds');
-                    awayTime = 0;
-                }
-            }
-        });
+        
 
-        window.addEventListener('beforeunload', () => {
-            const totalTime = Math.round((Date.now() - startTime) / 1000);
-            console.log('Session ended. Total time on lesson: ' + totalTime + 's | Tab switches: ' + tabSwitches);
-        });
+        
 
         // ---------- Initialise activities ----------
         resetFlowchart();
@@ -924,6 +546,8 @@
         renderDoubleMajority();
         renderCaseStudy();
         renderArguments();
-    </script>
+
+</script>
+
 </body>
 </html>

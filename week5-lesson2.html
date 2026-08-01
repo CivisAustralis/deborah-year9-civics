@@ -1,74 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deborah - Week 5 Lesson 2</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #E5F0FA; margin:0; padding:0; color:#000; }
-        .header { background: #A2D2FF; padding:15px; text-align:center; }
-        .card { background:#BDE0FE; border-radius:15px; padding:20px; margin:15px; }
-        .sprite {
-            width: 100px;
-            height: 100px;
-            vertical-align: middle;
-            animation: bob 2s infinite ease-in-out;
-            display: inline-block;
-        }
-        @keyframes bob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deborah - Week 5 Lesson 2</title>
+<link rel="icon" href="images/bee-favicon-192.png" type="image/png">
+<link rel="stylesheet" href="css/lesson-style.css">
 </head>
 <body>
-    <div class="header">
-        <h1>🐝 Deborah - Year 9 Civics</h1>
-        <p>Week 5 - Lesson 2: Shared Values, Cultural Diversity, Global Citizenship, and Immigration</p>
-    </div>
 
-    <div class="card">
-        <h2>Main Content (Deborah-Led) <img src="assets/deborah.png" class="sprite"></h2>
+<main>
+<div class="card">
+        <h2>Main Content (Deborah-Led) <img src="images/bee_static_alpha_512.png" class="sprite"></h2>
         <p>Australia is a successful multicultural society with shared values. We have strong immigration scrutiny and can deport those who fail character or security tests to protect the community.</p>
         <p class="character">🐝 Deborah says: "Strong, fair borders help maintain social cohesion while welcoming contributors!"</p>
     </div>
 
     <div class="card">
-        <h3>Democracy Sausage Help <img src="assets/sausage.png" class="sprite"></h3>
+        <h3>Democracy Sausage Help <img src="images/sausage_suit_pants_alpha_512.png" class="sprite"></h3>
         <p>Mind map of shared values and community contributions.</p>
     </div>
 
     <div class="card">
-        <h3>Parliament House Prawn Challenge <img src="assets/prawn.png" class="sprite"></h3>
+        <h3>Parliament House Prawn Challenge <img src="images/prawn_static_alpha.png" class="sprite"></h3>
         <p>Discuss how immigration rules support a stable society.</p>
     </div>
+</main>
 
-    <button onclick="history.back()">Back to Dashboard</button>
+<script src="js/site-config.js"></script>
+<script src="js/lesson-common.js"></script>
+<script>
+setupLesson({
+    lessonId: "week5lesson2",
+    week:     5,
+    lesson:   2,
+    title:    "Shared Values, Diversity and Immigration",
+    previous: "week5-lesson1.html",
+    next:     null
+});
+</script>
 
-    <!-- Tracking Script -->
-    <script>
-        let startTime = Date.now();
-        let awayTime = 0;
-        let tabSwitches = 0;
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                tabSwitches++;
-                console.log('🚨 Student went away - Tab switch #' + tabSwitches);
-                awayTime = Date.now();
-            } else {
-                if (awayTime > 0) {
-                    const timeAway = Math.round((Date.now() - awayTime) / 1000);
-                    console.log('✅ Student returned after ' + timeAway + ' seconds');
-                    awayTime = 0;
-                }
-            }
-        });
-
-        window.addEventListener('beforeunload', () => {
-            const totalTime = Math.round((Date.now() - startTime) / 1000);
-            console.log('Session ended. Total time on lesson: ' + totalTime + 's | Tab switches: ' + tabSwitches);
-        });
-    </script>
 </body>
 </html>

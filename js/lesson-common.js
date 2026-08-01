@@ -1,276 +1,304 @@
 /* ==========================================================
-   DEBORAH YEAR 9 CIVICS
-   COMMON LESSON ENGINE
+DEBORAH CIVICS COURSE
+COMMON LESSON ENGINE  v2.0
 ========================================================== */
 
-let lessonConfig = {};
-let lessonProgress = 0;
+let lessonConfig      = {};
+let lessonProgress    = 0;
 let completedActivities = new Set();
-let lessonStart = Date.now();
-let tabSwitches = 0;
-let hiddenStart = null;
+let lessonStart       = Date.now();
+let tabSwitches       = 0;
+let hiddenStart       = null;
 
 /* ==========================================================
    SETUP
 ========================================================== */
 
-function setupLesson(config){
+function setupLesson(config) {
 
     lessonConfig = config;
 
-    loadLesson();
+ buildHeader();
 
-    buildNavigation();
+ buildProgressBar();
 
-    updateProgress();
+ buildFooter();
 
-}
+ buildPopup();
 
-/* ==========================================================
-   NAVIGATION
-========================================================== */
+ loadLesson();
 
-function buildNavigation(){
+ updateProgress();
 
-    const footer = document.querySelector("footer");
-
-    if(!footer) return;
-
-    footer.innerHTML = `
-
-        <button onclick="goPrevious()">
-            ⬅ Previous Lesson
-        </button>
-
-        <button onclick="goDashboard()">
-            🏠 Dashboard
-        </button>
-
-        <button onclick="goNext()">
-            Next Lesson ➜
-        </button>
-
-    `;
-
-}
-
-function goPrevious(){
-
-    if(lessonConfig.previous){
-
-        saveLesson();
-
-        window.location.href = lessonConfig.previous;
-
-    }
-
-}
-
-function goDashboard(){
-
-    saveLesson();
-
-    window.location.href = "dashboard.html";
-
-}
-
-function goNext(){
-
-    if(lessonConfig.next){
-
-        saveLesson();
-
-        window.location.href = lessonConfig.next;
-
-    }
+ startAutoSave();
 
 }
 
 /* ==========================================================
-   PROGRESS
+PAGE BUILDER – header
 ========================================================== */
 
-function completeActivity(activityName){
+function buildHeader() {
 
-    if(completedActivities.has(activityName)){
+ if (document.querySelector("header")) return;
 
-        return;
+ const cfg = (typeof SITE_CONFIG !== "undefined") ? SITE_CONFIG : {};
+ const courseName = cfg.courseName || "Year 9 Civics & Citizenship";
 
-    }
+ const header = document.createElement("header");
 
-    completedActivities.add(activityName);
+ header.innerHTML =
+     "<h1>🐝 Deborah – " + courseName + "</h1>" +
+     "<h2>Week " + (lessonConfig.week || "") +
+     " &bull; Lesson " + (lessonConfig.lesson || "") + "</h2>" +
+     "<h2>" + (lessonConfig.title || "") + "</h2>";
 
-    lessonProgress += 20;
+ const main = document.querySelector("main");
 
-    if(lessonProgress > 100){
-
-        lessonProgress = 100;
-
-    }
-
-    updateProgress();
-
-    saveLesson();
-
-}
-
-function updateProgress(){
-
-    const bar = document.getElementById("progressBar");
-
-    if(bar){
-
-        bar.style.width = lessonProgress + "%";
-
-        bar.innerHTML = lessonProgress + "%";
-
-    }
+ if (main) {
+     document.body.insertBefore(header, main);
+ } else {
+     document.body.prepend(header);
+ }
 
 }
 
 /* ==========================================================
-   STORAGE
+PAGE BUILDER – progress bar
 ========================================================== */
 
-function saveLesson(){
+function buildProgressBar() {
 
-    const data = {
+ if (document.getElementById("progressBar")) return;
 
-        progress:lessonProgress,
+ const wrap = document.createElement("div");
 
-        completed:true,
+ wrap.className = "progress-container";
 
-        activities:Array.from(completedActivities),
+ wrap.innerHTML = '<div class="progress-bar" id="progressBar">0%</div>';
 
-        reflection:
-            document.getElementById("reflection") ?
-            document.getElementById("reflection").value :
-            "",
+ const main = document.querySelector("main");
+ const header = document.querySelector("header");
 
-        exitTicket:
-            document.getElementById("exitTicket") ?
-            document.getElementById("exitTicket").value :
-            "",
-
-        started:lessonStart,
-
-        finished:new Date().toLocaleString(),
-
-        tabSwitches:tabSwitches,
-
-        seconds:
-            Math.round(
-                (Date.now()-lessonStart)/1000
-            )
-
-    };
-
-    localStorage.setItem(
-
-        lessonConfig.lessonId,
-
-        JSON.stringify(data)
-
-    );
-
-}
-
-function loadLesson(){
-
-    const saved =
-
-    localStorage.getItem(
-
-        lessonConfig.lessonId
-
-    );
-
-    if(saved){
-
-        const data = JSON.parse(saved);
-
-        lessonProgress = data.progress || 0;
-
-        completedActivities =
-
-        new Set(data.activities || []);
-
-    }
+ if (main) {
+     document.body.insertBefore(wrap, main);
+ } else if (header && header.nextSibling) {
+     document.body.insertBefore(wrap, header.nextSibling);
+ } else {
+     document.body.appendChild(wrap);
+ }
 
 }
 
 /* ==========================================================
-   ACHIEVEMENTS
+PAGE BUILDER – footer navigation
 ========================================================== */
 
-function achievement(title,text){
+function buildFooter() {
 
-    let popup =
+ if (document.querySelector("footer")) return;
 
-    document.getElementById("achievementPopup");
+ const hasPrev = !!lessonConfig.previous;
+ const hasNext = !!lessonConfig.next;
 
-    if(!popup){
+ const footer = document.createElement("footer");
 
-        popup = document.createElement("div");
+ footer.innerHTML =
+     '<button onclick="goPrevious()"' + (hasPrev ? "" : " disabled") + ">⬅ Previous Lesson</button>" +
+     '<button onclick="goDashboard()">🏠 Dashboard</button>' +
+     '<button onclick="goNext()"' + (hasNext ? "" : " disabled") + ">Next Lesson ➜</button>";
 
-        popup.id="achievementPopup";
-
-        popup.className="popup";
-
-        document.body.appendChild(popup);
-
-    }
-
-    popup.innerHTML =
-
-    "<h3>🏆 "+title+"</h3><p>"+text+"</p>";
-
-    popup.style.display="block";
-
-    setTimeout(()=>{
-
-        popup.style.display="none";
-
-    },3000);
+ document.body.appendChild(footer);
 
 }
 
 /* ==========================================================
-   TAB TRACKING
+PAGE BUILDER – achievement popup
 ========================================================== */
 
-document.addEventListener(
+function buildPopup() {
 
-"visibilitychange",
+ if (document.getElementById("achievementPopup")) return;
 
-()=>{
+ const popup = document.createElement("div");
 
-    if(document.hidden){
+ popup.id        = "achievementPopup";
+ popup.className = "popup";
 
-        tabSwitches++;
+ document.body.appendChild(popup);
 
-        hiddenStart = Date.now();
+}
 
-    }
+/* ==========================================================
+NAVIGATION
+========================================================== */
 
-    else{
+function goPrevious() {
 
-        hiddenStart = null;
+ if (lessonConfig.previous) {
+     saveLesson();
+     window.location.href = lessonConfig.previous;
+ }
 
-    }
+}
+
+function goDashboard() {
+
+ const cfg = (typeof SITE_CONFIG !== "undefined") ? SITE_CONFIG : {};
+ saveLesson();
+ window.location.href = cfg.dashboard || "dashboard.html";
+
+}
+
+function goNext() {
+
+ if (lessonConfig.next) {
+     saveLesson();
+     window.location.href = lessonConfig.next;
+ }
+
+}
+
+/* ==========================================================
+PROGRESS
+========================================================== */
+
+function completeActivity(activityName) {
+
+ if (completedActivities.has(activityName)) return;
+
+ completedActivities.add(activityName);
+
+ const cfg = (typeof SITE_CONFIG !== "undefined") ? SITE_CONFIG : {};
+ const step = (cfg.defaults && cfg.defaults.progressPerActivity) || 20;
+
+ lessonProgress = Math.min(lessonProgress + step, 100);
+
+ updateProgress();
+
+ saveLesson();
+
+ achievement("Activity Complete!", "Great work on " + activityName + ".");
+
+}
+
+function updateProgress() {
+
+ const bar = document.getElementById("progressBar");
+
+ if (bar) {
+     bar.style.width = lessonProgress + "%";
+     bar.textContent = lessonProgress + "%";
+ }
+
+}
+
+/* ==========================================================
+STORAGE  – save
+========================================================== */
+
+function saveLesson() {
+
+ if (!lessonConfig.lessonId) return;
+
+ const reflection = document.getElementById("reflection");
+ const exitTicket = document.getElementById("exitTicket");
+
+ const data = {
+     progress:    lessonProgress,
+     completed:   lessonProgress >= 100,
+     activities:  Array.from(completedActivities),
+     reflection:  reflection ? reflection.value : "",
+     exitTicket:  exitTicket ? exitTicket.value : "",
+     started:     lessonStart,
+     finished:    new Date().toLocaleString(),
+     tabSwitches: tabSwitches,
+     seconds:     Math.round((Date.now() - lessonStart) / 1000)
+ };
+
+ localStorage.setItem(lessonConfig.lessonId, JSON.stringify(data));
+
+}
+
+/* ==========================================================
+STORAGE  – load
+========================================================== */
+
+function loadLesson() {
+
+ if (!lessonConfig.lessonId) return;
+
+ const saved = localStorage.getItem(lessonConfig.lessonId);
+
+ if (!saved) return;
+
+ const data = JSON.parse(saved);
+
+ lessonProgress      = data.progress   || 0;
+ completedActivities = new Set(data.activities || []);
+
+ /* Restore typed text fields */
+ const reflection = document.getElementById("reflection");
+ const exitTicket = document.getElementById("exitTicket");
+
+ if (reflection && data.reflection) reflection.value = data.reflection;
+ if (exitTicket && data.exitTicket) exitTicket.value = data.exitTicket;
+
+}
+
+/* ==========================================================
+AUTO-SAVE
+========================================================== */
+
+function startAutoSave() {
+
+ const cfg = (typeof SITE_CONFIG !== "undefined") ? SITE_CONFIG : {};
+ const interval = (cfg.defaults && cfg.defaults.autoSaveIntervalMs) || 30000;
+
+ setInterval(saveLesson, interval);
+
+}
+
+/* ==========================================================
+ACHIEVEMENTS
+========================================================== */
+
+function achievement(title, text) {
+
+ const popup = document.getElementById("achievementPopup");
+
+ if (!popup) return;
+
+ popup.innerHTML = "<h3>🏆 " + title + "</h3><p>" + text + "</p>";
+ popup.style.display = "block";
+
+ setTimeout(function() {
+     popup.style.display = "none";
+ }, 3000);
+
+}
+
+/* ==========================================================
+TAB / ENGAGEMENT TRACKING
+========================================================== */
+
+document.addEventListener("visibilitychange", function() {
+
+ if (document.hidden) {
+     tabSwitches++;
+     hiddenStart = Date.now();
+ } else {
+     hiddenStart = null;
+ }
 
 });
 
 /* ==========================================================
-   LEAVE WARNING
+LEAVE – auto-save
 ========================================================== */
 
-window.addEventListener(
+window.addEventListener("beforeunload", function() {
 
-"beforeunload",
-
-function(){
-
-    saveLesson();
+ saveLesson();
 
 });
