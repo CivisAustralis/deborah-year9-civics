@@ -1,341 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deborah - Week 1 Lesson 3</title>
-    <link rel="icon" href="./bee-favicon-192.png" type="image/png">
-    <style>
-        :root {
-            --navy: #2C3E50;
-            --cream: #F5F0E6;
-            --card: #FAF6EB;
-            --gold: #C9A227;
-            --gold-dark: #9B7B18;
-            --green-soft: #E7EFE4;
-            --green: #D4EDDA;
-            --red-soft: #F8D7DA;
-            --blue-soft: #E8F4FA;
-            --ink: #222;
-            --shadow: rgba(0,0,0,0.16);
-        }
-
-        * { box-sizing: border-box; }
-
-        body {
-            font-family: Georgia, 'Times New Roman', serif;
-            background: var(--cream);
-            color: var(--ink);
-            line-height: 1.7;
-            margin: 0;
-            padding: 0;
-        }
-
-        .header {
-            background: var(--navy);
-            color: #F4E8C1;
-            padding: 28px 18px;
-            text-align: center;
-            border-bottom: 8px solid var(--gold);
-        }
-
-        .header h1 { margin: 0 0 8px 0; font-size: clamp(1.8rem, 4vw, 2.8rem); }
-        .header p { margin: 0; font-style: italic; font-size: 1.05rem; }
-
-        .card {
-            background: var(--card);
-            border: 3px solid var(--gold);
-            border-radius: 10px;
-            padding: 26px;
-            margin: 24px auto;
-            max-width: 980px;
-            box-shadow: 0 8px 20px var(--shadow);
-        }
-
-        .activity { position: relative; }
-
-        h2, h3 {
-            color: var(--navy);
-            border-bottom: 2px solid var(--gold);
-            padding-bottom: 8px;
-            margin-top: 0;
-        }
-
-        h4 { color: var(--navy); margin-bottom: 8px; }
-
-        .lesson-goal {
-            background: #fff;
-            border-left: 8px solid var(--gold);
-            padding: 18px;
-            border-radius: 8px;
-            margin-top: 16px;
-        }
-
-        .sprite-row {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
-
-        .sprite-frame {
-            border: 6px solid var(--gold);
-            padding: 12px;
-            background: #fff;
-            display: inline-block;
-            margin: 12px 0;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-            border-radius: 8px;
-            flex: 0 0 auto;
-        }
-
-        .sprite {
-            width: 150px;
-            max-width: 32vw;
-            height: auto;
-            display: block;
-        }
-
-        .deborah-note, .sausage-note, .prawn-note {
-            background: #fff;
-            border: 2px solid var(--gold);
-            border-radius: 10px;
-            padding: 14px 16px;
-            margin: 12px 0;
-        }
-
-        .time-badge, .stage-badge {
-            display: inline-block;
-            background: var(--navy);
-            color: #F4E8C1;
-            border-radius: 999px;
-            padding: 5px 12px;
-            font-size: 0.92rem;
-            margin: 4px 6px 8px 0;
-            font-weight: bold;
-        }
-
-        .key-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 14px;
-            margin-top: 16px;
-        }
-
-        .key-box {
-            background: #fff;
-            border: 2px solid var(--gold);
-            border-radius: 10px;
-            padding: 14px;
-        }
-
-        .button-row { margin-top: 16px; }
-
-        button {
-            background: var(--gold);
-            color: #222;
-            padding: 10px 18px;
-            margin: 6px 6px 6px 0;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 1rem;
-            font-weight: bold;
-        }
-
-        button:hover, button:focus {
-            background: #D8B73B;
-            outline: 3px solid rgba(44,62,80,0.25);
-        }
-
-        button.secondary { background: var(--green-soft); border: 2px solid var(--gold); }
-        button.secondary:hover, button.secondary:focus { background: #D4E6D0; }
-        button:disabled { opacity: 0.55; cursor: not-allowed; }
-
-        .sort-area {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 18px;
-            margin-top: 16px;
-        }
-
-        .source-bank, .zone-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 12px;
-            align-items: start;
-        }
-
-        .source-bank {
-            background: var(--blue-soft);
-            border: 2px dashed var(--navy);
-            border-radius: 10px;
-            padding: 12px;
-            min-height: 92px;
-        }
-
-        .drop-zone {
-            background: #fff;
-            border: 2px dashed var(--gold-dark);
-            border-radius: 10px;
-            min-height: 140px;
-            padding: 12px;
-        }
-
-        .drop-zone h4 { margin: 0 0 8px 0; }
-
-        .sort-card {
-            background: var(--green-soft);
-            border: 2px solid var(--gold);
-            border-radius: 9px;
-            padding: 11px 12px;
-            margin: 7px 0;
-            cursor: grab;
-            user-select: none;
-            box-shadow: 0 3px 7px rgba(0,0,0,0.12);
-        }
-
-        .sort-card:focus, .sort-card.selected {
-            outline: 4px solid var(--navy);
-            background: #FFF3CD;
-        }
-
-        .sort-card.correct { background: var(--green); border-color: #3D8B40; }
-        .sort-card.incorrect { background: var(--red-soft); border-color: #A94442; }
-
-        .feedback {
-            margin-top: 14px;
-            padding: 14px 16px;
-            background: #fff;
-            border: 2px solid var(--gold);
-            border-radius: 9px;
-            min-height: 48px;
-        }
-
-        .feedback.good { border-color: #3D8B40; background: #ECF8EE; }
-        .feedback.try { border-color: #A94442; background: #FFF1F1; }
-
-        .quiz-card {
-            background: #fff;
-            border: 2px solid var(--gold);
-            border-radius: 10px;
-            padding: 18px;
-            margin-top: 14px;
-        }
-
-        .option-button {
-            display: block;
-            width: 100%;
-            text-align: left;
-            background: var(--green-soft);
-            border: 2px solid var(--gold);
-            margin: 8px 0;
-            font-weight: normal;
-        }
-
-        .option-button.chosen { outline: 4px solid var(--navy); background: #FFF3CD; }
-        .option-button.correct { background: var(--green); border-color: #3D8B40; }
-        .option-button.incorrect { background: var(--red-soft); border-color: #A94442; }
-
-        .meter-panel {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 14px;
-            margin: 15px 0;
-        }
-
-        .meter-box {
-            background: #fff;
-            border: 2px solid var(--gold);
-            border-radius: 10px;
-            padding: 12px;
-        }
-
-        .meter-label { font-weight: bold; margin-bottom: 6px; color: var(--navy); }
-
-        .meter-outer {
-            height: 22px;
-            background: #eee;
-            border: 1px solid #999;
-            border-radius: 999px;
-            overflow: hidden;
-        }
-
-        .meter-inner {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #C9A227, #E8C756);
-            transition: width 0.3s ease;
-        }
-
-        .scenario-progress {
-            font-weight: bold;
-            color: var(--navy);
-        }
-
-        .paragraph-builder select {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 1rem;
-            padding: 7px;
-            border: 2px solid var(--gold);
-            border-radius: 6px;
-            margin: 4px;
-            background: #fff;
-            max-width: 100%;
-        }
-
-        textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid var(--gold);
-            border-radius: 8px;
-            min-height: 110px;
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 1rem;
-            background: #fff;
-        }
-
-        .word-bank {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 10px 0;
-        }
-
-        .word-chip {
-            background: var(--green-soft);
-            border: 1px solid var(--gold);
-            border-radius: 999px;
-            padding: 5px 10px;
-        }
-
-        .nav-button-wrap {
-            max-width: 980px;
-            margin: 0 auto 30px auto;
-            padding: 0 24px;
-        }
-
-        .small-note { font-size: 0.95rem; color: #333; }
-
-        @media (max-width: 620px) {
-            .card { margin: 16px 10px; padding: 18px; }
-            .sprite { width: 110px; }
-            .source-bank, .zone-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deborah - Week 1 Lesson 3</title>
+<link rel="icon" href="images/bee-favicon-192.png" type="image/png">
+<link rel="stylesheet" href="css/lesson-style.css">
 </head>
-<body>
-    <div class="header">
-        <h1>🐝 Deborah - Year 9 Civics</h1>
-        <p>Week 1 - Lesson 3: Division of Powers & the Washminster System (~50–60 minutes)</p>
-    </div>
+<body class="lesson-gold">
 
-    <div class="card">
+<main>
+<div class="card">
         <h2>Lesson Goal</h2>
         <div class="sprite-row">
             <div class="sprite-frame">
-                <img src="./bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee">
+                <img src="images/bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee">
             </div>
             <div class="lesson-goal">
                 <p><strong>Today’s big idea:</strong> Australia has a federal system with powers divided between federal and state governments. Our “Washminster” system blends the British Westminster model with American influences for stability.</p>
@@ -376,7 +55,7 @@
         <span class="time-badge">Suggested time: 10–12 minutes</span>
         <div class="sprite-row">
             <div class="sprite-frame">
-                <img src="./sausage_suit_pants_alpha_512.png" class="sprite" alt="Democracy Sausage">
+                <img src="images/sausage_suit_pants_alpha_512.png" class="sprite" alt="Democracy Sausage">
             </div>
             <div class="sausage-note">
                 🌭 <strong>Democracy Sausage says:</strong> “Help me sort these government jobs. Some are federal, some are state, and some are shared. Like onions. Sometimes they end up everywhere.”
@@ -405,7 +84,7 @@
         <span class="time-badge">Suggested time: 10–12 minutes</span>
         <div class="sprite-row">
             <div class="sprite-frame">
-                <img src="./bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee">
+                <img src="images/bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee">
             </div>
             <div class="deborah-note">
                 🐝 <strong>Deborah says:</strong> “Now apply the idea. Read each situation and decide which level of government is most likely involved.”
@@ -419,7 +98,7 @@
         <span class="time-badge">Suggested time: 12–15 minutes</span>
         <div class="sprite-row">
             <div class="sprite-frame">
-                <img src="./prawn_static_alpha.png" class="sprite" alt="Parliament House Prawn">
+                <img src="images/prawn_static_alpha.png" class="sprite" alt="Parliament House Prawn">
             </div>
             <div class="prawn-note">
                 🦐 <strong>Parliament Prawn says:</strong> “Australia did not copy one country’s system exactly. Sort each feature into British influence, American influence, or the Australian blend.”
@@ -448,7 +127,7 @@
         <span class="time-badge">Suggested time: 8–10 minutes</span>
         <div class="sprite-row">
             <div class="sprite-frame">
-                <img src="./prawn_static_alpha.png" class="sprite" alt="Parliament House Prawn">
+                <img src="images/prawn_static_alpha.png" class="sprite" alt="Parliament House Prawn">
             </div>
             <div class="prawn-note">
                 🦐 <strong>Parliament Prawn says:</strong> “When someone tries to use power, our system has limits. Choose which feature helps control the power.”
@@ -532,13 +211,22 @@
         <button onclick="showReflectionFeedback()">Mark reflection as complete</button>
         <div id="reflection-feedback" class="feedback" aria-live="polite">Write your answer, then mark it as complete.</div>
     </div>
+</main>
 
-    <div class="nav-button-wrap">
-        <button onclick="history.back()">Back to Dashboard</button>
-    </div>
+<script src="js/site-config.js"></script>
+<script src="js/lesson-common.js"></script>
+<script>
 
-    <script>
-        // ---------- General helpers ----------
+setupLesson({
+    lessonId: "week1lesson3",
+    week:     1,
+    lesson:   3,
+    title:    "Division of Powers and the Washminster System",
+    previous: "week1-lesson2.html",
+    next:     "week1-lesson4.html"
+});
+
+// ---------- General helpers ----------
         function shuffle(array) {
             const copy = [...array];
             for (let i = copy.length - 1; i > 0; i--) {
@@ -961,28 +649,13 @@
         }
 
         // ---------- Tracking ----------
-        let startTime = Date.now();
+        
         let awayTime = 0;
-        let tabSwitches = 0;
+        
 
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                tabSwitches++;
-                console.log('🚨 Student went away - Tab switch #' + tabSwitches);
-                awayTime = Date.now();
-            } else {
-                if (awayTime > 0) {
-                    const timeAway = Math.round((Date.now() - awayTime) / 1000);
-                    console.log('✅ Student returned after ' + timeAway + ' seconds');
-                    awayTime = 0;
-                }
-            }
-        });
+        
 
-        window.addEventListener('beforeunload', () => {
-            const totalTime = Math.round((Date.now() - startTime) / 1000);
-            console.log('Session ended. Total time on lesson: ' + totalTime + 's | Tab switches: ' + tabSwitches);
-        });
+        
 
         // ---------- Init ----------
         initDropZones();
@@ -990,6 +663,8 @@
         resetSort('wash');
         renderScenario();
         renderChecksQuestion();
-    </script>
+
+</script>
+
 </body>
 </html>

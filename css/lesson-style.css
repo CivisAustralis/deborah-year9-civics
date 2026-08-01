@@ -392,3 +392,1070 @@ margin-top:10px;
 }
 
 }
+
+/* =====================================================
+   GOLD / GEORGIA THEME  (Week 1 lessons)
+   Applied when <body class="lesson-gold">
+===================================================== */
+
+body.lesson-gold{
+
+    font-family:Georgia,"Times New Roman",serif;
+
+    background:#F5F0E6;
+
+    color:#222;
+
+    line-height:1.7;
+
+}
+
+body.lesson-gold header{
+
+    background:#2C3E50;
+
+    color:#F4E8C1;
+
+    border-bottom:8px solid #C9A227;
+
+    padding:28px 18px;
+
+    text-align:center;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.22);
+
+}
+
+body.lesson-gold header h1{
+
+    font-size:clamp(1.8rem,4vw,2.8rem);
+
+    margin:0 0 8px;
+
+}
+
+body.lesson-gold header h2{
+
+    font-weight:normal;
+
+    margin:4px 0 0;
+
+}
+
+body.lesson-gold .card{
+
+    background:#FAF6EB;
+
+    border:3px solid #C9A227;
+
+    border-radius:10px;
+
+    padding:26px;
+
+    margin:24px auto;
+
+    max-width:980px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+body.lesson-gold h2,
+body.lesson-gold h3{
+
+    color:#2C3E50;
+
+    border-bottom:2px solid #C9A227;
+
+    padding-bottom:8px;
+
+    margin-top:0;
+
+}
+
+body.lesson-gold h4{
+
+    color:#2C3E50;
+
+    margin-bottom:8px;
+
+}
+
+body.lesson-gold button{
+
+    background:#C9A227;
+
+    color:#222;
+
+    font-family:Georgia,serif;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:10px 18px;
+
+    margin:6px 6px 6px 0;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    font-weight:bold;
+
+}
+
+body.lesson-gold button:hover,
+body.lesson-gold button:focus{
+
+    background:#D8B73B;
+
+    outline:3px solid rgba(44,62,80,.25);
+
+}
+
+body.lesson-gold button.secondary{
+
+    background:#E7EFE4;
+
+    border:2px solid #C9A227;
+
+}
+
+body.lesson-gold button.secondary:hover{
+
+    background:#D4E6D0;
+
+}
+
+body.lesson-gold button:disabled{
+
+    opacity:.55;
+
+    cursor:not-allowed;
+
+}
+
+body.lesson-gold textarea,
+body.lesson-gold select,
+body.lesson-gold input{
+
+    border:2px solid #C9A227;
+
+    border-radius:8px;
+
+    font-family:Georgia,serif;
+
+    font-size:1rem;
+
+    background:#fff;
+
+    padding:12px;
+
+}
+
+body.lesson-gold .progress-bar{
+
+    background:#C9A227;
+
+    color:#222;
+
+}
+
+/* =====================================================
+   SPRITES  (all themes)
+===================================================== */
+
+.sprite-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+    margin:12px 0 18px;
+
+}
+
+.sprite-frame{
+
+    border:6px solid #C9A227;
+
+    padding:12px;
+
+    background:#fff;
+
+    display:inline-block;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.2);
+
+    border-radius:8px;
+
+    flex:0 0 auto;
+
+}
+
+.sprite{
+
+    width:145px;
+
+    max-width:32vw;
+
+    height:auto;
+
+    display:block;
+
+}
+
+@keyframes bob{
+
+    0%,100%{ transform:translateY(0); }
+
+    50%{ transform:translateY(-10px); }
+
+}
+
+.sprite-animate{
+
+    animation:bob 2.4s infinite ease-in-out;
+
+}
+
+/* =====================================================
+   HELPER TEXT / NOTES  (all themes)
+===================================================== */
+
+.helper-text{
+
+    flex:1;
+
+    min-width:240px;
+
+    background:#fff;
+
+    border-left:6px solid #C9A227;
+
+    padding:14px 16px;
+
+    border-radius:8px;
+
+}
+
+.note{
+
+    background:#fff;
+
+    border-left:6px solid #1976D2;
+
+    padding:14px 16px;
+
+    border-radius:8px;
+
+}
+
+.deborah-note{
+
+    background:#fff;
+
+    border:2px solid #C9A227;
+
+    border-radius:10px;
+
+    padding:14px 16px;
+
+    margin:12px 0;
+
+}
+
+.sausage-note{
+
+    background:#FFF7DF;
+
+    border-left:8px solid #C9A227;
+
+    border-radius:10px;
+
+    padding:14px 16px;
+
+    margin:14px 0;
+
+}
+
+.prawn-note{
+
+    background:#EAF3FB;
+
+    border-left:8px solid #00BCD4;
+
+    border-radius:10px;
+
+    padding:14px 16px;
+
+    margin:14px 0;
+
+}
+
+/* =====================================================
+   BADGES / LABELS
+===================================================== */
+
+.time-badge,
+.stage-badge{
+
+    display:inline-block;
+
+    background:#2C3E50;
+
+    color:#F4E8C1;
+
+    border-radius:999px;
+
+    padding:5px 12px;
+
+    font-size:.92rem;
+
+    margin:4px 6px 8px 0;
+
+    font-weight:bold;
+
+}
+
+.pill{
+
+    display:inline-block;
+
+    background:#1976D2;
+
+    color:#fff;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    font-weight:bold;
+
+}
+
+/* =====================================================
+   LESSON GOAL / INFO BOX
+===================================================== */
+
+.lesson-goal,
+.info-box{
+
+    background:#fff;
+
+    border-left:8px solid #C9A227;
+
+    padding:18px;
+
+    border-radius:8px;
+
+    margin-top:16px;
+
+}
+
+.key-grid,
+.mini-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+    gap:14px;
+
+    margin-top:16px;
+
+}
+
+.key-box{
+
+    background:#fff;
+
+    border:2px solid #C9A227;
+
+    border-radius:10px;
+
+    padding:14px;
+
+}
+
+/* =====================================================
+   SORTING / DRAG-DROP ACTIVITIES
+===================================================== */
+
+.sort-area{
+
+    display:grid;
+
+    gap:18px;
+
+    margin-top:16px;
+
+}
+
+.source-bank{
+
+    background:#E8F4FA;
+
+    border:2px dashed #2C3E50;
+
+    border-radius:10px;
+
+    padding:12px;
+
+    min-height:92px;
+
+}
+
+.zone-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+    gap:12px;
+
+    align-items:start;
+
+}
+
+.drop-zone{
+
+    background:#fff;
+
+    border:2px dashed #9B7B18;
+
+    border-radius:10px;
+
+    min-height:140px;
+
+    padding:12px;
+
+}
+
+.drop-zone h4{ margin:0 0 8px; }
+
+.sort-card{
+
+    background:#E7EFE4;
+
+    border:2px solid #C9A227;
+
+    border-radius:9px;
+
+    padding:11px 12px;
+
+    margin:7px 0;
+
+    cursor:grab;
+
+    user-select:none;
+
+    box-shadow:0 3px 7px rgba(0,0,0,.12);
+
+}
+
+.sort-card:focus,
+.sort-card.selected{
+
+    outline:4px solid #2C3E50;
+
+    background:#FFF3CD;
+
+}
+
+.sort-card.correct{ background:#D4EDDA; border-color:#3D8B40; }
+
+.sort-card.incorrect{ background:#F8D7DA; border-color:#A94442; }
+
+.sort-card.dragging{ opacity:.45; }
+
+.drop-hover{ background:#FFF3CD; }
+
+/* =====================================================
+   QUIZ / OPTION BUTTONS
+===================================================== */
+
+.quiz-card{
+
+    background:#fff;
+
+    border:2px solid #C9A227;
+
+    border-radius:10px;
+
+    padding:18px;
+
+    margin-top:14px;
+
+}
+
+.option-button{
+
+    display:block;
+
+    width:100%;
+
+    text-align:left;
+
+    background:#E7EFE4;
+
+    border:2px solid #C9A227;
+
+    margin:8px 0;
+
+    font-weight:normal;
+
+}
+
+.option-button.chosen{ outline:4px solid #2C3E50; background:#FFF3CD; }
+
+.option-button.correct{ background:#D4EDDA; border-color:#3D8B40; }
+
+.option-button.incorrect{ background:#F8D7DA; border-color:#A94442; }
+
+/* =====================================================
+   ORDERED LIST / TIMELINE
+===================================================== */
+
+.ordered-list,
+.timeline-list{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:18px 0;
+
+}
+
+.order-card{
+
+    background:#E7EFE4;
+
+    border:2px solid #C9A227;
+
+    border-radius:12px;
+
+    padding:14px;
+
+    margin-bottom:10px;
+
+    display:grid;
+
+    grid-template-columns:38px 1fr auto;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.order-number{
+
+    background:#2C3E50;
+
+    color:#F4E8C1;
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:50%;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:bold;
+
+}
+
+.timeline-item{
+
+    background:#E7EFE4;
+
+    border:2px solid #C9A227;
+
+    border-radius:8px;
+
+    padding:12px;
+
+    margin:10px 0;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    cursor:grab;
+
+}
+
+.timeline-item .event-text{ flex:1; }
+
+/* =====================================================
+   CAUSE CHAIN / CARD BANK
+===================================================== */
+
+.chain-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+
+    gap:10px;
+
+    margin:14px 0;
+
+}
+
+.chain-slot{
+
+    background:#fff;
+
+    border:2px dashed #2C3E50;
+
+    border-radius:8px;
+
+    min-height:145px;
+
+    padding:10px;
+
+}
+
+.chain-slot strong{
+
+    display:block;
+
+    color:#2C3E50;
+
+    margin-bottom:8px;
+
+    font-size:.9rem;
+
+}
+
+.card-bank{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    padding:12px;
+
+    background:#fff;
+
+    border:2px solid #BFDCEB;
+
+    border-radius:8px;
+
+    min-height:80px;
+
+}
+
+.chain-card{
+
+    background:#E7EFE4;
+
+    border:2px solid #C9A227;
+
+    border-radius:8px;
+
+    padding:10px;
+
+    cursor:grab;
+
+    max-width:250px;
+
+    font-size:.95rem;
+
+}
+
+.fallback-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,minmax(220px,1fr));
+
+    gap:12px;
+
+    margin-top:14px;
+
+}
+
+/* =====================================================
+   METERS / PROGRESS INDICATORS
+===================================================== */
+
+.meter-wrap,
+.meter-panel{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:12px;
+
+    margin:16px 0;
+
+}
+
+.meter-card,
+.meter-box{
+
+    background:#fff;
+
+    border:2px solid #C9A227;
+
+    border-radius:10px;
+
+    padding:12px;
+
+}
+
+.meter-label{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-weight:bold;
+
+    color:#2C3E50;
+
+    margin-bottom:6px;
+
+}
+
+.meter-track,
+.meter-outer{
+
+    height:20px;
+
+    background:#ECECEC;
+
+    border:1px solid #B7B7B7;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+
+.meter-fill,
+.meter-inner{
+
+    height:100%;
+
+    width:0%;
+
+    background:linear-gradient(90deg,#C9A227,#E8C756);
+
+    transition:width .3s ease;
+
+}
+
+/* =====================================================
+   SCENARIO / REFLECTION
+===================================================== */
+
+.scenario-box,
+.reflection-box{
+
+    background:#fff;
+
+    border:2px solid #BFDCEB;
+
+    padding:18px;
+
+    border-radius:8px;
+
+    margin-top:16px;
+
+}
+
+/* =====================================================
+   SORT GRID / SCENARIO GRID
+===================================================== */
+
+.sort-grid,
+.scenario-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:14px;
+
+    margin-top:16px;
+
+}
+
+.scenario-card,
+.argument-card,
+.choice-card{
+
+    background:#fff;
+
+    border:2px solid #DEC878;
+
+    border-radius:12px;
+
+    padding:16px;
+
+}
+
+.scenario-card.correct,
+.argument-card.correct{
+
+    border-color:#2F6B3F;
+
+    background:#F1FAF2;
+
+}
+
+.scenario-card.incorrect,
+.argument-card.incorrect{
+
+    border-color:#8A2D2D;
+
+    background:#FFF0F0;
+
+}
+
+/* =====================================================
+   CASE OPTIONS (radio groups)
+===================================================== */
+
+.case-options label{
+
+    display:block;
+
+    background:#fff;
+
+    border:2px solid #DEC878;
+
+    border-radius:10px;
+
+    padding:12px;
+
+    margin:10px 0;
+
+    cursor:pointer;
+
+}
+
+.case-options input{ margin-right:8px; }
+
+/* =====================================================
+   WORD BANK
+===================================================== */
+
+.word-bank{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin:10px 0;
+
+}
+
+.word-chip,
+.word-bank span{
+
+    background:#E7EFE4;
+
+    border:1px solid #C9A227;
+
+    border-radius:999px;
+
+    padding:5px 10px;
+
+    font-size:.95rem;
+
+}
+
+/* =====================================================
+   PARAGRAPH / EXPLANATION BUILDER
+===================================================== */
+
+.paragraph-builder,
+.explanation-builder{
+
+    background:#fff;
+
+    border:2px solid #DEC878;
+
+    border-radius:12px;
+
+    padding:16px;
+
+    margin:14px 0;
+
+}
+
+.paragraph-builder select,
+.explanation-builder select{
+
+    display:inline-block;
+
+    width:auto;
+
+    min-width:170px;
+
+    margin:5px 4px;
+
+}
+
+/* =====================================================
+   MEMORY GAME (Week 1 Lesson 1)
+===================================================== */
+
+.memory-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:10px;
+
+    max-width:520px;
+
+    margin:20px auto;
+
+}
+
+.memory-card{
+
+    width:80px;
+
+    height:80px;
+
+    background:#C9A227;
+
+    color:#fff;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    font-size:.8rem;
+
+    text-align:center;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+
+}
+
+/* =====================================================
+   UTILITY
+===================================================== */
+
+.hidden{ display:none !important; }
+
+.visually-hidden{
+
+    position:absolute;
+
+    width:1px;
+
+    height:1px;
+
+    padding:0;
+
+    margin:-1px;
+
+    overflow:hidden;
+
+    clip:rect(0,0,0,0);
+
+    border:0;
+
+}
+
+.back-button{
+
+    display:block;
+
+    max-width:980px;
+
+    margin:30px auto;
+
+    text-align:center;
+
+}
+
+.button-row{ margin-top:16px; }
+
+.small-note,
+.small-muted{
+
+    font-size:.95rem;
+
+    color:#59636E;
+
+}
+
+.instructions{ font-weight:bold; color:#2C3E50; }
+
+.container{
+
+    max-width:1050px;
+
+    margin:0 auto;
+
+    padding:22px 16px 50px;
+
+}
+
+.footer-actions{
+
+    text-align:center;
+
+    margin:28px 0 10px;
+
+}
+
+/* =====================================================
+   MOBILE – extended
+===================================================== */
+
+@media(max-width:700px){
+
+    .chain-grid,.fallback-grid,.meter-wrap,.meter-panel,
+    .sort-grid,.scenario-grid,.key-grid,.mini-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .order-card{
+
+        grid-template-columns:34px 1fr;
+
+    }
+
+    .sprite{ width:110px; }
+
+    iframe{ height:240px; }
+
+}
