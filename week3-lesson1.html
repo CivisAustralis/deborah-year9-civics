@@ -1,74 +1,1159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deborah - Week 3 Lesson 1</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #E5F0FA; margin:0; padding:0; color:#000; }
-        .header { background: #A2D2FF; padding:15px; text-align:center; }
-        .card { background:#BDE0FE; border-radius:15px; padding:20px; margin:15px; }
-        .sprite {
-            width: 100px;
-            height: 100px;
-            vertical-align: middle;
-            animation: bob 2s infinite ease-in-out;
-            display: inline-block;
-        }
-        @keyframes bob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Week 3 Lesson 1 - The Australian Court Hierarchy</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#E5F0FA;
+    color:#222;
+    line-height:1.6;
+}
+
+header{
+    background:#A2D2FF;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 2px 5px rgba(0,0,0,.2);
+}
+
+header h1{
+    margin:0;
+}
+
+.progress-container{
+    width:90%;
+    margin:20px auto;
+    background:#ddd;
+    border-radius:25px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:5%;
+    background:#4CAF50;
+    color:white;
+    text-align:center;
+    padding:6px;
+}
+
+.card{
+    width:90%;
+    margin:20px auto;
+    background:#BDE0FE;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.deborah{
+    background:white;
+    border-left:8px solid gold;
+}
+
+.sausage{
+    background:#FFF3CD;
+}
+
+.prawn{
+    background:#D9F7FA;
+}
+
+h2{
+    margin-top:0;
+}
+
+.learning-box{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.learning-box div{
+    flex:1;
+    min-width:250px;
+    background:white;
+    border-radius:10px;
+    padding:15px;
+}
+
+details{
+    margin-top:20px;
+    background:white;
+    border-radius:10px;
+    padding:15px;
+}
+
+summary{
+    cursor:pointer;
+    font-weight:bold;
+    font-size:1.1em;
+}
+
+.vocab{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+}
+
+.term{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+}
+
+button{
+    background:#1976D2;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    margin:5px;
+}
+
+button:hover{
+    background:#125AA3;
+}
+
+footer{
+    text-align:center;
+    margin:40px;
+}
+
+</style>
 </head>
+
 <body>
-    <div class="header">
-        <h1>🐝 Deborah - Year 9 Civics</h1>
-        <p>Week 3 - Lesson 1: Separation of Powers and Court Hierarchy</p>
-    </div>
 
-    <div class="card">
-        <h2>Main Content (Deborah-Led) <img src="assets/deborah.png" class="sprite"></h2>
-        <p>Australia has three arms of government: Legislative, Executive, and Judicial. The court hierarchy goes from Magistrates Courts up to the High Court.</p>
-        <p class="character">🐝 Deborah says: "An independent judiciary is essential for fair justice!"</p>
-    </div>
+<header>
 
-    <div class="card">
-        <h3>Democracy Sausage Help <img src="assets/sausage.png" class="sprite"></h3>
-        <p>Label the court hierarchy diagram.</p>
-    </div>
+<h1>🐝 Deborah's Year 9 Civics & Citizenship</h1>
 
-    <div class="card">
-        <h3>Parliament House Prawn Challenge <img src="assets/prawn.png" class="sprite"></h3>
-        <p>Why is judicial independence important in our Washminster system?</p>
-    </div>
+<h2>Week 3 • Lesson 1</h2>
 
-    <button onclick="history.back()">Back to Dashboard</button>
+<h2>The Australian Court Hierarchy</h2>
 
-    <!-- Tracking Script -->
-    <script>
-        let startTime = Date.now();
-        let awayTime = 0;
-        let tabSwitches = 0;
+</header>
 
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                tabSwitches++;
-                console.log('🚨 Student went away - Tab switch #' + tabSwitches);
-                awayTime = Date.now();
-            } else {
-                if (awayTime > 0) {
-                    const timeAway = Math.round((Date.now() - awayTime) / 1000);
-                    console.log('✅ Student returned after ' + timeAway + ' seconds');
-                    awayTime = 0;
-                }
-            }
-        });
+<div class="progress-container">
 
-        window.addEventListener('beforeunload', () => {
-            const totalTime = Math.round((Date.now() - startTime) / 1000);
-            console.log('Session ended. Total time on lesson: ' + totalTime + 's | Tab switches: ' + tabSwitches);
-        });
-    </script>
+<div class="progress-bar" id="progressBar">
+
+5%
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="learning-box">
+
+<div>
+
+<h3>🎯 Learning Intention</h3>
+
+<p>
+
+To understand how Australian courts are organised and why different courts hear different types of cases.
+
+</p>
+
+</div>
+
+<div>
+
+<h3>✅ Success Criteria</h3>
+
+<ul>
+
+<li>Describe Australia's court hierarchy.</li>
+
+<li>Identify the role of each court.</li>
+
+<li>Explain why appeals are important.</li>
+
+<li>Apply court knowledge to real-world scenarios.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card deborah">
+
+<h2>🐝 Deborah says...</h2>
+
+<p>
+
+Imagine walking into a hospital because you have a sore throat.
+
+Would you expect to be treated by a brain surgeon?
+
+Probably not!
+
+Hospitals have different specialists who deal with different problems.
+
+Australia's courts work in a very similar way.
+
+Smaller problems begin in smaller courts.
+
+More serious cases go to higher courts.
+
+The most important legal questions can even reach Australia's highest court—the High Court of Australia.
+
+Today we're going to discover how Australia's courts fit together like the levels of a ladder.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📖 Reading</h2>
+
+<details open>
+
+<summary>Section 1 – Why do we need different courts?</summary>
+
+<p>
+
+Australia hears hundreds of thousands of legal disputes every year.
+
+Some involve people arguing over money.
+
+Others involve traffic offences.
+
+Some involve very serious crimes like murder.
+
+If every case went to exactly the same court, the legal system would become overwhelmed.
+
+Instead, Australia uses a court hierarchy.
+
+A hierarchy simply means different levels with different responsibilities.
+
+Lower courts deal with less serious matters.
+
+Higher courts hear more serious cases and appeals.
+
+This allows judges to develop expertise while helping the legal system run efficiently.
+
+</p>
+
+</details>
+
+<details>
+
+<summary>Section 2 – The Magistrates Court</summary>
+
+<p>
+
+Most people who enter the Australian legal system first appear in a Magistrates Court.
+
+These courts hear the largest number of cases.
+
+They deal with traffic offences, drink driving, minor assaults, stealing, neighbourhood disputes and many civil matters involving smaller amounts of money.
+
+Magistrates Courts are designed to resolve cases quickly.
+
+Most cases finish here and never move any higher.
+
+</p>
+
+</details>
+
+<details>
+
+<summary>Section 3 – District and County Courts</summary>
+
+<p>
+
+More serious criminal offences are heard in District Courts or County Courts depending on the state or territory.
+
+These courts hear crimes such as armed robbery, serious assaults and larger fraud offences.
+
+Unlike Magistrates Courts, many criminal trials here involve a jury.
+
+The jury decides whether the accused is guilty, while the judge ensures the trial follows the law.
+
+</p>
+
+</details>
+
+<details>
+
+<summary>Section 4 – Supreme Courts</summary>
+
+<p>
+
+Every Australian state and territory has a Supreme Court.
+
+Despite the name, these are not Australia's highest court.
+
+Supreme Courts hear the most serious criminal offences including murder and manslaughter.
+
+They also hear complex civil disputes involving very large amounts of money or difficult legal issues.
+
+Supreme Courts also hear appeals from lower courts.
+
+This helps correct mistakes and ensures justice is applied consistently.
+
+</p>
+
+</details>
+
+<details>
+
+<summary>Section 5 – The High Court of Australia</summary>
+
+<p>
+
+At the top of Australia's legal system sits the High Court of Australia.
+
+The High Court does not hear every appeal.
+
+Instead, it chooses only cases that involve important questions about Australian law or the Australian Constitution.
+
+Its decisions become binding precedents for every other Australian court.
+
+Because of this, High Court decisions can shape Australian law for decades.
+
+</p>
+
+</details>
+
+</div>
+
+<div class="card">
+
+<h2>📚 Key Vocabulary</h2>
+
+<div class="vocab">
+
+<div class="term">
+
+<h3>Hierarchy</h3>
+
+<p>A system organised into levels.</p>
+
+</div>
+
+<div class="term">
+
+<h3>Appeal</h3>
+
+<p>Asking a higher court to review a decision.</p>
+
+</div>
+
+<div class="term">
+
+<h3>Jurisdiction</h3>
+
+<p>The authority of a court to hear certain types of cases.</p>
+
+</div>
+
+<div class="term">
+
+<h3>Precedent</h3>
+
+<p>A previous court decision that guides future cases.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card sausage">
+
+<h2>🌭 Democracy Sausage Support</h2>
+
+<p>
+
+<strong>Imagine schools instead of courts.</strong>
+
+A classroom teacher deals with everyday issues.
+
+A Deputy Principal deals with more serious behaviour.
+
+The Principal deals with the biggest school decisions.
+
+Each level has different responsibilities.
+
+Australia's courts work in much the same way.
+
+</p>
+
+</div>
+
+<div class="card prawn">
+
+<h2>🦐 Parliament House Prawn Challenge</h2>
+
+<p>
+
+Can you think of one advantage and one disadvantage of having several different levels of courts instead of just one large court?
+
+Write your ideas down.
+
+You'll revisit them later in today's lesson.
+
+</p>
+
+</div>
+
+<!-- ========================================= -->
+<!-- INTERACTIVE ACTIVITIES -->
+<!-- ========================================= -->
+
+<div class="card">
+
+<h2>🎮 Activity 1 — Build the Court Hierarchy</h2>
+
+<p>
+Drag (or mentally place) each court into the correct order by selecting the number beside each one.
+</p>
+
+<table style="width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden;">
+
+<tr style="background:#A2D2FF;">
+<th>Level</th>
+<th>Court</th>
+</tr>
+
+<tr>
+<td>
+<select id="magCourt">
+<option value="">Choose</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+</select>
+</td>
+<td>Magistrates Court</td>
+</tr>
+
+<tr>
+<td>
+<select id="districtCourt">
+<option value="">Choose</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+</select>
+</td>
+<td>District / County Court</td>
+</tr>
+
+<tr>
+<td>
+<select id="supremeCourt">
+<option value="">Choose</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+</select>
+</td>
+<td>Supreme Court</td>
+</tr>
+
+<tr>
+<td>
+<select id="highCourt">
+<option value="">Choose</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+</select>
+</td>
+<td>High Court of Australia</td>
+</tr>
+
+</table>
+
+<br>
+
+<button onclick="checkHierarchy()">
+
+Check My Answer
+
+</button>
+
+<p id="hierarchyResult"></p>
+
+</div>
+
+<!-- ========================================= -->
+
+<div class="card">
+
+<h2>⚖ Activity 2 — Which Court?</h2>
+
+<p>
+
+Choose the court most likely to hear each case first.
+
+</p>
+
+<div style="background:white;padding:20px;border-radius:10px;margin-bottom:20px;">
+
+<h3>Scenario 1</h3>
+
+<p>
+
+Alex is caught driving 40 km/h over the speed limit.
+
+</p>
+
+<select id="case1">
+
+<option value="">Choose</option>
+
+<option>High Court</option>
+
+<option>Supreme Court</option>
+
+<option>District Court</option>
+
+<option>Magistrates Court</option>
+
+</select>
+
+</div>
+
+<div style="background:white;padding:20px;border-radius:10px;margin-bottom:20px;">
+
+<h3>Scenario 2</h3>
+
+<p>
+
+A person is charged with murder.
+
+</p>
+
+<select id="case2">
+
+<option value="">Choose</option>
+
+<option>Magistrates Court</option>
+
+<option>District Court</option>
+
+<option>Supreme Court</option>
+
+<option>High Court</option>
+
+</select>
+
+</div>
+
+<div style="background:white;padding:20px;border-radius:10px;">
+
+<h3>Scenario 3</h3>
+
+<p>
+
+A case raises an important constitutional question affecting every Australian.
+
+</p>
+
+<select id="case3">
+
+<option value="">Choose</option>
+
+<option>District Court</option>
+
+<option>Supreme Court</option>
+
+<option>High Court</option>
+
+<option>Magistrates Court</option>
+
+</select>
+
+</div>
+
+<br>
+
+<button onclick="checkCases()">
+
+Check Answers
+
+</button>
+
+<p id="caseResults"></p>
+
+</div>
+
+<!-- ========================================= -->
+
+<div class="card">
+
+<h2>🧩 Activity 3 — Match the Court</h2>
+
+<p>
+
+Write the correct letter beside each description.
+
+</p>
+
+<table style="width:100%;background:white;border-collapse:collapse;">
+
+<tr>
+
+<th style="text-align:left;padding:10px;">Description</th>
+
+<th style="width:120px;">Answer</th>
+
+</tr>
+
+<tr>
+
+<td style="padding:10px;">
+
+A. Highest court in Australia
+
+</td>
+
+<td>
+
+<input id="match1" maxlength="1">
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="padding:10px;">
+
+B. Hears the majority of traffic offences
+
+</td>
+
+<td>
+
+<input id="match2" maxlength="1">
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="padding:10px;">
+
+C. Hears murder trials
+
+</td>
+
+<td>
+
+<input id="match3" maxlength="1">
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="padding:10px;">
+
+D. Often hears armed robbery trials
+
+</td>
+
+<td>
+
+<input id="match4" maxlength="1">
+
+</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<p>
+
+Options:
+
+</p>
+
+<p>
+
+A = High Court
+
+<br>
+
+B = Magistrates Court
+
+<br>
+
+C = Supreme Court
+
+<br>
+
+D = District / County Court
+
+</p>
+
+<button onclick="checkMatching()">
+
+Check Matching
+
+</button>
+
+<p id="matchingResults"></p>
+
+</div>
+
+<!-- ========================================= -->
+
+<div class="card deborah">
+
+<h2>
+
+🐝 Deborah's Reflection
+
+</h2>
+
+<p>
+
+Before moving on, think about this question.
+
+</p>
+
+<blockquote style="background:white;padding:20px;border-left:6px solid gold;">
+
+Why do you think Australia allows people to appeal decisions instead of making the first court's decision final?
+
+</blockquote>
+
+<textarea
+
+id="reflection"
+
+rows="6"
+
+style="width:100%;padding:15px;border-radius:10px;"
+
+placeholder="Write your thoughts here...">
+
+</textarea>
+
+<br><br>
+
+<button onclick="saveReflection()">
+
+Save Reflection
+
+</button>
+
+<p id="reflectionSaved"></p>
+
+</div>
+
+<!-- ========================================= -->
+
+<div class="card prawn">
+
+<h2>
+
+🦐 Parliament House Prawn Challenge
+
+</h2>
+
+<p>
+
+Imagine Australia abolished all courts except one.
+
+List TWO problems this could create.
+
+</p>
+
+<textarea
+
+rows="5"
+
+style="width:100%;padding:15px;border-radius:10px;"
+
+placeholder="Explain your ideas...">
+
+</textarea>
+
+</div>
+
+<!-- ========================================= -->
+
+<div class="card">
+
+<h2>
+
+📌 Exit Ticket
+
+</h2>
+
+<p>
+
+Complete these three questions before finishing.
+
+</p>
+
+<ol>
+
+<li>
+
+What court hears the majority of Australian cases?
+
+</li>
+
+<li>
+
+Why are appeals important?
+
+</li>
+
+<li>
+
+What makes the High Court different from every other Australian court?
+
+</li>
+
+</ol>
+
+<textarea
+
+rows="6"
+
+style="width:100%;padding:15px;border-radius:10px;"
+
+placeholder="Type your answers here...">
+
+</textarea>
+
+</div>
+
+<footer>
+
+<button>
+
+⬅ Previous Lesson
+
+</button>
+
+<button>
+
+🏠 Dashboard
+
+</button>
+
+<button>
+
+Next Lesson ➜
+
+</button>
+
+</footer>
+<script>
+
+// =====================================================
+// WEEK 3 LESSON 1
+// AUSTRALIAN COURT HIERARCHY
+// =====================================================
+
+// ---------- SESSION TRACKING ----------
+
+let startTime = Date.now();
+let awayTime = 0;
+let tabSwitches = 0;
+let lessonProgress = 5;
+let completedActivities = 0;
+
+const progressBar = document.getElementById("progressBar");
+
+function updateProgress(amount){
+
+    lessonProgress += amount;
+
+    if(lessonProgress > 100){
+        lessonProgress = 100;
+    }
+
+    progressBar.style.width = lessonProgress + "%";
+    progressBar.innerHTML = lessonProgress + "%";
+
+}
+
+// ---------- SAVE TO LOCAL STORAGE ----------
+
+function saveLessonData(){
+
+    const lessonData = {
+
+        completed:true,
+
+        progress:lessonProgress,
+
+        completedActivities:completedActivities,
+
+        reflection:
+            document.getElementById("reflection").value,
+
+        timeSpent:
+            Math.round((Date.now()-startTime)/1000),
+
+        tabSwitches:tabSwitches,
+
+        completedOn:
+            new Date().toLocaleString()
+
+    };
+
+    localStorage.setItem(
+        "week3lesson1",
+        JSON.stringify(lessonData)
+    );
+
+}
+
+// ---------- HIERARCHY ACTIVITY ----------
+
+function checkHierarchy(){
+
+    let score = 0;
+
+    if(document.getElementById("magCourt").value=="1") score++;
+
+    if(document.getElementById("districtCourt").value=="2") score++;
+
+    if(document.getElementById("supremeCourt").value=="3") score++;
+
+    if(document.getElementById("highCourt").value=="4") score++;
+
+    const result=document.getElementById("hierarchyResult");
+
+    if(score==4){
+
+        result.innerHTML=
+        "✅ Excellent! You have correctly built Australia's court hierarchy.";
+
+        completedActivities++;
+
+        updateProgress(20);
+
+    }
+
+    else{
+
+        result.innerHTML=
+        "🟡 You scored "+score+"/4. Review the reading and try again.";
+
+    }
+
+}
+
+// ---------- CASE ACTIVITY ----------
+
+function checkCases(){
+
+    let score=0;
+
+    if(document.getElementById("case1").value=="Magistrates Court") score++;
+
+    if(document.getElementById("case2").value=="Supreme Court") score++;
+
+    if(document.getElementById("case3").value=="High Court") score++;
+
+    const result=document.getElementById("caseResults");
+
+    if(score==3){
+
+        result.innerHTML=
+        "✅ Great work! All three scenarios are correct.";
+
+        completedActivities++;
+
+        updateProgress(20);
+
+    }
+
+    else{
+
+        result.innerHTML=
+        "🟡 You answered "+score+"/3 correctly. Have another look.";
+
+    }
+
+}
+
+// ---------- MATCHING ----------
+
+function checkMatching(){
+
+    let score=0;
+
+    if(document.getElementById("match1").value.toUpperCase()=="A") score++;
+
+    if(document.getElementById("match2").value.toUpperCase()=="B") score++;
+
+    if(document.getElementById("match3").value.toUpperCase()=="C") score++;
+
+    if(document.getElementById("match4").value.toUpperCase()=="D") score++;
+
+    const result=document.getElementById("matchingResults");
+
+    if(score==4){
+
+        result.innerHTML=
+        "✅ Fantastic! Everything matched correctly.";
+
+        completedActivities++;
+
+        updateProgress(20);
+
+    }
+
+    else{
+
+        result.innerHTML=
+        "🟡 You matched "+score+"/4 correctly.";
+
+    }
+
+}
+
+// ---------- REFLECTION ----------
+
+function saveReflection(){
+
+    saveLessonData();
+
+    document.getElementById("reflectionSaved").innerHTML=
+
+    "✅ Reflection saved.";
+
+    updateProgress(15);
+
+}
+
+// ---------- PAGE VISIBILITY ----------
+
+document.addEventListener("visibilitychange",()=>{
+
+    if(document.hidden){
+
+        tabSwitches++;
+
+        awayTime=Date.now();
+
+    }
+
+    else{
+
+        if(awayTime>0){
+
+            const awaySeconds=
+
+            Math.round((Date.now()-awayTime)/1000);
+
+            console.log(
+
+            "Returned after "+awaySeconds+" seconds"
+
+            );
+
+        }
+
+    }
+
+});
+
+// ---------- COMPLETE LESSON ----------
+
+window.addEventListener("beforeunload",()=>{
+
+    saveLessonData();
+
+    const totalTime=
+
+    Math.round((Date.now()-startTime)/1000);
+
+    console.log(
+
+        "Lesson completed."
+
+    );
+
+    console.log(
+
+        "Time: "+totalTime+" seconds"
+
+    );
+
+    console.log(
+
+        "Tab switches: "+tabSwitches
+
+    );
+
+});
+
+// ---------- AUTO RESTORE ----------
+
+window.onload=()=>{
+
+    const saved=
+
+    localStorage.getItem("week3lesson1");
+
+    if(saved){
+
+        const lesson=
+
+        JSON.parse(saved);
+
+        lessonProgress=lesson.progress;
+
+        completedActivities=
+
+        lesson.completedActivities;
+
+        progressBar.style.width=
+
+        lessonProgress+"%";
+
+        progressBar.innerHTML=
+
+        lessonProgress+"%";
+
+        document.getElementById("reflection").value=
+
+        lesson.reflection;
+
+    }
+
+};
+
+</script>
+
 </body>
+
 </html>
