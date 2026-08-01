@@ -1,0 +1,394 @@
+/* =====================================================
+   DEBORAH YEAR 9 CIVICS
+   LESSON STYLE SHEET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+    background:#E5F0FA;
+    color:#222;
+    line-height:1.6;
+
+}
+
+/* ---------- HEADER ---------- */
+
+header{
+
+    background:#A2D2FF;
+    text-align:center;
+    padding:30px;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+
+}
+
+header h1{
+
+    font-size:2rem;
+    margin-bottom:10px;
+
+}
+
+header h2{
+
+    font-weight:normal;
+
+}
+
+/* ---------- PROGRESS ---------- */
+
+.progress-container{
+
+    width:90%;
+    margin:25px auto;
+
+    background:#D6D6D6;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+}
+
+.progress-bar{
+
+    width:0%;
+
+    background:#4CAF50;
+
+    color:white;
+
+    padding:10px;
+
+    text-align:center;
+
+    transition:.4s;
+
+}
+
+/* ---------- CARDS ---------- */
+
+.card{
+
+    width:90%;
+
+    margin:20px auto;
+
+    background:#BDE0FE;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+
+}
+
+.card h2{
+
+    margin-bottom:15px;
+
+}
+
+.card p{
+
+    margin-bottom:15px;
+
+}
+
+/* ---------- SPECIAL CARDS ---------- */
+
+.deborah{
+
+    background:white;
+
+    border-left:8px solid gold;
+
+}
+
+.sausage{
+
+    background:#FFF4C7;
+
+    border-left:8px solid orange;
+
+}
+
+.prawn{
+
+    background:#D8F5F8;
+
+    border-left:8px solid #00BCD4;
+
+}
+
+/* ---------- LEARNING BOX ---------- */
+
+.learning-box{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.learning-box div{
+
+    flex:1;
+
+    min-width:260px;
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:12px;
+
+}
+
+/* ---------- VOCAB ---------- */
+
+.vocab{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:15px;
+
+}
+
+.term{
+
+    background:white;
+
+    padding:18px;
+
+    border-radius:10px;
+
+}
+
+/* ---------- ACCORDIONS ---------- */
+
+details{
+
+    margin-top:20px;
+
+    background:white;
+
+    border-radius:10px;
+
+    padding:18px;
+
+}
+
+summary{
+
+    cursor:pointer;
+
+    font-size:1.1rem;
+
+    font-weight:bold;
+
+}
+
+/* ---------- TABLES ---------- */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#A2D2FF;
+
+    padding:12px;
+
+}
+
+td{
+
+    padding:12px;
+
+    border-bottom:1px solid #DDD;
+
+}
+
+/* ---------- INPUTS ---------- */
+
+input,
+
+select,
+
+textarea{
+
+    width:100%;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    border:1px solid #BBB;
+
+    font-size:1rem;
+
+}
+
+textarea{
+
+    resize:vertical;
+
+}
+
+/* ---------- BUTTONS ---------- */
+
+button{
+
+    background:#1976D2;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:12px 22px;
+
+    cursor:pointer;
+
+    margin:5px;
+
+    font-size:1rem;
+
+    transition:.25s;
+
+}
+
+button:hover{
+
+    background:#125AA3;
+
+}
+
+button:disabled{
+
+    background:#888;
+
+    cursor:not-allowed;
+
+}
+
+/* ---------- FEEDBACK ---------- */
+
+.success{
+
+    color:#2E7D32;
+
+    font-weight:bold;
+
+}
+
+.warning{
+
+    color:#E65100;
+
+    font-weight:bold;
+
+}
+
+.error{
+
+    color:#C62828;
+
+    font-weight:bold;
+
+}
+
+/* ---------- ACHIEVEMENT POPUP ---------- */
+
+.popup{
+
+    position:fixed;
+
+    right:20px;
+
+    bottom:20px;
+
+    background:white;
+
+    border-left:8px solid gold;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+
+    display:none;
+
+    z-index:9999;
+
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+
+    text-align:center;
+
+    margin:50px;
+
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:768px){
+
+.learning-box{
+
+display:block;
+
+}
+
+.card{
+
+width:95%;
+
+padding:20px;
+
+}
+
+header{
+
+padding:20px;
+
+}
+
+header h1{
+
+font-size:1.5rem;
+
+}
+
+button{
+
+width:100%;
+
+margin-top:10px;
+
+}
+
+}
