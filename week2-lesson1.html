@@ -7,38 +7,315 @@
 <link rel="icon" href="images/bee-favicon-192.png" type="image/png">
 <link rel="stylesheet" href="css/lesson-style.css">
 </head>
-<body>
-
+<body class="lesson-gold">
 <main>
-<div class="card">
-        <h2>Main Content (Deborah-Led) <img src="images/bee_static_alpha_512.png" class="sprite"></h2>
-        <p>Policy ideas come from the public, parties, or interest groups and are considered by Cabinet before becoming law.</p>
-        <p class="character">🐝 Deborah says: "Tony Abbott once ate a raw onion on camera — politics can get pretty weird!"</p>
-    </div>
+    <section class="card deborah" aria-labelledby="mission-title">
+        <span class="stage-badge">Mission 5</span><span class="time-badge">50–60 minutes</span>
+        <h2 id="mission-title">🐝 Mission 5 — The Prime Minister Needs Advice</h2>
+        <div class="sprite-row">
+            <div class="sprite-frame"><img src="images/bee_static_alpha_512.png" class="sprite" alt="Deborah the Bee, your policy mission guide"></div>
+            <div class="helper-text">
+                <p>Parliament House has received many suggestions from Australians: stronger responses to dangerous driving, improved flood protection, more public transport and even free ice cream every Friday.</p>
+                <p>The Prime Minister has asked you to work as a junior policy adviser. Your mission is to decide which ideas concern the <strong>public interest</strong>—the wellbeing of the community—and investigate how a serious proposal may reach Cabinet.</p>
+                <p>Governments receive more ideas than they can act upon. Good advisers consider evidence, fairness, cost, responsibility and likely consequences. Let’s get busy as a bee and examine the reasons behind each choice.</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="card">
-        <h3>Democracy Sausage Help <img src="images/sausage_suit_pants_alpha_512.png" class="sprite"></h3>
-        <p>Fill-in-the-blanks flowchart of the policy process.</p>
-    </div>
+    <section class="card" aria-labelledby="learning-title">
+        <div class="learning-box">
+            <div><h3 id="learning-title">🎯 Learning Intention</h3><p>To understand how an identified public problem can develop into government policy before a proposed law is introduced into Parliament.</p></div>
+            <div><h3>✅ Success Criteria</h3><p>By the end, you should be able to:</p><ul>
+                <li>identify several sources of policy and law-reform ideas;</li>
+                <li>explain what government departments and ministers do;</li>
+                <li>describe Cabinet’s role;</li>
+                <li>arrange a simplified policy-development pathway in order;</li>
+                <li>justify why some proposals should receive government attention; and</li>
+                <li>distinguish Cabinet approval from parliamentary law-making.</li>
+            </ul></div>
+        </div>
+    </section>
 
-    <div class="card">
-        <h3>Parliament House Prawn Challenge <img src="images/prawn_static_alpha.png" class="sprite"></h3>
-        <p>Research one current policy idea and trace its likely path.</p>
-    </div>
+    <section class="card" aria-labelledby="initial-title">
+        <h2 id="initial-title">🗳️ Initial Decision — What Should Government Investigate?</h2>
+        <p>Before reading the investigation file, select the <strong>two</strong> proposals you believe government should investigate first. A sound policy decision needs reasons, not merely personal preference.</p>
+        <div class="key-grid">
+            <label class="key-box"><input type="checkbox" name="initialProposal" value="A"> <strong>A.</strong> Improve flood-warning systems in disaster-prone communities.</label>
+            <label class="key-box"><input type="checkbox" name="initialProposal" value="B"> <strong>B.</strong> Require every Australian household to own a pet.</label>
+            <label class="key-box"><input type="checkbox" name="initialProposal" value="C"> <strong>C.</strong> Increase penalties for extremely dangerous driving.</label>
+            <label class="key-box"><input type="checkbox" name="initialProposal" value="D"> <strong>D.</strong> Make chocolate compulsory at school assemblies.</label>
+        </div>
+        <button type="button" id="submitInitial">Submit My Decision</button>
+        <p id="initialFeedback" class="feedback" aria-live="polite"></p>
+    </section>
+
+    <section class="card" aria-labelledby="reading-title">
+        <h2 id="reading-title">📖 Investigation File — From an Idea to Cabinet</h2>
+        <p class="note"><strong>Important:</strong> This lesson presents a common, simplified pathway suitable for Year 9. Real policy development is not always identical or perfectly linear.</p>
+        <details open><summary>Section A — Where ideas come from</summary>
+            <p>A <strong>policy</strong> is a plan for government action. Policy and law-reform ideas can begin with citizens, petitions and community campaigns, Members of Parliament, ministers, government departments, expert reports, parliamentary committees and advocacy organisations. Court decisions may expose problems in an existing law. Election commitments can promise a course of action, while emergencies such as floods, bushfires or public-health crises can reveal an urgent need.</p>
+            <p>Receiving an idea does not guarantee government action. Decision-makers must ask whether the issue is supported by evidence, falls within that level of government’s responsibility and deserves priority among many competing needs.</p>
+        </details>
+        <details><summary>Section B — Identifying the problem</summary>
+            <p>Before choosing a solution, policymakers must define the actual problem. With dangerous driving, the problem is not simply “cars are bad”. It may be a pattern of serious injuries linked to particular high-risk driving behaviour. A clear problem makes it possible to compare focused responses rather than adopting a broad rule that misses the cause.</p>
+            <p>Evidence matters because an appealing idea may not work as expected. Evidence could include crash data, hospital data, police reports, community experiences, expert advice and financial estimates. Policymakers should ask how reliable and representative the evidence is, who is affected and whether the proposed response is likely to reduce the harm.</p>
+        </details>
+        <details><summary>Section C — Government departments</summary>
+            <p>Government departments support the work of government in areas such as health, education, transport, defence and the environment. A <strong>portfolio</strong> is an area of responsibility managed by a minister. The department connected to that portfolio supplies specialist knowledge and ongoing administrative experience.</p>
+            <p>Departmental officials may research a problem, consult affected groups, examine legal options, estimate costs, identify likely consequences and prepare advice. Their role is to provide careful, impartial advice and help carry out lawful government decisions. Officials do not make the elected government’s political and policy choices; ministers and the government remain accountable for those decisions.</p>
+        </details>
+        <details><summary>Section D — Ministers</summary>
+            <p>Ministers are members of the government responsible for particular portfolios. A minister may examine departmental advice, request more work, consult colleagues and decide whether to propose that Cabinet consider an issue.</p>
+            <p>A responsible minister weighs evidence, cost, fairness, effects on communities, government priorities, legal and constitutional limits, and possible unintended consequences. For example, a safety measure may reduce one risk but impose an unfair cost elsewhere. The minister must explain both the expected benefit and the trade-offs, rather than presenting only the strongest argument in favour.</p>
+        </details>
+        <details><summary>Section E — Cabinet</summary>
+            <p><strong>Cabinet</strong> is the central decision-making group of senior government ministers. It discusses major policy proposals, compares competing priorities, considers cost and public effect, decides whether the government will support a proposal, and may authorise further policy or legislative development. Cabinet may approve, reject or request changes and more evidence.</p>
+            <p><strong>Cabinet does not pass an Act of Parliament.</strong> If legislation is required, the proposal must be developed and legally drafted as a <strong>Bill</strong>, then introduced into Parliament. Parliament considers, debates and votes on Bills. A Bill becomes an Act only after it passes the required parliamentary stages and receives assent.</p>
+            <p>Cabinet discussions are generally confidential so ministers can debate proposals before the government announces a collective decision. Ministers are then expected to support that decision publicly.</p>
+        </details>
+        <details><summary>Section F — Not every problem needs a new law</summary>
+            <p>Government may respond through education, funding, services, infrastructure, regulation, administrative change, better enforcement of existing law, or a new or amended law. Flood safety, for example, might be improved through warning infrastructure and public education without creating a new offence.</p>
+            <p>A proposed new law may be rejected because it is unnecessary, unsupported by evidence, outside the relevant level of government’s responsibility, unfair, too expensive compared with its benefit, likely to cause worse unintended consequences, or already covered by existing law. Rejecting one response does not necessarily mean ignoring the problem; a different response may be more effective.</p>
+        </details>
+        <details><summary>Section G — The simplified pathway</summary>
+            <ol>
+                <li>A public problem or policy idea is identified.</li><li>Evidence is gathered.</li><li>A government department develops advice.</li><li>The responsible minister considers the proposal.</li><li>Cabinet decides whether the government will support further action.</li><li>If legislation is required, legal drafters prepare a Bill.</li><li>The Bill is introduced into Parliament.</li>
+            </ol>
+            <p class="note"><strong>Reality check:</strong> A proposal may move backwards for more research, consultation or revision. Some action uses existing powers and never requires a Bill. The pathway is a useful map, not a rigid rule for every case.</p>
+        </details>
+    </section>
+
+    <section class="card sausage" aria-labelledby="sausage-title">
+        <h2 id="sausage-title">🌭 Democracy Sausage’s Shortcut</h2>
+        <div class="sprite-row"><div class="sprite-frame"><img src="images/sausage_suit_pants_alpha_512.png" class="sprite" alt="Democracy Sausage offering a confident misconception"></div>
+            <div><p class="sausage-note"><strong>Democracy Sausage:</strong> “Once Cabinet likes an idea, it becomes law. Easy! Cabinet says yes, someone stamps it, and Australia has a brand-new law before lunch.”</p>
+            <p class="deborah-note"><strong>Deborah:</strong> “You’re enthusiastic, Sausage, but let’s investigate together. Cabinet can approve government policy and may authorise development of a Bill. Parliament must consider and pass that Bill. A Bill is proposed legislation—it is not yet an Act.”</p></div>
+        </div>
+        <p class="info-box"><strong>Faith Fun Fact:</strong> Many Christian organisations in Australia have contributed to public life through schools, hospitals, charities and campaigns concerning social welfare. This shows community beliefs and organised civic participation influencing public debate, although governments must still assess proposals using evidence, law and the public interest.</p>
+    </section>
+
+    <section class="card" aria-labelledby="act-title">
+        <h2 id="act-title">🎮 Activity 1 — Who Should Act?</h2>
+        <p>Classify all eight situations. Choose the best general category, then check your answers. Read the item-specific feedback and retry if needed.</p>
+        <div id="actItems"></div>
+        <button type="button" id="checkAct">Check Answers</button><button type="button" id="resetAct" class="secondary">Reset</button>
+        <p id="actTotal" class="feedback" aria-live="polite"></p>
+    </section>
+
+    <section class="card" aria-labelledby="cabinet-title">
+        <h2 id="cabinet-title">🏛️ Activity 2 — The Cabinet Table</h2>
+        <p>A fictional federal government has a limited additional budget. It can select only <strong>three</strong> initiatives for immediate national funding. There is no perfect combination: weigh urgency, fairness, national responsibility, long-term benefit and opportunity cost.</p>
+        <div class="key-grid" id="priorityOptions">
+            <label class="key-box"><input type="checkbox" name="priority" value="A"> <strong>A.</strong> Regional mental-health services</label>
+            <label class="key-box"><input type="checkbox" name="priority" value="B"> <strong>B.</strong> National flood-warning upgrades</label>
+            <label class="key-box"><input type="checkbox" name="priority" value="C"> <strong>C.</strong> Additional defence cybersecurity</label>
+            <label class="key-box"><input type="checkbox" name="priority" value="D"> <strong>D.</strong> School breakfast support in high-need communities</label>
+            <label class="key-box"><input type="checkbox" name="priority" value="E"> <strong>E.</strong> National-park visitor facilities</label>
+            <label class="key-box"><input type="checkbox" name="priority" value="F"> <strong>F.</strong> Australian space-research grants</label>
+        </div>
+        <label for="priorityReason"><strong>Justify your three choices and acknowledge one initiative that must wait:</strong></label>
+        <textarea id="priorityReason" rows="5" placeholder="We prioritised… because… One opportunity cost is…"></textarea>
+        <button type="button" id="submitPriorities">Present Advice to Cabinet</button>
+        <p id="priorityFeedback" class="feedback" aria-live="polite"></p>
+    </section>
+
+    <section class="card" aria-labelledby="pathway-title">
+        <h2 id="pathway-title">🧭 Activity 3 — From Problem to Parliament</h2>
+        <p>Arrange the seven stages of this <strong>simplified</strong> pathway using the up and down buttons. The order is mixed on your first visit.</p>
+        <ol id="pathwayList" class="ordered-list"></ol>
+        <button type="button" id="checkPathway">Check Order</button><button type="button" id="resetPathway" class="secondary">Reset</button>
+        <p id="pathwayFeedback" class="feedback" aria-live="polite"></p>
+    </section>
+
+    <section class="card prawn" aria-labelledby="prawn-title">
+        <h2 id="prawn-title">🦐 Parliament House Prawn Extension — Challenge the Assumption</h2>
+        <div class="sprite-row"><div class="sprite-frame"><img src="images/prawn_static_alpha.png" class="sprite" alt="Parliament House Prawn, extension reasoning mentor"></div>
+            <p class="helper-text">“A proposal may benefit only a small number of Australians but still address a serious injustice. Should the number of people affected be the main factor Cabinet considers?”</p></div>
+        <label for="prawnResponse">State a position, justify it, and consider fairness, seriousness of harm, cost or opportunity cost. This extension is optional.</label>
+        <textarea id="prawnResponse" rows="6" placeholder="My position is… The strongest reason is… However…"></textarea>
+        <button type="button" id="savePrawn">Save Extension Response</button><p id="prawnFeedback" class="feedback" aria-live="polite"></p>
+    </section>
+
+    <section class="card deborah" aria-labelledby="reflection-title">
+        <h2 id="reflection-title">🐝 Minister Reflection</h2>
+        <p>If you were a minister, what three qualities would help you decide whether a proposal should go to Cabinet? Explain why each quality matters.</p>
+        <p class="deborah-note"><strong>Scaffold:</strong><br>A strong minister should be __________ because __________.<br>Another important quality is __________ because __________.<br>Finally, __________ matters because __________.</p>
+        <label for="reflection">Your response:</label><textarea id="reflection" rows="7" placeholder="Explain three qualities and why each matters."></textarea>
+        <button type="button" id="saveReflection">Save Reflection</button><p id="reflectionFeedback" class="feedback" aria-live="polite"></p>
+    </section>
+
+    <section class="card" aria-labelledby="knowledge-title">
+        <h2 id="knowledge-title">🧠 Auto-Marked Knowledge Check</h2>
+        <p>Answer all six questions. A score of at least 5 out of 6 completes this check. You may review the reading and retry.</p>
+        <div id="knowledgeQuestions"></div>
+        <button type="button" id="markKnowledge">Mark Knowledge Check</button><button type="button" id="resetKnowledge" class="secondary">Clear Answers</button>
+        <p id="knowledgeSummary" class="feedback" aria-live="polite"></p>
+        <p id="knowledgeStats" class="note">Attempts: 0 · Latest score: 0/6 · Highest score: 0/6</p>
+    </section>
+
+    <section class="card" aria-labelledby="exit-title">
+        <h2 id="exit-title">📌 Exit Ticket</h2><p>Answer all four questions in complete sentences.</p>
+        <ol><li>Name one source from which a policy or law-reform idea may come.</li><li>What is one role of a government department?</li><li>Does Cabinet pass Acts of Parliament? Explain.</li><li>What can happen after Cabinet supports a proposal that requires legislation?</li></ol>
+        <label for="exitTicket">Your four answers:</label><textarea id="exitTicket" rows="8" placeholder="1. …&#10;2. …&#10;3. …&#10;4. …"></textarea>
+        <button type="button" id="submitExit">Complete Exit Ticket</button><p id="exitFeedback" class="feedback" aria-live="polite"></p>
+    </section>
+
+    <section class="card deborah" aria-labelledby="thought-title"><h2 id="thought-title">🍯 Deborah’s Honeycomb Thought</h2><blockquote class="deborah-note">“Good government is not about saying yes to every popular idea. It is about weighing evidence, fairness, responsibility and consequences before deciding what should happen next.”</blockquote></section>
+
+    <section class="card" aria-labelledby="complete-title"><h2 id="complete-title">✅ Complete the Lesson</h2><p>When every required investigation is complete, submit your mission. The optional Prawn extension is not required.</p>
+        <button type="button" id="completeMission">Complete Mission</button><p id="missionFeedback" class="feedback" aria-live="polite"></p>
+    </section>
 </main>
-
 <script src="js/site-config.js"></script>
 <script src="js/lesson-common.js"></script>
 <script>
-setupLesson({
-    lessonId: "week2lesson1",
-    week:     2,
-    lesson:   1,
-    title:    "From Idea to Cabinet",
-    previous: "week1-lesson4.html",
-    next:     "week2-lesson2.html"
-});
-</script>
+setupLesson({ lessonId: "week2lesson1", week: 2, lesson: 1, title: "From an Idea to Cabinet", previous: "week1-lesson4.html", next: "week2-lesson2.html" });
 
+(function () {
+    "use strict";
+    const supplementalKey = "week2lesson1:activityData";
+    const requiredActivities = ["initial-policy-decision", "who-should-act", "cabinet-priorities", "policy-pathway", "minister-reflection", "knowledge-check", "exit-ticket"];
+    const activityLabels = {"initial-policy-decision":"Initial policy decision", "who-should-act":"Who Should Act?", "cabinet-priorities":"The Cabinet Table", "policy-pathway":"From Problem to Parliament", "minister-reflection":"Minister reflection", "knowledge-check":"Knowledge check", "exit-ticket":"Exit ticket"};
+    let extra = loadExtra();
+
+    const actData = [
+        ["Improve flood-warning systems.", "government", "This protects communities and needs coordinated public systems."],
+        ["Decide what colour shoes to buy.", "personal", "This is mainly an individual purchasing choice."],
+        ["Reduce dangerous speeding on public roads.", "government", "Road safety involves public rules, enforcement and community protection."],
+        ["Clean your bedroom.", "personal", "This is mainly a personal or household responsibility."],
+        ["Build a new local playground.", "depends", "This depends on local government responsibility, available land, funding and community planning."],
+        ["Choose whether to eat breakfast.", "personal", "The daily choice is personal, although governments may support nutrition programs."],
+        ["Improve access to regional health services.", "government", "Health-service access is a community-wide policy and service issue."],
+        ["Control noise from a large late-night event.", "depends", "Context matters: local rules, event permits and police powers may all be relevant."]
+    ];
+    const categories = [["", "Choose a category…"], ["government", "Government or community-wide issue"], ["personal", "Mainly personal or household choice"], ["depends", "Depends on circumstances or level of government"]];
+    const pathway = ["Public problem or idea identified", "Evidence gathered", "Department develops advice", "Minister considers proposal", "Cabinet considers government support", "Bill drafted if legislation is required", "Bill introduced into Parliament"];
+    let pathwayOrder = Array.isArray(extra.pathwayOrder) && extra.pathwayOrder.length === 7 ? extra.pathwayOrder.slice() : shuffled(pathway);
+    const knowledge = [
+        {q:"Which statement best describes a government department?", options:["It passes Acts without Parliament.", "It researches issues and provides advice within an area of government responsibility.", "It decides every personal choice made by citizens."], a:1, why:"Departments research, consult and advise within areas of government responsibility."},
+        {q:"What is a ministerial portfolio?", options:["An area of government responsibility assigned to a minister.", "A minister’s private collection of documents.", "A list of every law passed by Parliament."], a:0, why:"A portfolio is an assigned area of responsibility, such as health or defence."},
+        {q:"Which statement about Cabinet is accurate?", options:["Cabinet considers major government policy and may approve development of a legislative proposal.", "Cabinet is a court that interprets legislation.", "Cabinet directly passes Acts of Parliament."], a:0, why:"Cabinet makes major government policy decisions; Parliament considers Bills."},
+        {q:"True or false: A proposal becomes an Act immediately after Cabinet approves it.", options:["True", "False"], a:1, why:"False. Legislation must be drafted as a Bill, passed by Parliament and receive assent."},
+        {q:"Why might Cabinet reject a proposal?", options:["It may lack evidence, be unfair, cost too much or be unnecessary.", "Cabinet must reject every idea from citizens.", "Only because the title is too long."], a:0, why:"Cabinet weighs evidence, fairness, cost, need, responsibility and consequences."},
+        {q:"If Cabinet supports a policy proposal requiring legislation, what generally happens next in the simplified pathway?", options:["It instantly becomes an Act.", "The proposal is developed and legally drafted as a Bill before being introduced into Parliament.", "The department conducts a national election."], a:1, why:"Legal drafters prepare a Bill, which is then introduced into Parliament."}
+    ];
+
+    function byId(id) { return document.getElementById(id); }
+    function loadExtra() { try { return JSON.parse(localStorage.getItem(supplementalKey)) || {}; } catch (error) { return {}; } }
+    function saveExtra() {
+        extra.pathwayOrder = pathwayOrder.slice();
+        extra.prawnResponse = byId("prawnResponse").value;
+        localStorage.setItem(supplementalKey, JSON.stringify(extra));
+        saveLesson();
+    }
+    function feedback(id, message, type) { const box = byId(id); box.textContent = message; box.className = "feedback " + (type || ""); }
+    function syncRequiredProgress() {
+        const finished = requiredActivities.filter(function (name) { return completedActivities.has(name); }).length;
+        lessonProgress = finished === requiredActivities.length ? 100 : Math.round((finished / requiredActivities.length) * 99);
+        updateProgress();
+        saveLesson();
+    }
+    function complete(name) { completeActivity(name); syncRequiredProgress(); saveExtra(); }
+    function shuffled(items) {
+        const copy = items.slice();
+        for (let i = copy.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; }
+        if (copy.every((item, index) => item === items[index])) [copy[0], copy[1]] = [copy[1], copy[0]];
+        return copy;
+    }
+
+    function renderActItems() {
+        const wrap = byId("actItems"); wrap.textContent = "";
+        actData.forEach(function (item, index) {
+            const card = document.createElement("div"); card.className = "quiz-card";
+            const label = document.createElement("label"); label.htmlFor = "act-" + index; label.textContent = (index + 1) + ". " + item[0];
+            const select = document.createElement("select"); select.id = "act-" + index;
+            categories.forEach(function (category) { const option = document.createElement("option"); option.value = category[0]; option.textContent = category[1]; select.appendChild(option); });
+            const itemFeedback = document.createElement("p"); itemFeedback.id = "act-feedback-" + index; itemFeedback.setAttribute("aria-live", "polite");
+            card.append(label, select, itemFeedback); wrap.appendChild(card);
+        });
+    }
+    function checkAct() {
+        let score = 0;
+        actData.forEach(function (item, index) {
+            const correct = byId("act-" + index).value === item[1]; if (correct) score++;
+            feedback("act-feedback-" + index, (correct ? "✅ Correct. " : "Not yet. ") + item[2], correct ? "success" : "warning");
+        });
+        if (score === 8) { feedback("actTotal", "✅ 8/8. You distinguished public responsibilities from personal choices and context-dependent issues.", "success"); complete("who-should-act"); }
+        else feedback("actTotal", "You scored " + score + "/8. You’re very close. Let’s investigate the item feedback together, then retry.", "warning");
+    }
+    function resetAct() { actData.forEach(function (_, i) { byId("act-" + i).value = ""; byId("act-feedback-" + i).textContent = ""; }); feedback("actTotal", "Selections reset. Try each classification again.", ""); }
+
+    function renderPathway() {
+        const list = byId("pathwayList"); list.textContent = "";
+        pathwayOrder.forEach(function (stage, index) {
+            const item = document.createElement("li"); item.className = "order-card";
+            const number = document.createElement("span"); number.className = "order-number"; number.textContent = String(index + 1);
+            const text = document.createElement("span"); text.textContent = stage;
+            const controls = document.createElement("span"); controls.className = "move-buttons";
+            const up = document.createElement("button"); up.type = "button"; up.textContent = "↑"; up.disabled = index === 0; up.setAttribute("aria-label", "Move " + stage + " up"); up.addEventListener("click", function () { movePathway(index, -1); });
+            const down = document.createElement("button"); down.type = "button"; down.textContent = "↓"; down.disabled = index === pathwayOrder.length - 1; down.setAttribute("aria-label", "Move " + stage + " down"); down.addEventListener("click", function () { movePathway(index, 1); });
+            controls.append(up, down); item.append(number, text, controls); list.appendChild(item);
+        });
+    }
+    function movePathway(index, direction) { const next = index + direction; [pathwayOrder[index], pathwayOrder[next]] = [pathwayOrder[next], pathwayOrder[index]]; renderPathway(); saveExtra(); }
+    function checkPathway() {
+        const firstWrong = pathwayOrder.findIndex(function (item, i) { return item !== pathway[i]; });
+        if (firstWrong === -1) { feedback("pathwayFeedback", "✅ Correct. This is the common simplified pathway from problem to Parliament.", "success"); complete("policy-pathway"); }
+        else feedback("pathwayFeedback", "Position " + (firstWrong + 1) + " needs another look. At that point, the simplified pathway expects “" + pathway[firstWrong] + "”.", "warning");
+    }
+
+    function renderKnowledge() {
+        const wrap = byId("knowledgeQuestions"); wrap.textContent = "";
+        knowledge.forEach(function (question, index) {
+            const fieldset = document.createElement("fieldset"); fieldset.className = "quiz-card";
+            const legend = document.createElement("legend"); legend.textContent = (index + 1) + ". " + question.q; fieldset.appendChild(legend);
+            question.options.forEach(function (option, optionIndex) {
+                const label = document.createElement("label"); const radio = document.createElement("input"); radio.type = "radio"; radio.name = "knowledge-" + index; radio.value = String(optionIndex); label.append(radio, document.createTextNode(" " + option)); fieldset.append(label, document.createElement("br"));
+            });
+            const result = document.createElement("p"); result.id = "knowledge-feedback-" + index; result.setAttribute("aria-live", "polite"); fieldset.appendChild(result); wrap.appendChild(fieldset);
+        });
+    }
+    function markKnowledge() {
+        let score = 0;
+        knowledge.forEach(function (question, index) {
+            const chosen = document.querySelector('input[name="knowledge-' + index + '"]:checked'); const correct = chosen && Number(chosen.value) === question.a;
+            if (correct) score++; feedback("knowledge-feedback-" + index, (correct ? "✅ Correct. " : "Review this idea. ") + question.why, correct ? "success" : "warning");
+        });
+        extra.knowledgeAttempts = (extra.knowledgeAttempts || 0) + 1; extra.knowledgeLatest = score; extra.knowledgeHighest = Math.max(extra.knowledgeHighest || 0, score); updateKnowledgeStats(); saveExtra();
+        if (score >= 5) { feedback("knowledgeSummary", "✅ Score: " + score + "/6. You have demonstrated the key knowledge.", "success"); complete("knowledge-check"); }
+        else feedback("knowledgeSummary", "Score: " + score + "/6. Review the targeted feedback and retry. You need 5/6 to complete this check.", "warning");
+    }
+    function updateKnowledgeStats() { byId("knowledgeStats").textContent = "Attempts: " + (extra.knowledgeAttempts || 0) + " · Latest score: " + (extra.knowledgeLatest || 0) + "/6 · Highest score: " + (extra.knowledgeHighest || 0) + "/6"; }
+
+    byId("submitInitial").addEventListener("click", function () {
+        const choices = Array.from(document.querySelectorAll('input[name="initialProposal"]:checked')).map(function (box) { return box.value; });
+        if (choices.length !== 2) { feedback("initialFeedback", "Select exactly two proposals before submitting.", "warning"); return; }
+        const safety = choices.includes("A") && choices.includes("C");
+        feedback("initialFeedback", (safety ? "A and C clearly involve public safety and government responsibility. " : "Thank you for making a decision. A and C most clearly concern public safety and government responsibility, while B and D are humorous ideas that are difficult to justify as necessary public policy. ") + "Good policy decisions require reasons, not merely preference.", safety ? "success" : "warning");
+        extra.initialChoices = choices; complete("initial-policy-decision");
+    });
+    byId("submitPriorities").addEventListener("click", function () {
+        const choices = Array.from(document.querySelectorAll('input[name="priority"]:checked')).map(function (box) { return box.value; }); const reason = byId("priorityReason").value.trim();
+        if (choices.length !== 3) { feedback("priorityFeedback", "Choose exactly three initiatives. A limited budget creates an opportunity cost.", "warning"); return; }
+        if (reason.length < 40) { feedback("priorityFeedback", "Add a more meaningful justification of at least 40 characters, including why another option must wait.", "warning"); return; }
+        const ideas = {A:"Your mental-health choice prioritises vulnerable people and regional fairness.", B:"Flood warnings emphasise urgency, safety and long-term prevention.", C:"Cybersecurity treats national security as a federal responsibility.", D:"Breakfast support focuses on vulnerable students and educational fairness.", E:"Park facilities consider environmental stewardship, access and tourism.", F:"Space research invests in knowledge, capability and long-term benefit."};
+        feedback("priorityFeedback", "✅ " + choices.map(function (choice) { return ideas[choice]; }).join(" ") + " Other defensible combinations exist. Deborah reminds us that strong advice explains both benefits and what cannot be funded.", "success");
+        extra.priorities = choices; extra.priorityReason = reason; complete("cabinet-priorities");
+    });
+    byId("savePrawn").addEventListener("click", function () { saveExtra(); feedback("prawnFeedback", byId("prawnResponse").value.trim().length >= 40 ? "✅ Extension response saved." : "Response saved. Add more reasoning if you want to develop the challenge fully.", byId("prawnResponse").value.trim().length >= 40 ? "success" : "warning"); });
+    byId("saveReflection").addEventListener("click", function () { const value = byId("reflection").value.trim(); if (value.length < 100) { feedback("reflectionFeedback", "You’re very close. Explain three qualities and why each matters (at least 100 characters).", "warning"); return; } complete("minister-reflection"); feedback("reflectionFeedback", "✅ Reflection saved. Your qualities were assessed for explanation, not political position.", "success"); });
+    byId("submitExit").addEventListener("click", function () { const value = byId("exitTicket").value.trim(); const numbered = ["1", "2", "3", "4"].every(function (number) { return value.includes(number); }); if (value.length < 140 || !numbered) { feedback("exitFeedback", "Answer all four numbered questions with meaningful explanations (at least 140 characters in total).", "warning"); return; } complete("exit-ticket"); feedback("exitFeedback", "✅ Exit ticket saved and complete.", "success"); });
+    byId("completeMission").addEventListener("click", function () { saveExtra(); const missing = requiredActivities.filter(function (name) { return !completedActivities.has(name); }); if (missing.length) { feedback("missionFeedback", "Mission not yet complete. Finish: " + missing.map(function (name) { return activityLabels[name]; }).join(", ") + ".", "warning"); return; } lessonProgress = 100; updateProgress(); saveLesson(); achievement("Mission Complete!", "You have completed From an Idea to Cabinet."); feedback("missionFeedback", "✅ Mission complete. Your work is saved, and the shared navigation remains available below.", "success"); });
+    byId("checkAct").addEventListener("click", checkAct); byId("resetAct").addEventListener("click", resetAct);
+    byId("checkPathway").addEventListener("click", checkPathway); byId("resetPathway").addEventListener("click", function () { pathwayOrder = shuffled(pathway); renderPathway(); saveExtra(); feedback("pathwayFeedback", "Pathway mixed again. Build the simplified sequence from the beginning.", ""); });
+    byId("markKnowledge").addEventListener("click", markKnowledge); byId("resetKnowledge").addEventListener("click", function () { document.querySelectorAll('#knowledgeQuestions input').forEach(function (input) { input.checked = false; }); knowledge.forEach(function (_, i) { byId("knowledge-feedback-" + i).textContent = ""; }); feedback("knowledgeSummary", "Answers cleared. Your saved score history remains.", ""); });
+
+    renderActItems(); renderPathway(); renderKnowledge(); updateKnowledgeStats(); syncRequiredProgress();
+    if (Array.isArray(extra.initialChoices)) extra.initialChoices.forEach(function (choice) { const box = document.querySelector('input[name="initialProposal"][value="' + choice + '"]'); if (box) box.checked = true; });
+    if (Array.isArray(extra.priorities)) extra.priorities.forEach(function (choice) { const box = document.querySelector('input[name="priority"][value="' + choice + '"]'); if (box) box.checked = true; });
+    byId("priorityReason").value = extra.priorityReason || ""; byId("prawnResponse").value = extra.prawnResponse || "";
+    window.addEventListener("beforeunload", saveExtra);
+})();
+</script>
 </body>
 </html>
