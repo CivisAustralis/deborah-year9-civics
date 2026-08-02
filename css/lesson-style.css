@@ -1476,3 +1476,12 @@ body.lesson-gold .progress-bar{
     iframe{ height:240px; }
 
 }
+
+/* Week 3 commission inquiry */
+.dossier-toggle{width:100%;display:flex;justify-content:space-between;gap:1rem;text-align:left;font-size:1.15rem;background:#17324f;color:#fff;border-left:6px solid #c59b45}
+.dossier-toggle span{text-transform:uppercase;letter-spacing:.08em;color:#f5d88f}
+.dossier-body{padding-top:1rem}.document-card,.testimony,.archive-file,.briefing-panel{margin:1rem 0;padding:1rem;border:1px solid #c9b47b;border-left:5px solid #315d83;border-radius:8px;background:#fbf7ec}
+.commission-grid,.matrix-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem}.compass-item,.matrix-cell{display:flex;flex-direction:column;gap:.35rem}.compass-item input{max-width:7rem}
+.sausage-inline{display:grid;grid-template-columns:110px 1fr;gap:1rem;align-items:start;background:#fff6dc;padding:1rem;border-radius:8px}.sausage-inline img{width:100%;height:auto}.sausage-inline fieldset label{display:block;margin:.45rem 0}
+.confidential,.restricted,.commission-report{border-top:5px solid #b38a35}.archive-file[hidden],.dossier-body[hidden],#systemsComparison[hidden]{display:none}.commission-submit{text-align:center}
+@media(max-width:700px){.sausage-inline{grid-template-columns:1fr}.sausage-inline img{width:100px;margin:auto}.dossier-toggle{flex-direction:column}}
