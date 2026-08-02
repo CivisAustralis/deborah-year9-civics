@@ -1521,11 +1521,6 @@ body.lesson-gold .progress-bar{
 .lesson-control-room .knowledge-file{margin:1rem 0;padding:1rem;border-left:5px solid #315b73;background:#f8fcfe}.lesson-control-room .knowledge-file label{display:block;margin:.5rem 0;padding:.25rem}.lesson-control-room .knowledge-file input{width:auto;margin-right:.35rem}
 .lesson-control-room .honeycomb-thought{border:4px solid #d39b21;background:#fff4c4}.lesson-control-room .final-certification{text-align:center;border:5px solid #17324d}.lesson-control-room .final-certification button{font-size:1.15rem;padding:.9rem 1.5rem}
 @media (max-width:700px){.lesson-control-room .report-structure{grid-template-columns:1fr}.lesson-control-room .knowledge-file{padding:.8rem}.lesson-control-room .final-certification button{width:100%}}
-
-/* ==========================================================
-   Week 4 Lesson 1 — 2026 election-analysis editorial shell
-   Intentionally isolated from every other lesson.
-========================================================== */
 .election-control-room{
     --control-navy:#101d2c;
     --control-blue:#315f7d;
