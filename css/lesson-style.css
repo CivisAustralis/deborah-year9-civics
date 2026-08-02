@@ -1485,3 +1485,39 @@ body.lesson-gold .progress-bar{
 .sausage-inline{display:grid;grid-template-columns:110px 1fr;gap:1rem;align-items:start;background:#fff6dc;padding:1rem;border-radius:8px}.sausage-inline img{width:100%;height:auto}.sausage-inline fieldset label{display:block;margin:.45rem 0}
 .confidential,.restricted,.commission-report{border-top:5px solid #b38a35}.archive-file[hidden],.dossier-body[hidden],#systemsComparison[hidden]{display:none}.commission-submit{text-align:center}
 @media(max-width:700px){.sausage-inline{grid-template-columns:1fr}.sausage-inline img{width:100px;margin:auto}.dossier-toggle{flex-direction:column}}
+/* Week 4 Lesson 1: fictional Federal Election Control Room */
+.lesson-control-room .control-room-hero{border-top:8px solid #17324d;background:linear-gradient(135deg,#eef6fb,#d8e8f2)}
+.lesson-control-room .file-stamp,.lesson-control-room .section-code{font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#315b73}
+.lesson-control-room .control-room-file{font-size:1.3rem;font-weight:800;color:#17324d}
+.lesson-control-room .appointment{display:inline-block;padding:.65rem .9rem;border:2px solid #17324d;background:#fff;letter-spacing:.06em}
+.lesson-control-room .briefing-grid,.lesson-control-room .argument-ledger{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1rem 0}
+.lesson-control-room .briefing-grid>*,.lesson-control-room .argument-ledger>*{padding:1rem;border:1px solid #8ba9b8;border-radius:10px;background:#f8fcfe}
+.lesson-control-room .control-task{margin-top:1.5rem;border-top:3px solid #315b73;padding-top:1rem}
+.lesson-control-room .control-task fieldset{border:0;padding:0;margin:0}
+.lesson-control-room .control-task legend{font-size:1.25rem;font-weight:800;color:#17324d;margin-bottom:.5rem}
+.lesson-control-room .rank-grid,.lesson-control-room .audit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem;margin:1rem 0}
+.lesson-control-room .rank-grid label,.lesson-control-room .audit-grid label{display:flex;flex-direction:column;gap:.35rem;font-weight:700}
+.lesson-control-room .audit-scenario{margin:1rem 0;padding:1rem;border-left:5px solid #315b73;background:#eef6fb}
+.lesson-control-room .candidate-files{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.lesson-control-room .candidate-file{padding:1rem;border:1px solid #8ba9b8;border-radius:10px;background:#f8fcfe}
+.lesson-control-room .candidate-file h3{margin-top:0}.lesson-control-room .affiliation{font-weight:800;color:#315b73}
+.lesson-control-room .matrix-scroll{overflow-x:auto;margin:1rem 0}.lesson-control-room .analysis-matrix{width:100%;min-width:1050px;border-collapse:collapse}
+.lesson-control-room .analysis-matrix th,.lesson-control-room .analysis-matrix td{border:1px solid #8ba9b8;padding:.55rem;vertical-align:top;text-align:left}
+.lesson-control-room .analysis-matrix th{background:#d8e8f2}.lesson-control-room .analysis-matrix textarea{min-width:150px;margin:0}
+@media (max-width:700px){.lesson-control-room .briefing-grid,.lesson-control-room .argument-ledger,.lesson-control-room .candidate-files{grid-template-columns:1fr}.lesson-control-room .file-stamp{font-size:.78rem}.lesson-control-room .control-room-file{font-size:1.05rem}}
+/* Week 4 Lesson 1, Stage 2 workstations */
+.lesson-control-room .ballot-lab-grid,.lesson-control-room .sausage-interruption{display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:1rem;align-items:start;margin:1rem 0}
+.lesson-control-room .sample-ballot,.lesson-control-room .count-round,.lesson-control-room .claim-file,.lesson-control-room .national-result{padding:1rem;border:1px solid #8ba9b8;border-radius:10px;background:#f8fcfe}
+.lesson-control-room .sample-ballot ol{margin-left:2rem;font-size:1.05rem}.lesson-control-room .sausage-interruption{grid-template-columns:130px 1fr;padding:1rem;background:#fff5cf;border-radius:10px}.lesson-control-room .sausage-interruption img{width:100%;height:auto}
+.lesson-control-room .result-strip,.lesson-control-room .response-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin:.8rem 0}.lesson-control-room .result-strip span{padding:.65rem;background:#d8e8f2;border-radius:6px}.lesson-control-room .response-grid label,.lesson-control-room .claim-grid label,.lesson-control-room .hearing-grid label,.lesson-control-room .model-file label{display:flex;flex-direction:column;gap:.3rem;font-weight:700}
+.lesson-control-room .count-round,.lesson-control-room .claim-file{margin:1rem 0}.lesson-control-room .claim-file blockquote{padding:.7rem;border-left:4px solid #315b73;font-weight:700}.lesson-control-room .claim-grid,.lesson-control-room .hearing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.lesson-control-room .testimony-grid,.lesson-control-room .model-grid,.lesson-control-room .definition-docket{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1rem 0}.lesson-control-room .testimony-grid article,.lesson-control-room .model-file,.lesson-control-room .definition-docket div{padding:1rem;border-left:5px solid #315b73;background:#eef6fb}
+.lesson-control-room .definition-docket dt{font-weight:800}.lesson-control-room .definition-docket dd{margin:0}.lesson-control-room .national-result table{width:100%;border-collapse:collapse}.lesson-control-room .national-result th,.lesson-control-room .national-result td{padding:.5rem;border-bottom:1px solid #8ba9b8;text-align:left}
+@media (max-width:700px){.lesson-control-room .ballot-lab-grid,.lesson-control-room .sausage-interruption,.lesson-control-room .claim-grid,.lesson-control-room .hearing-grid,.lesson-control-room .testimony-grid,.lesson-control-room .model-grid,.lesson-control-room .definition-docket{grid-template-columns:1fr}.lesson-control-room .sausage-interruption img{width:100px;margin:auto}.lesson-control-room .result-strip,.lesson-control-room .response-grid{grid-template-columns:1fr}}
+/* Week 4 Lesson 1, Stage 3 certification desks */
+.lesson-control-room .report-structure{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;margin:1rem 0}.lesson-control-room .report-structure span{padding:.65rem;border-left:4px solid #315b73;background:#eef6fb;font-size:.93rem}
+.lesson-control-room .input-status{text-align:right;font-weight:700;color:#315b73}.lesson-control-room .faith-panel{border-top:5px solid #735f9b}.lesson-control-room .reflection-scaffold{padding:1rem;border:1px dashed #315b73;background:#f8fcfe}
+.lesson-control-room .original-ranking{margin:1rem 0;padding:1rem;border:2px solid #315b73;border-radius:10px;background:#eef6fb}.lesson-control-room .original-ranking ol{margin-left:2rem}
+.lesson-control-room .knowledge-file{margin:1rem 0;padding:1rem;border-left:5px solid #315b73;background:#f8fcfe}.lesson-control-room .knowledge-file label{display:block;margin:.5rem 0;padding:.25rem}.lesson-control-room .knowledge-file input{width:auto;margin-right:.35rem}
+.lesson-control-room .honeycomb-thought{border:4px solid #d39b21;background:#fff4c4}.lesson-control-room .final-certification{text-align:center;border:5px solid #17324d}.lesson-control-room .final-certification button{font-size:1.15rem;padding:.9rem 1.5rem}
+@media (max-width:700px){.lesson-control-room .report-structure{grid-template-columns:1fr}.lesson-control-room .knowledge-file{padding:.8rem}.lesson-control-room .final-certification button{width:100%}}
