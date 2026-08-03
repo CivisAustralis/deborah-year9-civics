@@ -403,14 +403,12 @@
     </header>
 
     <main class="page-wrap">
-        <section class="top-actions" aria-label="Teacher tools and course overview">
-            <div class="panel">
+        <section class="top-actions" aria-label="Course overview and teacher tools">
+            <div class="panel" id="teacherTools" hidden>
                 <h2>Teacher Tools</h2>
-                <p>Use these quick tools to create access codes or open the class report.</p>
+                <p id="teacherRosterStatus">Authenticated teacher workspace. Class reports include linked students only.</p>
                 <div class="admin-buttons">
-                    <button onclick="createTeacher()">Create Teacher Code</button>
-                    <button onclick="createStudent()">Add Student Code</button>
-                    <button onclick="viewReport()">View Class Report</button>
+                    <a class="button-link" href="teacher-report.html">View Class Report</a>
                 </div>
             </div>
 
@@ -577,21 +575,19 @@
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        document.getElementById('userCode').textContent = urlParams.get('code') || 'Teacher';
-
-        function createTeacher() {
-            const newCode = "TA" + Math.random().toString(36).substring(2, 6).toUpperCase();
-            alert("New Teacher Account Created!\nCode: " + newCode);
-        }
-
-        function createStudent() {
-            const newCode = "S" + Math.random().toString(36).substring(2, 6).toUpperCase();
-            alert("New Student Added!\nCode: " + newCode);
-        }
-
-        function viewReport() {
-            window.location.href = 'teacher-report.html';
-        }
+        document.getElementById("userCode").textContent = urlParams.get("code") || "Learner";
+    </script>
+    <script type="module">
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+        import { auth } from "./js/firebase-config.js";
+        import { getUserProfile } from "./js/auth-common.js";
+        onAuthStateChanged(auth, async user => {
+            if (!user) return;
+            const profile = await getUserProfile(user);
+            if (!profile) return;
+            document.getElementById("userCode").textContent = profile.displayName || profile.accountCode;
+            if (profile.role === "teacher") document.getElementById("teacherTools").hidden = false;
+        });
     </script>
 </body>
 </html>
