@@ -27,7 +27,10 @@ export async function getUserProfile(user) {
         uid: user.uid,
         accountCode,
         role: profile.role,
-        active: profile.active
+        active: profile.active,
+        classId: profile.classId || null,
+        teacherUid: profile.teacherUid || null,
+        displayName: String(profile.displayName || "").trim() || accountCode
     };
 }
 
