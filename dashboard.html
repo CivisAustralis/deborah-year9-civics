@@ -385,9 +385,24 @@
                 white-space: normal;
             }
         }
+            .auth-pending .hero, .auth-pending .page-wrap { visibility: hidden; }
+        .auth-gate { position: fixed; inset: 0; display: grid; place-items: center; background: var(--cream); color: var(--navy); z-index: 1000; padding: 2rem; text-align: center; }
+        body:not(.auth-pending) .auth-gate { display: none; }
+        .account-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+        .tool-form { display: grid; gap: 8px; margin-top: 14px; }
+        .tool-form input { min-height: 44px; border: 2px solid var(--gold); border-radius: 10px; padding: 10px; font: inherit; }
+        .tool-status { min-height: 1.5em; color: var(--muted); }
+        .class-list { margin: 12px 0 0; padding-left: 1.2rem; }
+        [hidden] { display: none !important; }
     </style>
 </head>
-<body>
+<body class="auth-pending">
+    <div class="auth-gate" id="authGate" role="status" aria-live="polite">
+        <div>
+            <p id="authGateMessage">Verifying your secure session…</p>
+            <a id="authGateReturn" class="button-link" href="index.html" hidden>Return to login</a>
+        </div>
+    </div>
     <a href="#course-dashboard" class="skip-link">Skip to course dashboard</a>
 
     <header class="hero">
@@ -396,22 +411,37 @@
                 <p class="kicker">Year 9 Civics and Citizenship</p>
                 <h1>Deborah Dashboard</h1>
                 <p>Welcome to the course hub for the 2026 Civics unit. Choose a weekly lesson, launch activities, and keep your class moving without leaving the site.</p>
-                <div class="welcome-pill">🐝 Welcome, <strong id="userCode">Teacher</strong></div>
+                <div class="welcome-pill">🐝 Welcome, <strong id="userCode">Account</strong></div>
+                <div class="account-actions"><button type="button" id="signOutButton">Sign Out</button></div>
             </div>
             <img src="images/bee_static_alpha_512.png" alt="Deborah the Bee" class="hero-mascot" onerror="this.style.display='none'">
         </div>
     </header>
 
     <main class="page-wrap">
-        <section class="top-actions" aria-label="Teacher tools and course overview">
-            <div class="panel">
+        <section class="top-actions" aria-label="Course overview and teacher tools">
+            <div class="panel" id="teacherTools" hidden>
                 <h2>Teacher Tools</h2>
-                <p>Use these quick tools to create access codes or open the class report.</p>
-                <div class="admin-buttons">
-                    <button onclick="createTeacher()">Create Teacher Code</button>
-                    <button onclick="createStudent()">Add Student Code</button>
-                    <button onclick="viewReport()">View Class Report</button>
-                </div>
+                <p>Classes and reports are restricted to your authenticated teacher account.</p>
+                <form id="createClassForm" class="tool-form">
+                    <label for="className">New class name</label>
+                    <input id="className" type="text" maxlength="120" required>
+                    <button type="submit">Create Class</button>
+                </form>
+                <p id="teacherRosterStatus" class="tool-status" role="status" aria-live="polite"></p>
+                <ul id="teacherClassList" class="class-list"></ul>
+                <div class="admin-buttons"><a class="button-link" href="teacher-report.html">View Class Report</a></div>
+            </div>
+            <div class="panel" id="studentTools" hidden>
+                <h2>Student Progress</h2>
+                <p id="studentProgress">Loading your locally saved unit progress…</p>
+                <div id="linkedClass" hidden><p><strong>Class linked:</strong> <span id="linkedClassId"></span></p></div>
+                <form id="joinClassForm" class="tool-form">
+                    <label for="joinCode">Class join code</label>
+                    <input id="joinCode" type="text" maxlength="30" autocomplete="off" autocapitalize="characters" required>
+                    <button type="submit">Join Class</button>
+                </form>
+                <p id="studentClassStatus" class="tool-status" role="status" aria-live="polite"></p>
             </div>
 
             <div class="panel">
@@ -575,23 +605,7 @@
         <p class="footer-note">Deborah says: strong civics knowledge is like a good democracy sausage — best when carefully assembled.</p>
     </main>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        document.getElementById('userCode').textContent = urlParams.get('code') || 'Teacher';
-
-        function createTeacher() {
-            const newCode = "TA" + Math.random().toString(36).substring(2, 6).toUpperCase();
-            alert("New Teacher Account Created!\nCode: " + newCode);
-        }
-
-        function createStudent() {
-            const newCode = "S" + Math.random().toString(36).substring(2, 6).toUpperCase();
-            alert("New Student Added!\nCode: " + newCode);
-        }
-
-        function viewReport() {
-            window.location.href = 'teacher-report.html';
-        }
-    </script>
+    <!-- Authentication is handled only by the shared module; do not restore the former inline URL-code login. -->
+    <script type="module" src="js/dashboard-auth.js"></script>
 </body>
 </html>
