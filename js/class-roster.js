@@ -32,7 +32,7 @@ export async function createClass(className) {
 
 export async function joinClass(joinCode) {
     const { user, profile } = await currentProfile("student");
-    if (profile.classId || profile.teacherUid) throw Object.assign(new Error("This student is already linked to a class."), { code: "already-linked" });
+    if (profile.classId) throw Object.assign(new Error("This account is already linked to a class."), { code: "already-linked" });
     const normalised = String(joinCode || "").trim().toUpperCase();
     if (!/^[A-Z0-9]{30}$/.test(normalised)) throw new Error("Enter the complete class join code.");
     const codeSnapshot = await getDoc(doc(db, "classJoinCodes", normalised));
