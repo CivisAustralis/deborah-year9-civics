@@ -167,6 +167,8 @@
     </section>
 </main>
 <script src="js/site-config.js"></script>
+<script src="js/reporting-config.js"></script>
+<script src="js/analytics-common.js"></script>
 <script src="js/lesson-common.js"></script>
 <script>
 setupLesson({ lessonId: "week2lesson1", week: 2, lesson: 1, title: "From an Idea to Cabinet", previous: "week1-lesson4.html", next: "week2-lesson2.html" });
@@ -281,7 +283,7 @@ setupLesson({ lessonId: "week2lesson1", week: 2, lesson: 1, title: "From an Idea
             const chosen = document.querySelector('input[name="knowledge-' + index + '"]:checked'); const correct = chosen && Number(chosen.value) === question.a;
             if (correct) score++; feedback("knowledge-feedback-" + index, (correct ? "✅ Correct. " : "Review this idea. ") + question.why, correct ? "success" : "warning");
         });
-        extra.knowledgeAttempts = (extra.knowledgeAttempts || 0) + 1; extra.knowledgeLatest = score; extra.knowledgeHighest = Math.max(extra.knowledgeHighest || 0, score); updateKnowledgeStats(); saveExtra();
+        extra.knowledgeAttempts = (extra.knowledgeAttempts || 0) + 1; extra.knowledgeLatest = score; extra.knowledgeHighest = Math.max(extra.knowledgeHighest || 0, score); recordKnowledgeCheck({activityId:"knowledge-check", score:score, maxScore:6, attemptNumber:extra.knowledgeAttempts}); updateKnowledgeStats(); saveExtra();
         if (score >= 5) { feedback("knowledgeSummary", "✅ Score: " + score + "/6. You have demonstrated the key knowledge.", "success"); complete("knowledge-check"); }
         else feedback("knowledgeSummary", "Score: " + score + "/6. Review the targeted feedback and retry. You need 5/6 to complete this check.", "warning");
     }

@@ -178,7 +178,8 @@
             margin: 14px 0 6px;
         }
 
-        input[type="text"] {
+        input[type="text"],
+        input[type="password"] {
             width: 100%;
             padding: 14px 14px;
             border: 2px solid var(--gold);
@@ -190,7 +191,8 @@
             outline: none;
         }
 
-        input[type="text"]:focus {
+        input[type="text"]:focus,
+        input[type="password"]:focus {
             border-color: var(--navy);
             box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.24);
         }
@@ -232,6 +234,13 @@
             padding: 10px 12px;
             border-radius: 8px;
             display: none;
+        }
+
+        .message.success {
+            display: block;
+            color: var(--navy);
+            background: var(--success-bg);
+            border: 1px solid rgba(44, 62, 80, 0.25);
         }
 
         .message.error {
@@ -329,20 +338,18 @@
 
             <section class="card login-card" aria-labelledby="login-title">
                 <h2 id="login-title">Login</h2>
-                <p>Enter your student or teacher code to open the course dashboard.</p>
+                <p>Enter the account code and password supplied by your course administrator.</p>
 
-                <label for="username">Access code</label>
-                <input
-                    type="text"
-                    id="username"
-                    placeholder="Example: SMushroom or TATomato47"
-                    autocomplete="off"
-                    aria-describedby="codeHint error"
-                >
-                <p id="codeHint" class="hint">Student codes usually begin with <strong>S</strong>. Teacher codes usually begin with <strong>TA</strong>.</p>
-
-                <button class="login-button" onclick="login()">Enter Dashboard</button>
-                <p id="error" class="message" role="alert"></p>
+                <form id="loginForm" novalidate>
+                    <label for="accountCode">Account code</label>
+                    <input type="text" id="accountCode" name="accountCode" placeholder="Example: SLEARNER1" autocomplete="username" autocapitalize="characters" spellcheck="false" aria-describedby="codeHint loginStatus" required>
+                    <p id="codeHint" class="hint">Student codes begin with <strong>S</strong>. Teacher codes begin with <strong>T</strong>. Your account code is not your password.</p>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" autocomplete="current-password" aria-describedby="loginStatus" required>
+                    <button type="button" id="togglePassword" aria-pressed="false">Show password</button>
+                    <button class="login-button" id="loginButton" type="submit">Sign in securely</button>
+                    <p id="loginStatus" class="message" role="status" aria-live="polite"></p>
+                </form>
 
                 <p class="small-print">Having trouble? Check that there are no extra spaces and that your code has been typed correctly.</p>
             </section>
@@ -353,40 +360,6 @@
         </footer>
     </div>
 
-    <script>
-        const teachers = ["TADEAM1989", "TAAPPLE47", "TABOOKWORM"];
-        const input = document.getElementById('username');
-        const errorBox = document.getElementById('error');
-
-        input.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                login();
-            }
-        });
-
-        function login() {
-            const user = input.value.toUpperCase().trim();
-            errorBox.className = 'message';
-            errorBox.textContent = '';
-
-            if (!user) {
-                showError('Please enter your access code.');
-                input.focus();
-                return;
-            }
-
-            if (teachers.includes(user) || user.startsWith('S')) {
-                window.location.href = 'dashboard.html?code=' + encodeURIComponent(user);
-            } else {
-                showError('Use a student code beginning with S, or one of the teacher codes.');
-                input.focus();
-            }
-        }
-
-        function showError(message) {
-            errorBox.textContent = message;
-            errorBox.className = 'message error';
-        }
-    </script>
+    <script type="module" src="js/login.js"></script>
 </body>
 </html>
