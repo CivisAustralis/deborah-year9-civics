@@ -1,0 +1,27 @@
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const vm = require("node:vm");
+let current = null;
+const context = { window: { location: { replace() {} } }, doc: (...parts) => parts, getDoc: async () => current, onAuthStateChanged() {}, signOut: async () => {}, auth: {}, db: {} };
+vm.createContext(context);
+let source = fs.readFileSync("js/auth-common.js", "utf8").replace(/^import .*;\n/gm, "").replace(/export /g, "");
+vm.runInContext(source, context, { filename: "auth-common.js" });
+const getProfile = vm.runInContext("getUserProfile", context);
+const snapshot = data => ({ exists: () => Boolean(data), data: () => data });
+(async () => {
+    current = snapshot({ accountCode: "SLEARN1", role: "student", active: true, displayName: "Synthetic Student" });
+    let result = await getProfile({ uid: "student-uid", email: "slearn1@accounts.invalid" }, { expectedAccountCode: "slearn1", throwOnInvalid: true });
+    assert.equal(result.role, "student"); assert.equal(result.accountCode, "SLEARN1");
+    current = snapshot({ accountCode: "TEXAMPLE1", role: "teacher", active: true, displayName: "Example Teacher" });
+    result = await getProfile({ uid: "teacher-uid", email: "texample1@accounts.invalid" }, { expectedAccountCode: "TEXAMPLE1", throwOnInvalid: true });
+    assert.equal(result.role, "teacher"); assert.equal(result.displayName, "Example Teacher");
+    current = snapshot({ accountCode: "SLEARN1", role: "student", active: false });
+    await assert.rejects(() => getProfile({ uid: "student-uid", email: "slearn1@accounts.invalid" }, { throwOnInvalid: true }), error => error.code === "profile-inactive");
+    current = snapshot(null);
+    await assert.rejects(() => getProfile({ uid: "missing", email: "missing@accounts.invalid" }, { throwOnInvalid: true }), error => error.code === "profile-missing");
+    current = snapshot({ accountCode: "SLEARN1", role: "invalid", active: true });
+    await assert.rejects(() => getProfile({ uid: "bad-role", email: "slearn1@accounts.invalid" }, { throwOnInvalid: true }), error => error.code === "profile-role-invalid");
+    current = snapshot({ accountCode: "SLEARN1", role: "student", active: true });
+    await assert.rejects(() => getProfile({ uid: "student-uid", email: "different@accounts.invalid" }, { throwOnInvalid: true }), error => error.code === "profile-alias-mismatch");
+    console.log("PASS synthetic student and teacher profile validation");
+})().catch(error => { console.error(error); process.exitCode = 1; });

@@ -1,0 +1,15 @@
+# Local administrator secrets and private student data
+admin/private/
+admin/output/
+*.service-account.json
+serviceAccount*.json
+student-credentials*.csv
+student-credentials*.html
+
+# Administrator tooling dependencies
+admin/node_modules/
+
+# Common local credentials
+.env
+.env.*
+!.env.example

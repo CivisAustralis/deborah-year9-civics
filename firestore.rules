@@ -1,0 +1,114 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function userProfile(uid) {
+      return get(/databases/$(database)/documents/users/$(uid)).data;
+    }
+
+    function activeRole(role) {
+      return signedIn()
+        && userProfile(request.auth.uid).active == true
+        && userProfile(request.auth.uid).role == role;
+    }
+
+    function linkedTeacher(studentId) {
+      return activeRole('teacher')
+        && userProfile(studentId).active == true
+        && userProfile(studentId).role == 'student'
+        && userProfile(studentId).teacherUid == request.auth.uid
+        && userProfile(studentId).classId is string;
+    }
+
+    match /users/{userId} {
+      allow get: if signedIn()
+        && (
+          request.auth.uid == userId
+          || (
+            activeRole('teacher')
+            && resource.data.active == true
+            && resource.data.role == 'student'
+            && resource.data.teacherUid == request.auth.uid
+            && resource.data.classId is string
+          )
+        );
+
+      allow list: if activeRole('teacher')
+        && resource.data.active == true
+        && resource.data.role == 'student'
+        && resource.data.teacherUid == request.auth.uid
+        && resource.data.classId is string;
+      allow update: if activeRole('student')
+        && request.auth.uid == userId
+        && resource.data.role == 'student'
+        && resource.data.active == true
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['classId', 'teacherUid', 'classJoinCode'])
+        && (!resource.data.keys().hasAny(['classId']) || resource.data.classId == null)
+        && (!resource.data.keys().hasAny(['teacherUid']) || resource.data.teacherUid == null)
+        && request.resource.data.classJoinCode is string
+        && exists(/databases/$(database)/documents/classJoinCodes/$(request.resource.data.classJoinCode))
+        && get(/databases/$(database)/documents/classJoinCodes/$(request.resource.data.classJoinCode)).data.active == true
+        && request.resource.data.classId == get(/databases/$(database)/documents/classJoinCodes/$(request.resource.data.classJoinCode)).data.classId
+        && request.resource.data.teacherUid == get(/databases/$(database)/documents/classJoinCodes/$(request.resource.data.classJoinCode)).data.teacherUid;
+      allow create, delete: if false;
+    }
+
+    match /classes/{classId} {
+      allow read: if activeRole('teacher') && resource.data.teacherUid == request.auth.uid;
+      allow create: if activeRole('teacher') && request.resource.data.teacherUid == request.auth.uid;
+      allow update: if activeRole('teacher')
+        && resource.data.teacherUid == request.auth.uid
+        && request.resource.data.teacherUid == request.auth.uid;
+      allow delete: if false;
+    }
+
+    match /classJoinCodes/{joinCode} {
+      allow get: if activeRole('student');
+      allow list: if false;
+      allow create: if activeRole('teacher')
+        && request.resource.data.teacherUid == request.auth.uid
+        && getAfter(/databases/$(database)/documents/classes/$(request.resource.data.classId)).data.teacherUid == request.auth.uid;
+      allow update: if activeRole('teacher')
+        && resource.data.teacherUid == request.auth.uid
+        && request.resource.data.teacherUid == request.auth.uid;
+      allow delete: if activeRole('teacher') && resource.data.teacherUid == request.auth.uid;
+    }
+
+    match /studentProgress/{studentId} {
+      allow read, write: if false;
+
+      match /lessons/{lessonId} {
+        allow read: if signedIn() && (request.auth.uid == studentId || linkedTeacher(studentId));
+        allow create, update: if activeRole('student')
+          && request.auth.uid == studentId
+          && request.resource.data.studentUid == request.auth.uid
+          && request.resource.data.lessonId == lessonId;
+        allow delete: if false;
+      }
+    }
+
+    match /teacherReportReviews/{teacherId} {
+      allow read, write: if false;
+
+      match /students/{studentId} {
+        allow read: if activeRole('teacher')
+          && request.auth.uid == teacherId
+          && linkedTeacher(studentId);
+        allow create, update: if activeRole('teacher')
+          && request.auth.uid == teacherId
+          && linkedTeacher(studentId)
+          && request.resource.data.teacherUid == request.auth.uid
+          && request.resource.data.studentUid == studentId
+          && request.resource.data.classId == userProfile(studentId).classId;
+        allow delete: if false;
+      }
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
