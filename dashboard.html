@@ -397,12 +397,7 @@
     </style>
 </head>
 <body class="auth-pending">
-    <div class="auth-gate" id="authGate" role="status" aria-live="polite">
-        <div>
-            <p id="authGateMessage">Verifying your secure session…</p>
-            <a id="authGateReturn" class="button-link" href="index.html" hidden>Return to login</a>
-        </div>
-    </div>
+    <div class="auth-gate" id="authGate" role="status" aria-live="polite">Verifying your secure session…</div>
     <a href="#course-dashboard" class="skip-link">Skip to course dashboard</a>
 
     <header class="hero">
@@ -422,26 +417,10 @@
         <section class="top-actions" aria-label="Course overview and teacher tools">
             <div class="panel" id="teacherTools" hidden>
                 <h2>Teacher Tools</h2>
-                <p>Classes and reports are restricted to your authenticated teacher account.</p>
-                <form id="createClassForm" class="tool-form">
-                    <label for="className">New class name</label>
-                    <input id="className" type="text" maxlength="120" required>
-                    <button type="submit">Create Class</button>
-                </form>
-                <p id="teacherRosterStatus" class="tool-status" role="status" aria-live="polite"></p>
-                <ul id="teacherClassList" class="class-list"></ul>
-                <div class="admin-buttons"><a class="button-link" href="teacher-report.html">View Class Report</a></div>
-            </div>
-            <div class="panel" id="studentTools" hidden>
-                <h2>Student Progress</h2>
-                <p id="studentProgress">Loading your locally saved unit progress…</p>
-                <div id="linkedClass" hidden><p><strong>Class linked:</strong> <span id="linkedClassId"></span></p></div>
-                <form id="joinClassForm" class="tool-form">
-                    <label for="joinCode">Class join code</label>
-                    <input id="joinCode" type="text" maxlength="30" autocomplete="off" autocapitalize="characters" required>
-                    <button type="submit">Join Class</button>
-                </form>
-                <p id="studentClassStatus" class="tool-status" role="status" aria-live="polite"></p>
+                <p id="teacherRosterStatus">Authenticated teacher workspace. Class reports include linked students only.</p>
+                <div class="admin-buttons">
+                    <a class="button-link" href="teacher-report.html">View Class Report</a>
+                </div>
             </div>
 
             <div class="panel">
@@ -605,6 +584,21 @@
         <p class="footer-note">Deborah says: strong civics knowledge is like a good democracy sausage — best when carefully assembled.</p>
     </main>
 
-    <script type="module" src="js/dashboard-auth.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById("userCode").textContent = urlParams.get("code") || "Learner";
+    </script>
+    <script type="module">
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+        import { auth } from "./js/firebase-config.js";
+        import { getUserProfile } from "./js/auth-common.js";
+        onAuthStateChanged(auth, async user => {
+            if (!user) return;
+            const profile = await getUserProfile(user);
+            if (!profile) return;
+            document.getElementById("userCode").textContent = profile.displayName || profile.accountCode;
+            if (profile.role === "teacher") document.getElementById("teacherTools").hidden = false;
+        });
+    </script>
 </body>
 </html>

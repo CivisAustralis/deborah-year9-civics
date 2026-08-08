@@ -16,7 +16,7 @@ Stage 2 defines authenticated class records at `classes/{classId}` and exact, no
 
 `firestore.indexes.json` defines the teacher-roster query index for `teacherUid`, `classId`, `role` and `active`, plus the teacher-owned active-class query index. Like the rules, this index has not been deployed by this change.
 
-The public login now converts the supplied account code with `accountCodeToAlias()`, establishes browser-session Firebase Authentication using `signInWithEmailAndPassword()`, and validates the matching active `users/{uid}` profile before opening `dashboard.html`. Neither the account code nor password is placed in the URL or browser storage. See `FIREBASE-AUTH-SETUP.md` for trusted manual provisioning.
+The current public `index.html` login passes an account code to `dashboard.html` through the URL and does not call Firebase Authentication. Consequently, normal lessons remain in the supported unauthenticated/offline-pending state unless a genuine Firebase Auth session exists. The secure class APIs are therefore not exposed through that unauthenticated screen. Connecting the public login to the existing Firebase Auth provider remains an authentication integration blocker; Stage 2 does not bypass it.
 
 ## Offline behaviour
 
@@ -32,14 +32,4 @@ The stored record explicitly notes that focus loss has no known cause, active ti
 
 Parent PDFs are generated entirely in the browser by the repository-owned text PDF writer in `js/pdf-report.js`. It creates selectable text without sending report content to a conversion service. The print stylesheet provides a browser Print / Save as PDF fallback. No report is emailed, uploaded, or sent automatically.
 
-The updated rules and both composite indexes still require controlled deployment. Review them alongside the production rules before deployment: the repository rules deliberately deny browser creation of user profiles, because provisioning belongs in Firebase Console or a trusted Admin SDK process.
-
-Select the Firebase project `deborah-year9-civics` and authenticate the Firebase CLI with the project owner’s or delegated administrator’s credentials. From this repository run:
-
-```sh
-firebase use deborah-year9-civics
-firebase deploy --only firestore:rules
-firebase deploy --only firestore:indexes
-```
-
-Alternatively, paste the reviewed `firestore.rules` into **Firebase Console → Firestore Database → Rules**, publish it, then create the composite indexes described by `firestore.indexes.json` under **Firestore Database → Indexes**. Deployment was not performed by this repository change and requires authorised project credentials.
+The updated rules and both composite indexes still require controlled deployment. Deploy `firestore.rules` and `firestore.indexes.json` only after reviewing them alongside production account-provisioning rules. The authenticated teacher workflow cannot operate for legacy URL-only code sessions; those sessions intentionally receive no teacher controls.
