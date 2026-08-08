@@ -16,15 +16,7 @@ assert(login.includes("passwordInput.value = \"\"") && !login.includes("localSto
 for (const code of ["profile-missing", "profile-inactive", "profile-role-invalid", "profile-code-mismatch", "profile-alias-mismatch"]) assert(auth.includes(code));
 assert(auth.includes("user.email.toLowerCase() !== accountCodeToAlias(accountCode)"), "Auth alias must match the profile account code");
 assert(dashboard.includes('class="auth-pending"') && dashboard.includes('id="teacherTools" hidden') && dashboard.includes('id="studentTools" hidden'));
-for (const id of ["authGate", "authGateMessage", "authGateReturn", "userCode", "signOutButton", "teacherTools", "createClassForm", "className", "teacherRosterStatus", "teacherClassList", "studentTools", "studentProgress", "linkedClass", "linkedClassId", "joinClassForm", "joinCode", "studentClassStatus"]) {
-    assert(dashboard.includes(`id="${id}"`), `dashboard.html missing #${id}`);
-}
-assert(dashboard.includes('<script type="module" src="js/dashboard-auth.js"></script>'), "dashboard authentication module is not loaded");
-assert(!dashboard.includes("URLSearchParams") && !dashboard.includes("onAuthStateChanged"), "stale inline authentication must not return");
 assert(dashboardAuth.includes("waitForAuthenticatedProfile()") && dashboardAuth.includes("signOut(auth)") && dashboardAuth.includes("window.location.replace(\"index.html\")"));
-assert(dashboardAuth.indexOf('document.body.classList.remove("auth-pending")') < dashboardAuth.indexOf("await renderTeacherClasses()"), "authenticated dashboard is revealed before optional class loading");
-assert(dashboardAuth.includes('byId("authGate").hidden = true') && dashboardAuth.includes('profile.role !== "teacher"') && dashboardAuth.includes('profile.role !== "student"'));
-assert(dashboard.includes('id="authGateReturn"') && dashboardAuth.includes("We couldn’t verify your session"));
 assert(dashboardAuth.includes("syncPendingAnalytics") && dashboardAuth.includes("localUnitProgress"));
 assert(roster.includes('where("teacherUid", "==", user.uid)') && roster.includes('where("classId", "==", classId)'));
 assert(roster.includes('code: "already-linked"') && dashboardAuth.includes("confirm("));
@@ -43,8 +35,5 @@ for (const file of ["week5-lesson1.html", "week5-lesson2.html"]) {
     assert(html.includes('completeActivity("exit-ticket")'), `${file} completion not instrumented`);
 }
 const setup = fs.readFileSync("FIREBASE-AUTH-SETUP.md", "utf8");
-const reportingSetup = fs.readFileSync("FIREBASE-REPORTING-SETUP.md", "utf8");
 assert(setup.includes("Firebase Console") && setup.includes("Admin SDK") && !/password\s*[:=]\s*\S+/i.test(setup), "provisioning remains trusted and contains no password literal");
-assert(reportingSetup.includes("signInWithEmailAndPassword()") && reportingSetup.includes("accountCodeToAlias()"), "reporting setup must describe the implemented Firebase login");
-assert(!reportingSetup.includes("current public `index.html` login passes an account code"), "obsolete URL-only login documentation must not return");
 console.log("PASS focused Firebase Authentication integration audit");

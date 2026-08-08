@@ -30,8 +30,6 @@ service cloud.firestore {
         && resource.data.role == 'student'
         && resource.data.active == true
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['classId', 'teacherUid', 'classJoinCode'])
-        && (!resource.data.keys().hasAny(['classId']) || resource.data.classId == null)
-        && (!resource.data.keys().hasAny(['teacherUid']) || resource.data.teacherUid == null)
         && request.resource.data.classJoinCode is string
         && exists(/databases/$(database)/documents/classJoinCodes/$(request.resource.data.classJoinCode))
         && get(/databases/$(database)/documents/classJoinCodes/$(request.resource.data.classJoinCode)).data.active == true
