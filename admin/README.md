@@ -64,10 +64,14 @@ The tool validates the complete CSV before applying filters or accessing Firebas
 
 ## 5. Run a dry run first
 
+The teacher account code must be supplied locally via `--teacher`. It is deliberately not stored in the public repository.
+
 Dry run is the default and performs Firebase reads only:
 
 ```sh
-node provision-students.mjs --roster private/students-2026.csv
+node provision-students.mjs \
+  --roster private/students-2026.csv \
+  --teacher TEACHER_ACCOUNT_CODE
 ```
 
 Review:
@@ -86,8 +90,15 @@ Any missing/duplicate teacher or class, Authentication alias conflict, UID misma
 Filters retain dry-run behaviour:
 
 ```sh
-node provision-students.mjs --roster private/students-2026.csv --account STEST01
-node provision-students.mjs --roster private/students-2026.csv --class 9A
+node provision-students.mjs \
+  --roster private/students-2026.csv \
+  --teacher TEACHER_ACCOUNT_CODE \
+  --account STEST01
+
+node provision-students.mjs \
+  --roster private/students-2026.csv \
+  --teacher TEACHER_ACCOUNT_CODE \
+  --class 9A
 ```
 
 Even with a filter, the complete CSV is structurally validated and all three required classes are resolved. Test a single new student before a full apply.
@@ -99,6 +110,7 @@ Apply requires both `--apply` and a one-command confirmation environment variabl
 ```sh
 DEBORAH_PROVISION_CONFIRM=APPLY node provision-students.mjs \
   --roster private/students-2026.csv \
+  --teacher TEACHER_ACCOUNT_CODE \
   --apply
 ```
 

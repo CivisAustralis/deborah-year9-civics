@@ -163,6 +163,11 @@ export async function applyProvisioningPlan(plan, adapter, options = {}) {
     for (const item of plan.rows) {
         let authUser = item.authUser, password = "", profileWritten = false;
         try {
+            if (item.action === "UNCHANGED") {
+                credentials.push({ className: item.row.className, displayName: item.row.displayName, username: item.row.issuedAccountCode, temporaryPassword: "", status: EXISTING_PASSWORD_STATUS });
+                results.push({ accountCode: item.row.accountCode, uid: authUser && authUser.uid, action: item.action, status: "UNCHANGED" });
+                continue;
+            }
             if (!authUser) {
                 do { password = generateTemporaryPassword(); } while (generatedPasswords.has(password));
                 generatedPasswords.add(password);
@@ -172,13 +177,13 @@ export async function applyProvisioningPlan(plan, adapter, options = {}) {
             profileWritten = true;
             const status = item.action === "CREATE" ? "NEW ACCOUNT" : EXISTING_PASSWORD_STATUS;
             credentials.push({ className: item.row.className, displayName: item.row.displayName, username: item.row.issuedAccountCode, temporaryPassword: item.action === "CREATE" ? password : "", status });
-            results.push({ accountCode: item.row.accountCode, uid: authUser.uid, action: item.action, status: item.action === "UNCHANGED" ? "UNCHANGED" : item.action });
+            results.push({ accountCode: item.row.accountCode, uid: authUser.uid, action: item.action, status: item.action });
         } catch (error) {
             if (authUser && item.action === "CREATE" && !profileWritten) credentials.push({ className: item.row.className, displayName: item.row.displayName, username: item.row.issuedAccountCode, temporaryPassword: password, status: "PROFILE REPAIR REQUIRED" });
             results.push({ accountCode: item.row.accountCode, uid: authUser && authUser.uid, action: item.action, status: "ERROR", error: error.message });
         }
     }
-    return { dryRun: false, writes: results.filter(item => item.status !== "ERROR").length, credentials, results };
+    return { dryRun: false, writes: results.filter(item => item.status !== "ERROR" && item.status !== "UNCHANGED").length, credentials, results };
 }
 
 function csvCell(value) {
