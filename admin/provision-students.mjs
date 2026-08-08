@@ -6,7 +6,7 @@ import { applyProvisioningPlan, buildProvisioningPlan, credentialsCsv, credentia
 
 const adminDirectory = path.dirname(fileURLToPath(import.meta.url));
 function usage() {
-    return `Usage: node provision-students.mjs --roster private/students-2026.csv [options]\n\nOptions:\n  --apply                 Make Firebase changes (default is dry run)\n  --account SCODE         Restrict to one account\n  --class 9A              Restrict to one class\n  --teacher TMEG2026      Teacher account code (required)\n  --project PROJECT_ID    Firebase project (default deborah-year9-civics)\n  --help                  Show this help\n`;
+    return `Usage: node provision-students.mjs --roster private/students-2026.csv [options]\n\nOptions:\n  --apply                 Make Firebase changes (default is dry run)\n  --account SCODE         Restrict to one account\n  --class 9A              Restrict to one class\n  --teacher TACCOUNT01      Teacher account code (required)\n  --project PROJECT_ID    Firebase project (default deborah-year9-civics)\n  --help                  Show this help\n`;
 }
 function parseArguments(args) {
     const options = { apply: false, project: "deborah-year9-civics" };

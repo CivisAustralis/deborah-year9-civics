@@ -35,7 +35,11 @@ service cloud.firestore {
             && resource.data.classId is string
           )
         );
-      allow list: if activeRole('teacher');
+      allow list: if activeRole('teacher')
+        && resource.data.active == true
+        && resource.data.role == 'student'
+        && resource.data.teacherUid == request.auth.uid
+        && resource.data.classId is string;
       allow update: if activeRole('student')
         && request.auth.uid == userId
         && resource.data.role == 'student'

@@ -2,10 +2,18 @@ const assert = require("assert");
 const fs = require("fs");
 
 const rules = fs.readFileSync("firestore.rules", "utf8");
+
+// Verify the scoped list rule components are present
 for (const required of [
     "resource.data.teacherUid == request.auth.uid",
     "request.auth.uid == studentId || linkedTeacher(studentId)",
-    "request.auth.uid == userId || linkedTeacher(userId)",
+    "allow get: if signedIn()",
+    "request.auth.uid == userId",
+    "allow list: if activeRole('teacher')",
+    "resource.data.active == true",
+    "resource.data.role == 'student'",
+    "resource.data.teacherUid == request.auth.uid",
+    "resource.data.classId is string",
     "allow list: if false",
     "request.resource.data.diff(resource.data).affectedKeys().hasOnly",
     "match /teacherReportReviews/{teacherId}",
@@ -14,6 +22,12 @@ for (const required of [
     "match /{document=**}",
     "allow read, write: if false"
 ]) assert(rules.includes(required), `missing rule guard: ${required}`);
+
+// Negative assertion: the unrestricted standalone list rule must NOT exist
+assert(
+    !rules.includes("allow list: if activeRole('teacher');"),
+    "unrestricted 'allow list: if activeRole('teacher');' must not exist"
+);
 
 function linkedTeacher(actor, student) {
     return actor && actor.active === true && actor.role === "teacher"
