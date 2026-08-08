@@ -2,14 +2,14 @@
 import { chmod, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { applyProvisioningPlan, buildProvisioningPlan, credentialsCsv, credentialsHtml, filterRoster, parseRosterCsv, SUPPORTED_CLASSES, validateRoster } from "./lib/provisioning-core.mjs";
+import { applyProvisioningPlan, buildProvisioningPlan, credentialsCsv, credentialsHtml, DEFAULT_TEACHER_CODE, filterRoster, parseRosterCsv, SUPPORTED_CLASSES, validateRoster } from "./lib/provisioning-core.mjs";
 
 const adminDirectory = path.dirname(fileURLToPath(import.meta.url));
 function usage() {
-    return `Usage: node provision-students.mjs --roster private/students-2026.csv [options]\n\nOptions:\n  --apply                 Make Firebase changes (default is dry run)\n  --account SCODE         Restrict to one account\n  --class 9A              Restrict to one class\n  --teacher TACCOUNT01     Required active teacher account code\n  --project PROJECT_ID    Firebase project (default deborah-year9-civics)\n  --help                  Show this help\n`;
+    return `Usage: node provision-students.mjs --roster private/students-2026.csv [options]\n\nOptions:\n  --apply                 Make Firebase changes (default is dry run)\n  --account SCODE         Restrict to one account\n  --class 9A              Restrict to one class\n  --teacher TMEG2026      Teacher account code (default TMEG2026)\n  --project PROJECT_ID    Firebase project (default deborah-year9-civics)\n  --help                  Show this help\n`;
 }
 function parseArguments(args) {
-    const options = { apply: false, project: "deborah-year9-civics" };
+    const options = { apply: false, teacher: DEFAULT_TEACHER_CODE, project: "deborah-year9-civics" };
     for (let index = 0; index < args.length; index += 1) {
         const argument = args[index];
         if (argument === "--apply") options.apply = true;
@@ -20,7 +20,6 @@ function parseArguments(args) {
         } else throw new Error(`Unknown argument: ${argument}`);
     }
     if (!options.help && !options.roster) throw new Error("--roster is required.");
-    if (!options.help && !options.teacher) throw new Error("--teacher <teacherAccountCode> is required.");
     return options;
 }
 function printPlan(plan, apply) {

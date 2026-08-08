@@ -31,6 +31,6 @@ $("saveDraft").addEventListener("click",async()=>{try{collectDraft();await saveT
 $("resetDraft").addEventListener("click",()=>{if(!confirm("Reset teacher edits to generated evidence? Raw analytics will not be deleted."))return;state.draft=DeborahReportingView.normaliseDraft(state.profile,{});$("includeFocus").checked=true;$("strengths").value="";$("nextSteps").value="";$("teacherComment").value="";renderIndicators();renderExtracts();setStatus("actionStatus","Teacher edits reset locally. Save Draft to store the reset.")});
 $("previewReport").addEventListener("click",()=>{renderPreview();setStatus("actionStatus","Parent report preview updated.")});
 $("downloadPdf").addEventListener("click",()=>{try{renderPreview();if(!state.report||!state.profile.rawEvidence.lessons.length)throw new Error("No report evidence");const result=DeborahPdfReport.download(state.report);setStatus("actionStatus",`PDF downloaded as ${result.filename}. Nothing was emailed or uploaded.`)}catch(error){setStatus("actionStatus","PDF generation failed. Use Print / Save as PDF instead.",true)}});
-$("signOutButton").addEventListener("click", async () => { await signOut(auth); window.location.replace("index.html"); });
 $("printFallback").addEventListener("click",()=>{renderPreview();DeborahPdfReport.printFallback();setStatus("actionStatus","Print dialogue opened. Choose Save as PDF if available.")});
+$("reportSignOutButton").addEventListener("click", async () => { $("reportSignOutButton").disabled = true; await signOut(auth); window.location.replace("index.html"); });
 initialise();

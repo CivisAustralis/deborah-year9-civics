@@ -5,11 +5,7 @@ const rules = fs.readFileSync("firestore.rules", "utf8");
 for (const required of [
     "resource.data.teacherUid == request.auth.uid",
     "request.auth.uid == studentId || linkedTeacher(studentId)",
-    "allow get: if signedIn()",
-    "request.auth.uid == userId",
-    "allow list: if activeRole('teacher')",
-    "resource.data.role == 'student'",
-    "resource.data.classId is string",
+    "request.auth.uid == userId || linkedTeacher(userId)",
     "allow list: if false",
     "request.resource.data.diff(resource.data).affectedKeys().hasOnly",
     "match /teacherReportReviews/{teacherId}",

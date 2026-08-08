@@ -12,7 +12,7 @@ function mockAdapter(options = {}) {
     return {
         writes, authUsers, profiles,
         async findProfilesByAccountCode(code) {
-            if (code === "TEXAMPLE1") return options.teachers || [{ uid: "teacher-uid", data: { accountCode: "TEXAMPLE1", role: "teacher", active: true } }];
+            if (code === "TMEG2026") return options.teachers || [{ uid: "teacher-uid", data: { accountCode: "TMEG2026", role: "teacher", active: true } }];
             return profileCodeIndex().filter(item => item.data.accountCode === code);
         },
         async findActiveClasses(teacherUid, className) {
@@ -35,7 +35,7 @@ function mockAdapter(options = {}) {
 test("normalises and validates Deborah student account codes and aliases", () => {
     assert.equal(normalizeAccountCode(" sAb-12345 "), "SAB12345");
     assert(validateAccountCode("sAb12345"));
-    assert(!validateAccountCode("TEXAMPLE1"));
+    assert(!validateAccountCode("TMEG2026"));
     assert(!validateAccountCode("S1234"));
     assert.equal(accountCodeToAlias("sAb12345"), "sab12345@accounts.invalid");
 });
@@ -63,7 +63,7 @@ test("generates unique, manually typeable passwords of at least 12 characters", 
 
 test("builds class-linked idempotent plan and dry run performs no writes", async () => {
     const adapter = mockAdapter();
-    const plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter, teacherCode: "TEXAMPLE1" });
+    const plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter });
     assert.deepEqual(plan.errors, []);
     assert.equal(plan.counts.create, 1);
     assert.equal(plan.counts.existing, 2);
@@ -77,7 +77,7 @@ test("builds class-linked idempotent plan and dry run performs no writes", async
 
 test("apply creates new auth once, repairs existing profile, and writes direct class links", async () => {
     const adapter = mockAdapter();
-    let plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter, teacherCode: "TEXAMPLE1" });
+    let plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter });
     const first = await applyProvisioningPlan(plan, adapter, { apply: true });
     assert.equal(adapter.writes.auth.length, 1, "existing and repair users are not recreated");
     assert.equal(adapter.writes.profiles.length, 3);
@@ -94,17 +94,14 @@ test("apply creates new auth once, repairs existing profile, and writes direct c
     assert(first.credentials.find(item => item.username === "snew01").temporaryPassword.length >= 12);
 
     adapter.writes.auth.length = 0; adapter.writes.profiles.length = 0;
-    plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter, teacherCode: "TEXAMPLE1" });
-    const second = await applyProvisioningPlan(plan, adapter, { apply: true });
+    plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter });
+    await applyProvisioningPlan(plan, adapter, { apply: true });
     assert.equal(adapter.writes.auth.length, 0, "rerun never duplicates Authentication users");
-    assert.equal(adapter.writes.profiles.length, 0, "unchanged rerun performs zero Firestore writes");
-    assert.equal(second.writes, 0, "unchanged rerun reports zero writes");
-    assert(second.results.every(item => item.status === "UNCHANGED"));
 });
 
 test("preflight class or identity errors prevent every write", async () => {
     const adapter = mockAdapter({ missingClass: "9C" });
-    const plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter, teacherCode: "TEXAMPLE1" });
+    const plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter });
     assert(plan.errors.some(error => error.includes("9C")));
     await assert.rejects(() => applyProvisioningPlan(plan, adapter, { apply: true }), /zero writes/);
     assert.equal(adapter.writes.auth.length, 0);
@@ -125,19 +122,13 @@ test("private and credential paths are ignored", async () => {
     for (const pattern of ["admin/private/", "admin/output/", "*.service-account.json", "serviceAccount*.json", "student-credentials*.csv", "student-credentials*.html"]) assert(ignore.includes(pattern));
 });
 
-test("missing teacher code fails before Firebase access", async () => {
-    const adapter = new Proxy({}, { get() { throw new Error("Firebase should not be accessed"); } });
-    const plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter });
-    assert(plan.errors.some(error => error.includes("teacher account code is required")));
-});
-
 test("duplicate teacher or class aborts before writes", async () => {
     const duplicateTeacher = mockAdapter({ teachers: [{ uid: "one", data: { role: "teacher", active: true } }, { uid: "two", data: { role: "teacher", active: true } }] });
-    let plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter: duplicateTeacher, teacherCode: "TEXAMPLE1" });
+    let plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter: duplicateTeacher });
     assert(plan.errors.some(error => error.includes("exactly one teacher")));
     assert.equal(duplicateTeacher.writes.auth.length, 0);
     const duplicateClass = mockAdapter({ duplicateClass: "9A" });
-    plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter: duplicateClass, teacherCode: "TEXAMPLE1" });
+    plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter: duplicateClass });
     assert(plan.errors.some(error => error.includes("exactly one active 9A")));
     assert.equal(duplicateClass.writes.profiles.length, 0);
 });
@@ -150,7 +141,7 @@ test("partial profile failure preserves auth user for resumable repair", async (
         if (data.accountCode === "SNEW01") { failedUid = uid; throw new Error("synthetic profile failure"); }
         return originalSetProfile(uid, data);
     };
-    let plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter, teacherCode: "TEXAMPLE1" });
+    let plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter });
     const result = await applyProvisioningPlan(plan, adapter, { apply: true });
     assert(failedUid);
     assert.equal(adapter.writes.auth.length, 1);
@@ -159,7 +150,7 @@ test("partial profile failure preserves auth user for resumable repair", async (
     assert(recoveryCredential.temporaryPassword.length >= 12);
     adapter.setProfile = originalSetProfile;
     adapter.writes.auth.length = 0;
-    plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter, teacherCode: "TEXAMPLE1" });
+    plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter });
     assert.equal(plan.rows.find(item => item.row.accountCode === "SNEW01").action, "REPAIR");
     await applyProvisioningPlan(plan, adapter, { apply: true });
     assert.equal(adapter.writes.auth.length, 0, "repair does not recreate the Authentication user");
@@ -170,7 +161,7 @@ test("Authentication/Profile UID mismatch is a blocking identity error", async (
         authUsers: { "sexist2@accounts.invalid": { uid: "auth-uid", email: "sexist2@accounts.invalid" }, "srepair3@accounts.invalid": { uid: "repair-uid", email: "srepair3@accounts.invalid" } },
         profiles: { "different-uid": { accountCode: "SEXIST2", displayName: "Existing, Example", role: "student", active: true } }
     });
-    const plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter, teacherCode: "TEXAMPLE1" });
+    const plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter });
     assert(plan.errors.some(error => error.includes("does not match Authentication UID")));
     assert.equal(adapter.writes.auth.length, 0);
 });

@@ -1,6 +1,7 @@
 import { randomInt } from "node:crypto";
 
 export const ACCOUNT_CODE_PATTERN = /^S[A-Z0-9]{5,19}$/;
+export const DEFAULT_TEACHER_CODE = "TMEG2026";
 export const SUPPORTED_CLASSES = Object.freeze(["9A", "9B", "9C"]);
 export const EXISTING_PASSWORD_STATUS = "EXISTING ACCOUNT — PASSWORD UNCHANGED";
 const PASSWORD_LETTERS = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
@@ -106,9 +107,8 @@ export function filterRoster(rows, options = {}) {
     return filtered;
 }
 
-export async function buildProvisioningPlan({ rows, adapter, teacherCode, supportedClasses = SUPPORTED_CLASSES, filters = {} }) {
+export async function buildProvisioningPlan({ rows, adapter, teacherCode = DEFAULT_TEACHER_CODE, supportedClasses = SUPPORTED_CLASSES, filters = {} }) {
     const structuralErrors = validateRoster(rows, supportedClasses);
-    if (!teacherCode) structuralErrors.push("A teacher account code is required.");
     if (structuralErrors.length) return { errors: structuralErrors, rows: [], classes: {}, counts: {} };
 
     const teachers = await adapter.findProfilesByAccountCode(normalizeAccountCode(teacherCode));
@@ -168,10 +168,8 @@ export async function applyProvisioningPlan(plan, adapter, options = {}) {
                 generatedPasswords.add(password);
                 authUser = await adapter.createAuthUser({ email: item.alias, password, displayName: item.row.displayName });
             }
-            if (item.action !== "UNCHANGED") {
-                await adapter.setProfile(authUser.uid, item.expectedProfile);
-                profileWritten = true;
-            }
+            await adapter.setProfile(authUser.uid, item.expectedProfile);
+            profileWritten = true;
             const status = item.action === "CREATE" ? "NEW ACCOUNT" : EXISTING_PASSWORD_STATUS;
             credentials.push({ className: item.row.className, displayName: item.row.displayName, username: item.row.issuedAccountCode, temporaryPassword: item.action === "CREATE" ? password : "", status });
             results.push({ accountCode: item.row.accountCode, uid: authUser.uid, action: item.action, status: item.action === "UNCHANGED" ? "UNCHANGED" : item.action });
@@ -180,7 +178,7 @@ export async function applyProvisioningPlan(plan, adapter, options = {}) {
             results.push({ accountCode: item.row.accountCode, uid: authUser && authUser.uid, action: item.action, status: "ERROR", error: error.message });
         }
     }
-    return { dryRun: false, writes: results.filter(item => item.status !== "ERROR" && item.action !== "UNCHANGED").length, credentials, results };
+    return { dryRun: false, writes: results.filter(item => item.status !== "ERROR").length, credentials, results };
 }
 
 function csvCell(value) {

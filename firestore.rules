@@ -24,30 +24,13 @@ service cloud.firestore {
     }
 
     match /users/{userId} {
-      allow get: if signedIn()
-        && (
-          request.auth.uid == userId
-          || (
-            activeRole('teacher')
-            && resource.data.active == true
-            && resource.data.role == 'student'
-            && resource.data.teacherUid == request.auth.uid
-            && resource.data.classId is string
-          )
-        );
-
-      allow list: if activeRole('teacher')
-        && resource.data.active == true
-        && resource.data.role == 'student'
-        && resource.data.teacherUid == request.auth.uid
-        && resource.data.classId is string;
+      allow read: if signedIn() && (request.auth.uid == userId || linkedTeacher(userId));
       allow update: if activeRole('student')
         && request.auth.uid == userId
         && resource.data.role == 'student'
         && resource.data.active == true
+        && resource.data.classId == null
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['classId', 'teacherUid', 'classJoinCode'])
-        && (!resource.data.keys().hasAny(['classId']) || resource.data.classId == null)
-        && (!resource.data.keys().hasAny(['teacherUid']) || resource.data.teacherUid == null)
         && request.resource.data.classJoinCode is string
         && exists(/databases/$(database)/documents/classJoinCodes/$(request.resource.data.classJoinCode))
         && get(/databases/$(database)/documents/classJoinCodes/$(request.resource.data.classJoinCode)).data.active == true

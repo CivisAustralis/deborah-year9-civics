@@ -25,41 +25,26 @@ async function initialise() {
     try {
         session = await waitForAuthenticatedProfile();
         if (!session) return;
-
-        const { profile } = session;
-        byId("userCode").textContent = profile.displayName || profile.accountCode;
-        byId("teacherTools").hidden = profile.role !== "teacher";
-        byId("studentTools").hidden = profile.role !== "student";
-
-        document.body.classList.remove("auth-pending");
-        byId("authGate").hidden = true;
-
-        if (profile.role === "teacher") {
-            try {
-                await renderTeacherClasses();
-            } catch (error) {
-                status("teacherRosterStatus", "Your session is verified, but class information could not be loaded. Try again later.");
+        byId("userCode").textContent = session.profile.displayName || session.profile.accountCode;
+        if (session.profile.role === "teacher") {
+            byId("teacherTools").hidden = false;
+            await renderTeacherClasses();
+        } else {
+            byId("studentTools").hidden = false;
+            const progress = localUnitProgress();
+            byId("studentProgress").textContent = `${progress.completed} of 16 lessons completed; ${progress.started} started on this browser.`;
+            if (session.profile.classId) {
+                byId("linkedClass").hidden = false;
+                byId("linkedClassId").textContent = session.profile.classId;
+                byId("joinClassForm").hidden = true;
+                status("studentClassStatus", "Your account is already linked. Ask the teacher or administrator before any reassignment.");
             }
-            return;
-        }
-
-        const progress = localUnitProgress();
-        byId("studentProgress").textContent = `${progress.completed} of 16 lessons completed; ${progress.started} started on this browser.`;
-        if (profile.classId) {
-            byId("linkedClass").hidden = false;
-            byId("linkedClassId").textContent = profile.classId;
-            byId("joinClassForm").hidden = true;
-            status("studentClassStatus", "Your account is already linked. Ask the teacher or administrator before any reassignment.");
-        }
-        try {
-            const sync = await syncPendingAnalytics(profile);
+            const sync = await syncPendingAnalytics(session.profile);
             if (sync.attempted) status("studentClassStatus", `${sync.synced} of ${sync.attempted} pending lesson record${sync.attempted === 1 ? "" : "s"} synchronised. Local copies were retained.`);
-        } catch (error) {
-            status("studentClassStatus", "Your session is verified. Saved lesson evidence remains on this browser and will synchronise later.");
         }
+        document.body.classList.remove("auth-pending");
     } catch (error) {
-        byId("authGateMessage").textContent = "We couldn’t verify your session. Please return to login and try again.";
-        byId("authGateReturn").hidden = false;
+        byId("authGate").textContent = "The secure dashboard could not be loaded. Return to login and try again.";
     }
 }
 
@@ -89,13 +74,10 @@ byId("joinClassForm").addEventListener("submit", async event => {
 
 byId("signOutButton").addEventListener("click", async () => {
     byId("signOutButton").disabled = true;
-    try {
-        if (session && session.profile.role === "student") await Promise.race([syncPendingAnalytics(session.profile).catch(() => null), new Promise(resolve => setTimeout(resolve, 2500))]);
-    } finally {
-        await signOut(auth);
-        session = null;
-        window.location.replace("index.html");
-    }
+    if (session && session.profile.role === "student") await Promise.race([syncPendingAnalytics(session.profile), new Promise(resolve => setTimeout(resolve, 2500))]);
+    await signOut(auth);
+    session = null;
+    window.location.replace("index.html");
 });
 
 initialise();
