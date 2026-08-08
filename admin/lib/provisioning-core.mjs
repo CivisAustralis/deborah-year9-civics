@@ -1,7 +1,6 @@
 import { randomInt } from "node:crypto";
 
 export const ACCOUNT_CODE_PATTERN = /^S[A-Z0-9]{5,19}$/;
-export const DEFAULT_TEACHER_CODE = "TMEG2026";
 export const SUPPORTED_CLASSES = Object.freeze(["9A", "9B", "9C"]);
 export const EXISTING_PASSWORD_STATUS = "EXISTING ACCOUNT — PASSWORD UNCHANGED";
 const PASSWORD_LETTERS = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
@@ -107,7 +106,8 @@ export function filterRoster(rows, options = {}) {
     return filtered;
 }
 
-export async function buildProvisioningPlan({ rows, adapter, teacherCode = DEFAULT_TEACHER_CODE, supportedClasses = SUPPORTED_CLASSES, filters = {} }) {
+export async function buildProvisioningPlan({ rows, adapter, teacherCode, supportedClasses = SUPPORTED_CLASSES, filters = {} }) {
+    if (!teacherCode) return { errors: ["A teacher account code is required."], rows: [], classes: {}, counts: {} };
     const structuralErrors = validateRoster(rows, supportedClasses);
     if (structuralErrors.length) return { errors: structuralErrors, rows: [], classes: {}, counts: {} };
 
