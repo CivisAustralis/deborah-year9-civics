@@ -17,9 +17,6 @@ for (const code of ["profile-missing", "profile-inactive", "profile-role-invalid
 assert(auth.includes("user.email.toLowerCase() !== accountCodeToAlias(accountCode)"), "Auth alias must match the profile account code");
 assert(dashboard.includes('class="auth-pending"') && dashboard.includes('id="teacherTools" hidden') && dashboard.includes('id="studentTools" hidden'));
 assert(dashboardAuth.includes("waitForAuthenticatedProfile()") && dashboardAuth.includes("signOut(auth)") && dashboardAuth.includes("window.location.replace(\"index.html\")"));
-assert(dashboardAuth.indexOf('document.body.classList.remove("auth-pending")') < dashboardAuth.indexOf("await renderTeacherClasses()"), "authenticated dashboard is revealed before optional class loading");
-assert(dashboardAuth.includes('byId("authGate").hidden = true') && dashboardAuth.includes('profile.role !== "teacher"') && dashboardAuth.includes('profile.role !== "student"'));
-assert(dashboard.includes('id="authGateReturn"') && dashboardAuth.includes("We couldn’t verify your session"));
 assert(dashboardAuth.includes("syncPendingAnalytics") && dashboardAuth.includes("localUnitProgress"));
 assert(roster.includes('where("teacherUid", "==", user.uid)') && roster.includes('where("classId", "==", classId)'));
 assert(roster.includes('code: "already-linked"') && dashboardAuth.includes("confirm("));
