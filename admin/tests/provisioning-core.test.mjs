@@ -159,7 +159,7 @@ test("partial profile failure preserves auth user for resumable repair", async (
 test("missing teacherCode returns a structural error before Firebase access", async () => {
     const adapter = mockAdapter();
     const plan = await buildProvisioningPlan({ rows: parseRosterCsv(rosterCsv), adapter });
-    assert(plan.errors.some(error => error.includes("teacher account code is required")));
+    assert(plan.errors.some(error => error.includes("A teacher account code is required")));
     assert.equal(adapter.writes.auth.length, 0);
     assert.equal(adapter.writes.profiles.length, 0);
 });
