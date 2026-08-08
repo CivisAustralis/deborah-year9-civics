@@ -385,9 +385,19 @@
                 white-space: normal;
             }
         }
+            .auth-pending .hero, .auth-pending .page-wrap { visibility: hidden; }
+        .auth-gate { position: fixed; inset: 0; display: grid; place-items: center; background: var(--cream); color: var(--navy); z-index: 1000; padding: 2rem; text-align: center; }
+        body:not(.auth-pending) .auth-gate { display: none; }
+        .account-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+        .tool-form { display: grid; gap: 8px; margin-top: 14px; }
+        .tool-form input { min-height: 44px; border: 2px solid var(--gold); border-radius: 10px; padding: 10px; font: inherit; }
+        .tool-status { min-height: 1.5em; color: var(--muted); }
+        .class-list { margin: 12px 0 0; padding-left: 1.2rem; }
+        [hidden] { display: none !important; }
     </style>
 </head>
-<body>
+<body class="auth-pending">
+    <div class="auth-gate" id="authGate" role="status" aria-live="polite">Verifying your secure session…</div>
     <a href="#course-dashboard" class="skip-link">Skip to course dashboard</a>
 
     <header class="hero">
@@ -396,7 +406,8 @@
                 <p class="kicker">Year 9 Civics and Citizenship</p>
                 <h1>Deborah Dashboard</h1>
                 <p>Welcome to the course hub for the 2026 Civics unit. Choose a weekly lesson, launch activities, and keep your class moving without leaving the site.</p>
-                <div class="welcome-pill">🐝 Welcome, <strong id="userCode">Teacher</strong></div>
+                <div class="welcome-pill">🐝 Welcome, <strong id="userCode">Account</strong></div>
+                <div class="account-actions"><button type="button" id="signOutButton">Sign Out</button></div>
             </div>
             <img src="images/bee_static_alpha_512.png" alt="Deborah the Bee" class="hero-mascot" onerror="this.style.display='none'">
         </div>
