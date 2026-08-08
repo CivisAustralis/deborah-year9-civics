@@ -43,5 +43,8 @@ for (const file of ["week5-lesson1.html", "week5-lesson2.html"]) {
     assert(html.includes('completeActivity("exit-ticket")'), `${file} completion not instrumented`);
 }
 const setup = fs.readFileSync("FIREBASE-AUTH-SETUP.md", "utf8");
+const reportingSetup = fs.readFileSync("FIREBASE-REPORTING-SETUP.md", "utf8");
 assert(setup.includes("Firebase Console") && setup.includes("Admin SDK") && !/password\s*[:=]\s*\S+/i.test(setup), "provisioning remains trusted and contains no password literal");
+assert(reportingSetup.includes("signInWithEmailAndPassword()") && reportingSetup.includes("accountCodeToAlias()"), "reporting setup must describe the implemented Firebase login");
+assert(!reportingSetup.includes("current public `index.html` login passes an account code"), "obsolete URL-only login documentation must not return");
 console.log("PASS focused Firebase Authentication integration audit");
