@@ -1,0 +1,3 @@
+accountCode,displayName,className,existing
+SAMPLE01,Example Student,9A,false
+SAMPLE02,Existing Example,9B,true
