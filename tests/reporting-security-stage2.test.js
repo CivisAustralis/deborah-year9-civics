@@ -5,11 +5,9 @@ const rules = fs.readFileSync("firestore.rules", "utf8");
 
 // Verify the scoped list rule components are present
 for (const required of [
-    "resource.data.teacherUid == request.auth.uid",
     "request.auth.uid == studentId || linkedTeacher(studentId)",
     "allow get: if signedIn()",
     "request.auth.uid == userId",
-    "allow list: if activeRole('teacher')",
     "resource.data.active == true",
     "resource.data.role == 'student'",
     "resource.data.teacherUid == request.auth.uid",
@@ -22,6 +20,12 @@ for (const required of [
     "match /{document=**}",
     "allow read, write: if false"
 ]) assert(rules.includes(required), `missing rule guard: ${required}`);
+
+// Verify the scoped list rule exists as a multi-condition block
+assert(
+    rules.includes("allow list: if activeRole('teacher')\n        && resource.data.active == true"),
+    "scoped 'allow list' must require activeRole('teacher') with resource.data constraints"
+);
 
 // Negative assertion: the unrestricted standalone list rule must NOT exist
 assert(
