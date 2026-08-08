@@ -8,7 +8,6 @@ let lessonProgress    = 0;
 let completedActivities = new Set();
 let lessonStart       = Date.now();
 let tabSwitches       = 0;
-let hiddenStart       = null;
 
 /* ==========================================================
    SETUP
@@ -17,6 +16,10 @@ let hiddenStart       = null;
 function setupLesson(config) {
 
     lessonConfig = config;
+
+ if (window.DeborahAnalytics) {
+     window.DeborahAnalytics.start(config);
+ }
 
  buildHeader();
 
@@ -136,6 +139,7 @@ NAVIGATION
 function goPrevious() {
 
  if (lessonConfig.previous) {
+     if (window.DeborahAnalytics) window.DeborahAnalytics.noteMeaningfulInteraction("navigation");
      saveLesson();
      window.location.href = lessonConfig.previous;
  }
@@ -145,6 +149,7 @@ function goPrevious() {
 function goDashboard() {
 
  const cfg = (typeof SITE_CONFIG !== "undefined") ? SITE_CONFIG : {};
+ if (window.DeborahAnalytics) window.DeborahAnalytics.noteMeaningfulInteraction("navigation");
  saveLesson();
  window.location.href = cfg.dashboard || "dashboard.html";
 
@@ -153,6 +158,7 @@ function goDashboard() {
 function goNext() {
 
  if (lessonConfig.next) {
+     if (window.DeborahAnalytics) window.DeborahAnalytics.noteMeaningfulInteraction("navigation");
      saveLesson();
      window.location.href = lessonConfig.next;
  }
@@ -168,6 +174,10 @@ function completeActivity(activityName) {
  if (completedActivities.has(activityName)) return;
 
  completedActivities.add(activityName);
+
+ if (window.DeborahAnalytics) {
+     window.DeborahAnalytics.recordActivityCompletion(activityName);
+ }
 
  const cfg = (typeof SITE_CONFIG !== "undefined") ? SITE_CONFIG : {};
  const step = (cfg.defaults && cfg.defaults.progressPerActivity) || 20;
@@ -189,6 +199,10 @@ function updateProgress() {
  if (bar) {
      bar.style.width = lessonProgress + "%";
      bar.textContent = lessonProgress + "%";
+ }
+
+ if (window.DeborahAnalytics) {
+     window.DeborahAnalytics.updateProgress(lessonProgress, lessonProgress >= 100);
  }
 
 }
@@ -218,6 +232,11 @@ function saveLesson() {
 
  localStorage.setItem(lessonConfig.lessonId, JSON.stringify(data));
 
+ if (window.DeborahAnalytics) {
+     window.DeborahAnalytics.updateProgress(lessonProgress, data.completed);
+     window.DeborahAnalytics.flush();
+ }
+
 }
 
 /* ==========================================================
@@ -232,10 +251,16 @@ function loadLesson() {
 
  if (!saved) return;
 
- const data = JSON.parse(saved);
+ let data;
+ try {
+     data = JSON.parse(saved);
+ } catch (error) {
+     return;
+ }
 
  lessonProgress      = data.progress   || 0;
  completedActivities = new Set(data.activities || []);
+ tabSwitches = Number(data.tabSwitches) || 0;
 
  /* Restore typed text fields */
  const reflection = document.getElementById("reflection");
@@ -279,19 +304,18 @@ function achievement(title, text) {
 }
 
 /* ==========================================================
-TAB / ENGAGEMENT TRACKING
+ANALYTICS PUBLIC HELPERS
 ========================================================== */
 
-document.addEventListener("visibilitychange", function() {
+function recordKnowledgeCheck(result) {
+ if (!window.DeborahAnalytics) return false;
+ return window.DeborahAnalytics.recordKnowledgeCheck(result);
+}
 
- if (document.hidden) {
-     tabSwitches++;
-     hiddenStart = Date.now();
- } else {
-     hiddenStart = null;
- }
-
-});
+function recordActivityResult(activityId, result) {
+ if (!window.DeborahAnalytics) return;
+ window.DeborahAnalytics.recordActivityResult(activityId, result);
+}
 
 /* ==========================================================
 LEAVE – auto-save
